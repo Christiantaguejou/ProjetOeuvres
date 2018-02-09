@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: projetoeuvres
-Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: christian
-Implementation-Vendor-Id: com.epul.oeuvres
-Created-By: IntelliJ IDEA
-Build-Jdk: 1.8.0_144
-Main-Class: ${start-class}
-
