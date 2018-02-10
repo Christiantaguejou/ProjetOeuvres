@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Ajouter un  adhérent</title>
 </head>
-<SCRIPT language="Javascript" type="text/javascript">
-<script type="text/javascript" src="js/foncControle.js"></script>
+<SCRIPT language="Javascript" type="text/javascript"/>
+<script type="text/javascript" src="js/foncControle.js" />
 
 
 <body>
