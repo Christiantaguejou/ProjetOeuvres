@@ -12,7 +12,7 @@
 
 
 <body>
-	<H1> Ajout d'un adhérent </H1> 
+	<H1> Ajout d'un adhéren t </H1>
 
 <DIV align="center">
 <FORM  name='identification' method="post" action="Controleur?action=insererAdherent" onsubmit="return teste()">
