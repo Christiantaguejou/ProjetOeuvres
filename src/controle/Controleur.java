@@ -62,45 +62,48 @@ public class Controleur extends HttpServlet {
         String actionName = request.getParameter(ACTION_TYPE);
         String destinationPage = ERROR_PAGE;
         // execute l'action
-        if (LISTER_RADHERENT.equals(actionName)) {
-            try {
 
-                Service unService = new Service();
-                request.setAttribute("mesAdherents", unService.consulterListeAdherents());
+        switch (actionName){
+            case LISTER_RADHERENT :
+                try {
 
-            } catch (MonException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+                    Service unService = new Service();
+                    request.setAttribute("mesAdherents", unService.consulterListeAdherents());
 
-            destinationPage = "/listerAdherent.jsp";
-        } else if (AJOUTER_ADHERENT.equals(actionName)) {
+                } catch (MonException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
 
-            destinationPage = "/ajouterAdherent.jsp";
-        } else if (INSERER_ADHERENT.equals(actionName)) {
-            try {
-                Adherent unAdherent = new Adherent();
-                unAdherent.setNomAdherent(request.getParameter("txtnom"));
-                unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
-                unAdherent.setVilleAdherent(request.getParameter("txtville"));
-                Service unService = new Service();
-                unService.insertAdherent(unAdherent);
+                destinationPage = "/listerAdherent.jsp";
+                break;
+            case AJOUTER_ADHERENT:
+                destinationPage = "/ajouterAdherent.jsp";
+                break;
 
-            } catch (MonException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            destinationPage = "/index.jsp";
-        }
-        /********ajout d'une oeuvre****************/
-        else if(){
+            case INSERER_ADHERENT:
+                try {
+                    Adherent unAdherent = new Adherent();
+                    unAdherent.setNomAdherent(request.getParameter("txtnom"));
+                    unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
+                    unAdherent.setVilleAdherent(request.getParameter("txtville"));
+                    Service unService = new Service();
+                    unService.insertAdherent(unAdherent);
 
+                } catch (MonException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                destinationPage = "/index.jsp";
+                break;
+            case AJOUTER_OEUVRE:
+                /********ajout d'une oeuvre****************/
 
-        }
-        /******************************************/
-        else {
-            String messageErreur = "[" + actionName + "] n'est pas une action valide.";
-            request.setAttribute(ERROR_KEY, messageErreur);
+                break;
+            default:
+                    String messageErreur = "[" + actionName + "] n'est pas une action valide.";
+                    request.setAttribute(ERROR_KEY, messageErreur);
+                break;
         }
         // Redirection vers la page jsp appropriee
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destinationPage);
