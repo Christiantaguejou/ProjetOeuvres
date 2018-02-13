@@ -19,7 +19,7 @@
 <body>
 	<p align="center"></p>
 	<p align="center">
-		<font face="Arial" size="4"><u>Médiathèque de POLYTECH </u></font>
+		<font face="Arial" size="4"><u>Médiathèque de POLYTECH LYON</u></font>
 	</p>
 	<p align="center">
 		<font color="#004080" face="Arial" size="4">Gestion de

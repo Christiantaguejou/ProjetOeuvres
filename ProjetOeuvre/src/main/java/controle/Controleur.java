@@ -23,6 +23,7 @@ public class Controleur extends HttpServlet {
 	private static final String LISTER_RADHERENT = "listerAdherent";
 	private static final String AJOUTER_ADHERENT = "ajouterAdherent";
 	private static final String INSERER_ADHERENT = "insererAdherent";
+	private static final String INSERER_OEUVRE = "insererOeuvre";
 	private static final String ERROR_KEY = "messageErreur";
 	private static final String ERROR_PAGE = "/erreur.jsp";
 
@@ -72,8 +73,7 @@ public class Controleur extends HttpServlet {
 
 			destinationPage = "/listerAdherent.jsp";
 		}
-		else
-		if (AJOUTER_ADHERENT.equals(actionName)) {
+		else if (AJOUTER_ADHERENT.equals(actionName)) {
 
 			destinationPage = "/ajouterAdherent.jsp";
 		} else if (INSERER_ADHERENT.equals(actionName)) {
@@ -90,6 +90,21 @@ public class Controleur extends HttpServlet {
 				e.printStackTrace();
 			}
 			destinationPage = "/index.jsp";
+		} else if(INSERER_OEUVRE.equals(actionName)){
+			/*try {
+				Oeuvrevente uneOeuvre = new Oeuvrevente();
+				uneOeuvre.setTitreOeuvrevente(request.getParameter("txtnom"));
+				uneOeuvre.setPrixOeuvrevente(request.getParameter("txtprenom"));
+				uneOeuvre.setProprietaire(new Proprietaire(request.getParameter("txtville")));
+				Service unService = new Service();
+				unService.insertAdherent(unAdherent);
+
+			} catch (MonException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			destinationPage = "/index.jsp";*/
+
 		}
 
 		else {
