@@ -19,8 +19,9 @@
     }
 </script>
 
-<body>
-<div class="container" style="width: 900px">
+<body style="background-color: lightgrey">
+
+</body>
 	<nav class="navbar navbar-default" style="height: 90px">
 		<a class="navbar-brand" href="#">
 			<div style="display: inline-block;"> <img src="/img/polytech.png" width="90" height="70" alt=""> </div>
@@ -28,21 +29,21 @@
 		</a>
 	</nav>
 
-	<p align="center"></p>
+	<div class="container-fluid" style="width: 900px; background-color: white">
+		<p align="center"></p>
 
-	<p align="center">
-		<font color="#004080" face="Arial" size="4">Gestion de
-			l'exposition 2018</font>
-	</p>
-	<p align="left">
-		<font color="#004080" face="Arial"><u>Sélectionnez la
-			fonctionnalité voulue:</u></font>
-	</p>
-	<ul class="list-group">
-		<a class="list-group-item" href="Controleur?action=ajouterAdherent">Ajout Adhérent</a>
-		<a class="list-group-item" href="Controleur?action=listerAdherent">lister les adhérents</a>
-		<a class="list-group-item" href="javascript:fermer()">Quitter</a>
-	</ul>
-</div>
-</body>
+		<p align="center">
+			<font color="#004080" face="Arial" size="4">Gestion de
+				l'exposition 2018</font>
+		</p>
+		<p align="left">
+			<font color="#004080" face="Arial"><u>Sélectionnez la
+				fonctionnalité voulue:</u></font>
+		</p>
+		<ul class="list-group">
+			<a class="list-group-item" href="Controleur?action=ajouterAdherent">Ajout Adhérent</a>
+			<a class="list-group-item" href="Controleur?action=listerAdherent">lister les adhérents</a>
+			<a class="list-group-item" href="javascript:fermer()">Quitter</a>
+		</ul>
+	</div>
 </html>
