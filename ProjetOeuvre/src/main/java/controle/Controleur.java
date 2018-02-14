@@ -93,6 +93,7 @@ public class Controleur extends HttpServlet {
 				break;
 
 			default:
+			    String actionName = request.getParameter(ACTION_TYPE);
 				String messageErreur = "[" + actionName + "] n'est pas une action valide.";
 				request.setAttribute(ERROR_KEY, messageErreur);
 				break;
