@@ -10,17 +10,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Expo : Médiathèque De POLYTECH</title>
     <style type="text/css">
         html, body
         {
             background-color: lightgrey;
         }
-        #container{
-            padding-left: 30px;
+        .container{
+            padding-left: 20px;
             padding-right: 30px;
             border-radius: 10px;
-            width: 900px;
+            width: 1100px;
             height: 100%;
             background-color: white;
         }
@@ -35,6 +34,18 @@
         .table-hover > tbody > tr:hover {
             background-color: rgba(129, 228, 255, 0.43);
         }
+        #menu{
+            margin-top: 65px;
+        }
+        .padding-0{
+            padding-right:2px;
+            padding-left:2px;
+        }
+       /* .panel-primary > .panel-heading {
+            color: #333;
+            background-color: #49e1ff;
+            border-color: #ddd;
+        }*/
     </style>
 </head>
 <body>
@@ -45,35 +56,49 @@
         </a>
     </nav>
 
-    <div class="container-fluid" id="container">
-        <P>
-            <A href="index.jsp"><FONT face="Arial" color="#004080">Retour
-                    Accueil</FONT></A>
-        </P>
-        <P align="center">
-            <STRONG>Listing&nbsp;des Adhérents </STRONG>
-        </P>
+    <div class="container">
+        <div class="row content">
+            <div class="col-sm-2 padding-0">
+                <div id="menu" class="panel panel-default ">
+                    <div class="panel-heading">
+                        <div class="panel-title ">Navigation</div>
+                    </div>
+                    <div class="panel-body-big" style="height: 60px">
+                        <a class="glyphicon glyphicon-plus" style="margin-left: 5px; margin-bottom: 10px" href="Controleur?action=ajouterAdherent"> Ajout Adhérent</a>
+                        <a class="glyphicon glyphicon-home" style="margin-left: 5px; margin-bottom: 10px" href="#">  Quitter</a>
+                    </div>
+            </div>
+            </div>
+            <div class="col-sm-10 padding-0 ">
+          <!--  <P>
+                <A href="index.jsp"><FONT face="Arial" color="#004080">Retour Accueil</FONT></A>
+            </P>-->
+            <P align="center">
+                <STRONG>Listing&nbsp;des Adhérents </STRONG>
+            </P>
 
-        <table id="tableFilter" class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th onclick="sortTable(0)">Numéro des adhérents</th>
-                    <th onclick="sortTable(1)">Nom</th>
-                    <th onclick="sortTable(2)">Prénom</th>
-                    <th onclick="sortTable(3)">Ville</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${mesAdherents}" var="item">
+            <table id="tableFilter" class="table table-striped table-hover">
+                <thead>
                     <tr>
-                        <td>${item.idAdherent}</td>
-                        <td>${item.nomAdherent}</td>
-                        <td>${item.prenomAdherent}</td>
-                        <td>${item.villeAdherent}</td>
+                        <th onclick="sortTable(0)">Numéro des adhérents</th>
+                        <th onclick="sortTable(1)">Nom</th>
+                        <th onclick="sortTable(2)">Prénom</th>
+                        <th onclick="sortTable(3)">Ville</th>
                     </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <c:forEach items="${mesAdherents}" var="item">
+                        <tr>
+                            <td>${item.idAdherent}</td>
+                            <td>${item.nomAdherent}</td>
+                            <td>${item.prenomAdherent}</td>
+                            <td>${item.villeAdherent}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+            </div>
+        </div>
     </div>
 
     <footer class="container-fluid text-center">

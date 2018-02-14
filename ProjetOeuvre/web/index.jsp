@@ -16,7 +16,7 @@
 			height: 500px;
 			background-color: lightgrey;
 		}
-		#container{
+		.container{
 			padding-left: 30px;
 			padding-right: 30px;
 			border-radius: 10px;
@@ -50,7 +50,7 @@
 		</a>
 	</nav>
 
-	<div class="container-fluid" id="container">
+	<div class="container">
 		<div class="row content">
 		<p align="center"></p>
 
