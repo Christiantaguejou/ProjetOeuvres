@@ -63,9 +63,10 @@
                     <div class="panel-heading">
                         <div class="panel-title ">Navigation</div>
                     </div>
-                    <div class="panel-body-big" style="height: 60px">
+                    <div class="panel-body-big" style="height: 90px">
                         <a class="glyphicon glyphicon-plus" style="margin-left: 5px; margin-bottom: 10px" href="Controleur?action=ajouterAdherent"> Ajout Adhérent</a>
-                        <a class="glyphicon glyphicon-home" style="margin-left: 5px; margin-bottom: 10px" href="#">  Quitter</a>
+                        <a class="glyphicon glyphicon-home" style="margin-left: 5px; margin-bottom: 10px; display: block" href="index.jsp">  Accueil</a>
+                        <a class="glyphicon glyphicon-remove" style="margin-left: 5px; margin-bottom: 10px" href="#">  Quitter</a>
                     </div>
             </div>
             </div>

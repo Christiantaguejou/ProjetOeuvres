@@ -41,6 +41,9 @@
             padding-right:10px;
             padding-left:2px;
         }
+        form{
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <SCRIPT language="Javascript" type="text/javascript"></SCRIPT>
@@ -62,35 +65,38 @@
                     <div class="panel-heading">
                         <div class="panel-title ">Navigation</div>
                     </div>
-                    <div class="panel-body-big" style="height: 60px">
-                        <a class="glyphicon glyphicon-plus" style="margin-left: 5px; margin-bottom: 10px" href="Controleur?action=listerAdherent"> Liste des Adhérents</a>
-                        <a class="glyphicon glyphicon-home" style="margin-left: 5px; margin-bottom: 10px" href="#">  Quitter</a>
+                    <div class="panel-body-big" style="height: 90px">
+                        <a class="glyphicon glyphicon-th-list" style="margin-left: 5px; margin-bottom: 10px" href="Controleur?action=listerAdherent"> Liste des Adhérents</a>
+                        <a class="glyphicon glyphicon-home" style="margin-left: 5px; margin-bottom: 10px; display: block" href="index.jsp">  Accueil</a>
+                        <a class="glyphicon glyphicon-remove" style="margin-left: 5px; margin-bottom: 10px" href="#">  Quitter</a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-10 ">
-	        <H1> Ajout d'un adhérent </H1>
+	        <H1 style="text-align: center"> Ajout d'un adhérent </H1>
 
             <DIV align="center">
-                <FORM  name='identification' method="post" action="Controleur?action=insererAdherent" onsubmit="return teste()">
-                     <P align="left"><FONT face="Arial" color="#004080"></FONT>
-                        <FONT face="Arial" color="#004080"> <BR>&nbsp;  &nbsp;  &nbsp; Nom de l'adherent : </FONT>
-                        <INPUT type="text" name="txtnom" value=""  id ="nom"> <BR>
-                        <FONT face="Arial" color="#004080">
-                        <BR>Prenom de l'adherent : </FONT>
-                        <INPUT type="text" name="txtprenom"  id ="prenom"  > <BR>
-
-                        <FONT face="Arial" color="#004080"> <BR>&nbsp;  &nbsp;  &nbsp; Ville de l'adherent :</FONT>
-                        <INPUT type="text" name="txtville" id ="ville">
-                        <FONT face="Arial" color="#004080">	<BR></FONT><BR>
-
-                          <!-- Boutons Ajouter -->
-
-                        <INPUT type="submit" name="bt"  value="Ajouter" >
-                        <FONT face="Arial" color="#004080"></FONT>
-                        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                </P></FORM>
+                <form class="form-horizontal" name='identification' method="post" action="Controleur?action=insererAdherent" onsubmit="return teste()">
+                    <div class="form-group">
+                        <label class="col-sm-3">Nom de l'adhérent:</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="nom" placeholder="Nom de l'adhérent">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Prénom de l'adhérent:</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control"  id="prenom" placeholder="Prénom de l'adhérent">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Ville de l'adhérent:</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control"  id="ville" placeholder="Ville de l'adhérent">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default">Ajouter</button>
+                </form>
             </DIV>
             </div>
         </div>
