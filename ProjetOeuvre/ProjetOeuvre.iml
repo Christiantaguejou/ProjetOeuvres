@@ -44,5 +44,8 @@
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.4" level="application_server_libraries" />
     <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.40" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.40" level="project" />
+    <orderEntry type="library" name="JPA 2.0-JPA 2.0" level="project" />
   </component>
 </module>
