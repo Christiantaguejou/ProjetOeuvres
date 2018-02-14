@@ -7,35 +7,118 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Affichage de tous les adhérents</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Expo : Médiathèque De POLYTECH</title>
+    <style type="text/css">
+        html, body
+        {
+            background-color: lightgrey;
+        }
+        #container{
+            padding-left: 30px;
+            padding-right: 30px;
+            border-radius: 10px;
+            width: 900px;
+            height: 100%;
+            background-color: white;
+        }
+        footer {
+            background-color: #f8f8f8;
+            color: grey;
+            padding: 15px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+        .table-hover > tbody > tr:hover {
+            background-color: rgba(129, 228, 255, 0.43);
+        }
+    </style>
 </head>
 <body>
-	<P>
-		<A href="index.jsp"><FONT face="Arial" color="#004080">Retour
-				Accueil</FONT></A>
-	</P>
-	<P align="center">
-		<FONT face="Arial" size="5" color="#004080"><U> <STRONG>Listing&nbsp;des
-					Adhérents </STRONG></U></FONT>
-	</P>
+    <nav class="navbar navbar-default" style="height: 70px">
+        <a class="navbar-brand" href="#">
+            <div style="display: inline-block;"> <img src="/img/polytech.png" width="70" height="55" alt=""> </div>
+            <div style="display: inline-block"> Médiathèque de POLYTECH LYON </div>
+        </a>
+    </nav>
 
-	<TABLE BORDER="1">
-		<CAPTION>Tableau des Adhérents</CAPTION>
-		<TR>
-			<TH>Numéro des adhérents</TH>
-			<TH>Nom</TH>
-			<TH>Prénom</TH>
-			<TH>Ville</TH>
+    <div class="container-fluid" id="container">
+        <P>
+            <A href="index.jsp"><FONT face="Arial" color="#004080">Retour
+                    Accueil</FONT></A>
+        </P>
+        <P align="center">
+            <STRONG>Listing&nbsp;des Adhérents </STRONG>
+        </P>
 
-		</TR>
+        <table id="tableFilter" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Numéro des adhérents</th>
+                    <th onclick="sortTable(1)">Nom</th>
+                    <th onclick="sortTable(2)">Prénom</th>
+                    <th onclick="sortTable(3)">Ville</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${mesAdherents}" var="item">
+                    <tr>
+                        <td>${item.idAdherent}</td>
+                        <td>${item.nomAdherent}</td>
+                        <td>${item.prenomAdherent}</td>
+                        <td>${item.villeAdherent}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
 
-		<c:forEach items="${mesAdherents}" var="item">
-			<tr>
-				<td>${item.idAdherent}</td>
-				<td>${item.nomAdherent}</td>
-				<td>${item.prenomAdherent}</td>
-                <td>${item.villeAdherent}</td>
-			</tr>
-		</c:forEach>
-	</TABLE>
+    <footer class="container-fluid text-center">
+        <p>Projet Oeuvres Par Mark, Fabien et Christian</p>
+    </footer>
+<script>
+    function sortTable(n) {
+        var table, ligne, trier, i, x, y, aChanger, dir, cpt = 0;
+        table = document.getElementById("tableFilter");
+        trier = true;
+        dir = "asc";
+        while (trier) {
+            trier = false;
+            ligne = table.getElementsByTagName("tr");
+            for (i = 1; i < (ligne.length - 1); i++) {
+                aChanger = false;
+                x = ligne[i].getElementsByTagName("td")[n];
+                y = ligne[i + 1].getElementsByTagName("td")[n];
+
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        aChanger= true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        aChanger= true;
+                        break;
+                    }
+                }
+            }
+            if (aChanger) {
+
+                ligne[i].parentNode.insertBefore(ligne[i + 1], ligne[i]);
+
+                trier = true;
+                cpt ++;
+            } else {
+                if (cpt == 0 && dir == "asc") {
+                    dir = "desc";
+                    trier = true;
+                }
+            }
+        }
+    }
+</script>
 </body>
 </html>

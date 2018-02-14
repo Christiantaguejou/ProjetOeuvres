@@ -9,7 +9,30 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<title>Expo : Médiathèque De POLYTECH LYON</title>
+	<title>Expo : Médiathèque De POLYTECH</title>
+	<style type="text/css">
+		html, body
+		{
+			height: 500px;
+			background-color: lightgrey;
+		}
+		#container{
+			padding-left: 30px;
+			padding-right: 30px;
+			border-radius: 10px;
+			width: 900px;
+			height: 100%;
+			background-color: white;
+		}
+		footer {
+			background-color: #f8f8f8;
+			color: grey;
+			padding: 15px;
+			width: 100%;
+			position: fixed;
+			bottom: 0;
+		}
+	</style>
 </head>
 
 
@@ -19,17 +42,16 @@
     }
 </script>
 
-<body style="background-color: lightgrey">
-
-</body>
-	<nav class="navbar navbar-default" style="height: 90px">
+<body>
+	<nav class="navbar navbar-default" style="height: 70px">
 		<a class="navbar-brand" href="#">
-			<div style="display: inline-block;"> <img src="/img/polytech.png" width="90" height="70" alt=""> </div>
+			<div style="display: inline-block;"> <img src="/img/polytech.png" width="70" height="55" alt=""> </div>
 			<div style="display: inline-block"> Médiathèque de POLYTECH LYON </div>
 		</a>
 	</nav>
 
-	<div class="container-fluid" style="width: 900px; background-color: white">
+	<div class="container-fluid" id="container">
+		<div class="row content">
 		<p align="center"></p>
 
 		<p align="center">
@@ -45,5 +67,11 @@
 			<a class="list-group-item" href="Controleur?action=listerAdherent">lister les adhérents</a>
 			<a class="list-group-item" href="javascript:fermer()">Quitter</a>
 		</ul>
+		</div>
 	</div>
+
+	<footer class="container-fluid text-center">
+		<p>Projet Oeuvres Par Mark, Fabien et Christian</p>
+	</footer>
+</body>
 </html>
