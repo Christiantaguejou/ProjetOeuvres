@@ -23,13 +23,14 @@ public class Controleur extends HttpServlet {
 	private static final String ACTION_TYPE = "action";
 	private static final String ID = "id";
     private static final String SAVE_ADHERENT = "saveAdherent";
-	private static final String LISTER_RADHERENT = "listerAdherent";
+	private static final String LISTER_ADHERENT = "listerAdherent";
 	private static final String AJOUTER_ADHERENT = "ajouterAdherent";
 	private static final String INSERER_ADHERENT = "insererAdherent";
 	private static final String DELETE_ADHERENT = "deleteAdherent";
 	private static final String ERROR_KEY = "messageErreur";
 	private static final String ERROR_PAGE = "/erreur.jsp";
 	private static final String MODIFIER_ADHERENT = "modifierAdherent";
+    private static final String AJOUT_OEUVRE = "ajoutOeuvre";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -65,7 +66,20 @@ public class Controleur extends HttpServlet {
         String destinationPage = ERROR_PAGE;
 		// execute l'action
 		switch (actionName) {
-			case LISTER_RADHERENT:
+			case AJOUT_OEUVRE:
+				try {
+
+					Service unService = new Service();
+					request.setAttribute("mesAdherents", unService.consulterListeAdherents());
+
+				} catch (MonException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				destinationPage = "/listerAdherent.jsp";
+				break;
+			case LISTER_ADHERENT:
 				try {
 
 					Service unService = new Service();
