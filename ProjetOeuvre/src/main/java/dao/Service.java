@@ -12,14 +12,14 @@ public class Service {
     /**
      * en cours de modif
      */
-    public void ajoutOeuvre(Oeuvrevente oeuvrevente,Proprietaire proprietaire) throws MonException {
+    public void ajoutOeuvre(Oeuvrevente oeuvrevente) throws MonException {
         String mysql;
 
         DialogueBd unDialogueBd = DialogueBd.getInstance();
         try {
             mysql = "insert into oeuvrevente  (titre_oeuvrevente,etat_oeuvrevente,prix_oeuvrevente,id_proprietaire)  " + "values ('"
                     + oeuvrevente.getTitreOeuvrevente()  ;
-            mysql += "'" + ",'L','" + oeuvrevente.getPrixOeuvrevente() +"','"+ proprietaire.getIdProprietaire()+ "')";
+            mysql += "'" + ",'L','" + oeuvrevente.getPrixOeuvrevente() +"','"+ oeuvrevente.getProprietaire().getIdProprietaire()+ "')";
 
             unDialogueBd.insertionBD(mysql);
         } catch (MonException e) {

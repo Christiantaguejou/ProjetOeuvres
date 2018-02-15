@@ -165,4 +165,12 @@ public class Controleur extends HttpServlet {
         unAdherent.setVilleAdherent(request.getParameter("ville"));
         return unAdherent;
     }
+    protected Oeuvrevente setParameterToOeuvrevente(HttpServletRequest request) throws MonException {
+        Oeuvrevente oeuvrevente = new Oeuvrevente();
+        Service unService = new Service();
+        oeuvrevente.setTitreOeuvrevente(request.getParameter("titreOeuvre"));
+        oeuvrevente.setPrixOeuvrevente(Float.parseFloat(request.getParameter("prixOeuvre")));
+        oeuvrevente.setProprietaire(unService.rechercherProprietaire(Integer.parseInt(request.getParameter("id_proprietaire"))));
+        return oeuvrevente;
+    }
 }
