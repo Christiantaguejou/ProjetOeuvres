@@ -36,7 +36,7 @@ public class Service {
         try {
             mysql = "UPDATE adherent SET nom_adherent=" + adherent.getNomAdherent() + ", prenom_adherent=" +
                     adherent.getPrenomAdherent() + ", ville_adherent=" + adherent.getVilleAdherent() +
-                    "WHERE id_adherent=" + adherent.getIdAdherent();
+                    " WHERE id_adherent=" + adherent.getIdAdherent();
             dialogueBd.insertionBD(mysql);
         } catch (MonException e) {
             throw e;
