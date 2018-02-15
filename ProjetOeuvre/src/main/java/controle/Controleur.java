@@ -1,6 +1,7 @@
 package controle;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,9 +21,12 @@ import meserreurs.*;
 public class Controleur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String ACTION_TYPE = "action";
+	private static final String ID = "id";
+    private static final String SAVE_ADHERENT = "saveAdherent";
 	private static final String LISTER_RADHERENT = "listerAdherent";
 	private static final String AJOUTER_ADHERENT = "ajouterAdherent";
 	private static final String INSERER_ADHERENT = "insererAdherent";
+	private static final String DELETE_ADHERENT = "deleteAdherent";
 	private static final String ERROR_KEY = "messageErreur";
 	private static final String ERROR_PAGE = "/erreur.jsp";
 	private static final String MODIFIER_ADHERENT = "modifierAdherent";
@@ -80,22 +84,55 @@ public class Controleur extends HttpServlet {
 				break;
 			case INSERER_ADHERENT:
 				try {
-					Adherent unAdherent = new Adherent();
-					unAdherent.setNomAdherent(request.getParameter("txtnom"));
-					unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
-					unAdherent.setVilleAdherent(request.getParameter("txtville"));
+					Adherent unAdherent = this.setParameterToAdherent(request);
 					Service unService = new Service();
+
 					unService.insertAdherent(unAdherent);
 
 				} catch (MonException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				destinationPage = "/index.jsp";
-				break;
+                response.sendRedirect("Controleur?action=listerAdherent");
+                return;
+            case SAVE_ADHERENT:
+                try {
+                    Adherent adherent = this.setParameterToAdherent(request);
+                    adherent.setIdAdherent(Integer.parseInt(request.getParameter("id")));
+                    Service unService = new Service();
+                    unService.modifyAdherent(adherent);
+                }catch (MonException e){
+                    e.printStackTrace();
+                }
+                response.sendRedirect("Controleur?action=listerAdherent");
+                return;
             case MODIFIER_ADHERENT:
-                destinationPage = "/modifierAdherent.jsp";
+				try {
+					int id = Integer.parseInt(request.getParameter(ID));
+					Service unService = new Service();
+					request.setAttribute("adherent", unService.consulterAdherent(id));
+				} catch (MonException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				destinationPage = "/modifierAdherent.jsp";
                 break;
+            case DELETE_ADHERENT:
+                Service unService = new Service();
+                try {
+                    Adherent adherentToDelete = unService.consulterAdherent(Integer.parseInt(request.getParameter(ID)));
+                    if (adherentToDelete == null) {
+                        response.getWriter().write("error");
+                        return;
+                    }
+                    unService.deleteAdherent(adherentToDelete);
+                } catch (MonException e) {
+                    e.printStackTrace();
+                    response.getWriter().write("error");
+                    return;
+                }
+                response.getWriter().write("AdherentSupprimer");
+                return;
 			default:
 				String messageErreur = "[" + actionName + "] n'est pas une action valide.";
 				request.setAttribute(ERROR_KEY, messageErreur);
@@ -107,4 +144,11 @@ public class Controleur extends HttpServlet {
 
 	}
 
+	protected Adherent setParameterToAdherent(HttpServletRequest request) {
+        Adherent unAdherent = new Adherent();
+        unAdherent.setNomAdherent(request.getParameter("nom"));
+        unAdherent.setPrenomAdherent(request.getParameter("prenom"));
+        unAdherent.setVilleAdherent(request.getParameter("ville"));
+        return unAdherent;
+    }
 }

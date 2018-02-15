@@ -47,7 +47,7 @@
     </style>
 </head>
 <SCRIPT language="Javascript" type="text/javascript"></SCRIPT>
-<script type="text/javascript" src="js/foncControle.js"></script>
+<script type="text/javascript" src="js/fonctControle.js"></script>
 
 
 <body>
@@ -76,23 +76,23 @@
 	        <H1 style="text-align: center"> Ajout d'un adhérent </H1>
 
             <DIV align="center">
-                <form class="form-horizontal" name='identification' method="post" action="Controleur?action=insererAdherent" onsubmit="return teste()">
+                <form class="form-horizontal" name='identification' method="post" action="Controleur?action=insererAdherent"  onsubmit="return teste()">
                     <div class="form-group">
                         <label class="col-sm-3">Nom de l'adhérent:</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" id="nom" placeholder="Nom de l'adhérent">
+                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom de l'adhérent">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3">Prénom de l'adhérent:</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control"  id="prenom" placeholder="Prénom de l'adhérent">
+                            <input type="text" class="form-control"  id="prenom" name="prenom" placeholder="Prénom de l'adhérent">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3">Ville de l'adhérent:</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control"  id="ville" placeholder="Ville de l'adhérent">
+                            <input type="text" class="form-control"  id="ville" name="ville" placeholder="Ville de l'adhérent">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-default">Ajouter</button>

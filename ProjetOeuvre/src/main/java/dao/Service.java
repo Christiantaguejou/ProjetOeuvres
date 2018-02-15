@@ -30,30 +30,38 @@ public class Service {
 		}
 	}
 
+	public void modifyAdherent(Adherent adherent) throws MonException{
+	    String mysql;
+	    DialogueBd dialogueBd =  DialogueBd.getInstance();
+        try {
+            mysql = "UPDATE adherent SET nom_adherent=" + adherent.getNomAdherent() + ", prenom_adherent=" +
+                    adherent.getPrenomAdherent() + ", ville_adherent=" + adherent.getVilleAdherent() +
+                    "WHERE id_adherent=" + adherent.getIdAdherent();
+            dialogueBd.insertionBD(mysql);
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception ex) {
+            throw new MonException(ex.getMessage(), "systeme");
+        }
+    }
+
 	// gestion des adherents
 	// Consultation d'un adhérent par son numéro
 	// Fabrique et renvoie un objet adhérent contenant le résultat de la requête
 	// BDD
 	public Adherent consulterAdherent(int numero) throws MonException {
-		
-		 Map mParams = new HashMap();
-	     Map mParam;
-	  try
-	  {
-		String mysql = "select * from adherent where numero_adherent=?";
-		 mParam = new HashMap();
-	     mParam.put(1, numero);
-	     mParams.put(0, mParam); 
-		List<Adherent> mesAdh = consulterListeAdherents(mysql);
-		if (mesAdh.isEmpty())
-			return null;
-		else {
-			return mesAdh.get(0);
-		}
-	  } catch (MonException e)
-		{
+
+	     try {
+	         String mysql = "select * from adherent where id_adherent=" + numero;
+	         List<Adherent> mesAdh = consulterListeAdherents(mysql);
+	         if (mesAdh.isEmpty()) {
+                 return null;
+             } else {
+	             return mesAdh.get(0);
+	         }
+	     } catch (MonException e) {
 			throw e;
-		}
+         }
 	}
 
 	// Consultation des adh�rents
@@ -92,6 +100,20 @@ public class Service {
 			throw new MonException(exc.getMessage(), "systeme");
 		}
 	}
+
+	public void deleteAdherent(Adherent adherent) throws MonException{
+	    //@TODO supprimer les relations avec les oeuvres
+        String mysql;
+        DialogueBd dialogueBd =  DialogueBd.getInstance();
+        try {
+            mysql = "DELETE FROM adherent WHERE id_adherent=" + adherent.getIdAdherent();
+            dialogueBd.insertionBD(mysql);
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception ex) {
+            throw new MonException(ex.getMessage(), "systeme");
+        }
+    }
 	
 	
 	public Oeuvrevente rechercherOeuvreIdParam(int id) throws MonException
