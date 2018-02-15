@@ -25,6 +25,7 @@ public class Controleur extends HttpServlet {
 	private static final String INSERER_ADHERENT = "insererAdherent";
 	private static final String ERROR_KEY = "messageErreur";
 	private static final String ERROR_PAGE = "/erreur.jsp";
+	private static final String MODIFIER_ADHERENT = "modifierAdherent";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -92,7 +93,9 @@ public class Controleur extends HttpServlet {
 				}
 				destinationPage = "/index.jsp";
 				break;
-
+            case MODIFIER_ADHERENT:
+                destinationPage = "/modifierAdherent.jsp";
+                break;
 			default:
 				String messageErreur = "[" + actionName + "] n'est pas une action valide.";
 				request.setAttribute(ERROR_KEY, messageErreur);

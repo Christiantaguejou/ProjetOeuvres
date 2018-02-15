@@ -89,7 +89,7 @@
                 </thead>
                 <tbody>
                     <c:forEach items="${mesAdherents}" var="item">
-                        <tr>
+                        <tr class="clickable-row" data-href="Controleur?action=modifierAdherent&id=${item.idAdherent}">
                             <td>${item.idAdherent}</td>
                             <td>${item.nomAdherent}</td>
                             <td>${item.prenomAdherent}</td>
@@ -105,7 +105,7 @@
     <footer class="container-fluid text-center">
         <p>Projet Oeuvres Par Mark, Fabien et Christian</p>
     </footer>
-<script>
+<script type="application/javascript">
     function sortTable(n) {
         var table, ligne, trier, i, x, y, aChanger, dir, cpt = 0;
         table = document.getElementById("tableFilter");
@@ -145,6 +145,9 @@
             }
         }
     }
+    $('.clickable-row').click(function(){
+        window.location = $(this).data('href');
+    });
 </script>
 </body>
 </html>
