@@ -78,7 +78,7 @@
             <DIV align="center">
                 <form class="form-horizontal" name='identification' method="post" action="Controleur?action=saveAdherent" onsubmit="return teste()">
                     <div class="form-group">
-                        <input type="text" class="form-control hidden" id="idAdherent" value="${adherent.idAdherent}">
+                        <input type="text" class="form-control hidden" id="idAdherent" name="id" value="${adherent.idAdherent}">
                         <label class="col-sm-3">Nom de l'adhérent:</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="nom" name="nom" value="${adherent.nomAdherent}">

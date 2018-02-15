@@ -93,8 +93,8 @@ public class Controleur extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-                response.sendRedirect("Controleur?action=listerAdherent");
-                return;
+                destinationPage = "/index.jsp";
+				break;
             case SAVE_ADHERENT:
                 try {
                     Adherent adherent = this.setParameterToAdherent(request);
@@ -104,8 +104,8 @@ public class Controleur extends HttpServlet {
                 }catch (MonException e){
                     e.printStackTrace();
                 }
-                response.sendRedirect("Controleur?action=listerAdherent");
-                return;
+                destinationPage = "/index.jsp";
+                break;
             case MODIFIER_ADHERENT:
 				try {
 					int id = Integer.parseInt(request.getParameter(ID));
