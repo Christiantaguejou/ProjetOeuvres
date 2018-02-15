@@ -1,0 +1,13 @@
+html, body
+{
+    background-color: lightgrey;
+    height: 100%;
+}
+.container{
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 3px;
+    width: 800px;
+    height: 100%;
+    background-color: white;
+}

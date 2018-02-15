@@ -9,69 +9,56 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/index.css">
 	<title>Expo : Médiathèque De POLYTECH</title>
-	<style type="text/css">
-		html, body
-		{
-			height: 500px;
-			background-color: lightgrey;
-		}
-		.container{
-			padding-left: 30px;
-			padding-right: 30px;
-			border-radius: 10px;
-			width: 900px;
-			height: 100%;
-			background-color: white;
-		}
-		footer {
-			background-color: #f8f8f8;
-			color: grey;
-			padding: 15px;
-			width: 100%;
-			position: fixed;
-			bottom: 0;
-		}
-	</style>
+
 </head>
 
-
-<script language="JavaScript">
-    function fermer() {
-
-    }
-</script>
-
 <body>
-	<nav class="navbar navbar-default" style="height: 70px">
-		<a class="navbar-brand" href="#">
-			<div style="display: inline-block;"> <img src="/img/polytech.png" width="70" height="55" alt=""> </div>
-			<div style="display: inline-block"> Médiathèque de POLYTECH LYON </div>
-		</a>
-	</nav>
-
 	<div class="container">
-		<div class="row content">
-		<p align="center"></p>
+		<jsp:include page="header.jsp" />
 
-		<p align="center">
-			<font color="#004080" face="Arial" size="4">Gestion de
-				l'exposition 2018</font>
-		</p>
-		<p align="left">
-			<font color="#004080" face="Arial"><u>Sélectionnez la
-				fonctionnalité voulue:</u></font>
-		</p>
-		<ul class="list-group">
-			<a class="list-group-item" href="Controleur?action=ajouterAdherent">Ajout Adhérent</a>
-			<a class="list-group-item" href="Controleur?action=listerAdherent">lister les adhérents</a>
-			<a class="list-group-item" href="javascript:fermer()">Quitter</a>
-		</ul>
+		<div class="row content">
+
+
+			<p align="center">
+				<font color="#004080" face="Arial" size="4">Gestion de
+					l'exposition 2018</font>
+			</p>
+
+			<h4 style="text-align: center">Sélectionnez la fonctionnalité voulue:</h4>
+
+			<!--<ul class="list-group">
+				<a class="list-group-item" href="Controleur?action=ajouterAdherent">Ajout Adhérent</a>
+				<a class="list-group-item" href="Controleur?action=listerAdherent">lister les adhérents</a>
+				<a class="list-group-item" href="javascript:fermer()">Quitter</a>
+			</ul>-->
+				<div class="col-sm-4 fonctionnalite">
+					<img src="img/add.PNG" class="img-responsive image" alt="Image">
+					<div class="middle">
+						<a class="text" href="Controleur?action=ajouterAdherent">Ajout Adhérent</a>
+					</div>
+				</div>
+				<div class="col-sm-4 fonctionnalite">
+					<img src="img/list.png" class="img-responsive image"  alt="Image">
+					<div class="middle">
+						<a class="text" href="Controleur?action=listerAdherent">Lister les Adhérents</a>
+					</div>
+				</div>
+				<div class="col-sm-4 fonctionnalite">
+					<img src="img/quit.png" class="img-responsive image"  alt="Image">
+					<div class="middle">
+						<a class="text" ref="javascript:fermer()">Quitter</a>
+					</div>
+				</div>
 		</div>
 	</div>
 
-	<footer class="container-fluid text-center">
-		<p>Projet Oeuvres Par Mark, Fabien et Christian</p>
-	</footer>
+	<script language="JavaScript">
+        function fermer() {
+
+        }
+	</script>
 </body>
 </html>
