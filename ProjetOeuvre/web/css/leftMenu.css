@@ -1,0 +1,16 @@
+a{
+    color: black;
+}
+.menu div a:hover{
+    color: #818181;
+    text-decoration: none;
+}
+.menu div a{
+    margin-left: 5px;
+}
+.menu div{
+    height: 30px;
+}
+.menu div:hover{
+    background-color: #d8d8d8;
+}

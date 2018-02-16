@@ -16,44 +16,41 @@
 </head>
 
 <body>
-	<div class="container">
+
 		<jsp:include page="header.jsp" />
 
-		<div class="row content">
+		<div class="container">
+			<div class="panel panel-default">
+				<div class="panel-heading">Gestion de l'exposition 2018</div>
+				<div class="panel-body">
+					<div class="row content">
 
+						<h4 style="text-align: center">Sélectionnez la fonctionnalité voulue:</h4>
 
-			<p align="center">
-				<font color="#004080" face="Arial" size="4">Gestion de
-					l'exposition 2018</font>
-			</p>
-
-			<h4 style="text-align: center">Sélectionnez la fonctionnalité voulue:</h4>
-
-			<!--<ul class="list-group">
-				<a class="list-group-item" href="Controleur?action=ajouterAdherent">Ajout Adhérent</a>
-				<a class="list-group-item" href="Controleur?action=listerAdherent">lister les adhérents</a>
-				<a class="list-group-item" href="javascript:fermer()">Quitter</a>
-			</ul>-->
-				<div class="col-sm-4 fonctionnalite">
-					<img src="img/add.PNG" class="img-responsive image" alt="Image">
-					<div class="middle">
-						<a class="text" href="Controleur?action=ajouterAdherent">Ajout Adhérent</a>
+						<div class="col-sm-4 fonctionnalite">
+							<img src="img/add.PNG" class="img-responsive image" alt="Image">
+							<div class="middle">
+								<a class="text" href="Controleur?action=ajouterAdherent">Ajout Adhérent</a>
+							</div>
+						</div>
+						<div class="col-sm-4 fonctionnalite">
+							<img src="img/list.png" class="img-responsive image"  alt="Image">
+							<div class="middle">
+								<a class="text" href="Controleur?action=listerAdherent">Lister Les Adhérents</a>
+							</div>
+						</div>
+						<div class="col-sm-4 fonctionnalite">
+							<img src="img/quit.png" class="img-responsive image"  alt="Image">
+							<div class="middle">
+								<a class="text" ref="javascript:fermer()">Quitter</a>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="col-sm-4 fonctionnalite">
-					<img src="img/list.png" class="img-responsive image"  alt="Image">
-					<div class="middle">
-						<a class="text" href="Controleur?action=listerAdherent">Lister les Adhérents</a>
-					</div>
-				</div>
-				<div class="col-sm-4 fonctionnalite">
-					<img src="img/quit.png" class="img-responsive image"  alt="Image">
-					<div class="middle">
-						<a class="text" ref="javascript:fermer()">Quitter</a>
-					</div>
-				</div>
+			</div>
 		</div>
-	</div>
+
+		<jsp:include page="footer.jsp" />
 
 	<script language="JavaScript">
         function fermer() {
