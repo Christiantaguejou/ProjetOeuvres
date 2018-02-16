@@ -10,16 +10,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/leftMenu.css">
     <link rel="stylesheet" href="css/listerAdherent.css">
+    <script type="application/javascript" src="js/listerAdherent.js"></script>
 </head>
 <body>
 <jsp:include page="header.jsp" />
 
     <div class="container">
         <div class="row content">
-            <div class="col-md-3 ">
+            <div class="col-md-3 col-xs-3 ">
                 <div class="panel panel-default ">
                     <div class="panel-heading">
                         <div class="panel-title ">Navigation</div>
@@ -31,7 +33,7 @@
                     </div>
             </div>
             </div>
-            <div class="col-md-9 ">
+            <div class="col-md-9 col-xs-9">
         <div class="panel panel-default ">
             <div class="panel-heading">
                 <div class="panel-title ">Listing des Adhérents</div>
@@ -41,19 +43,24 @@
                 <br/>
                 <thead>
                     <tr>
-                        <th onclick="sortTable(0)"><p class="glyphicon glyphicon-sort" style="display: inline"></p>  N° des adhérents</th>
-                        <th onclick="sortTable(1)"><p class="glyphicon glyphicon-sort" style="display: inline"></p>  Nom</th>
-                        <th onclick="sortTable(2)"><p class="glyphicon glyphicon-sort" style="display: inline"></p>  Prénom</th>
-                        <th onclick="sortTable(3)"><p class="glyphicon glyphicon-sort" style="display: inline"></p>  Ville</th>
+                        <th onclick="sortTable(0)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  N° des adhérents</th>
+                        <th onclick="sortTable(1)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  Nom</th>
+                        <th onclick="sortTable(2)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  Prénom</th>
+                        <th onclick="sortTable(3)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  Ville</th>
+                        <th><p style="display: inline">Paramètres</p></th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach items="${mesAdherents}" var="item">
-                        <tr class="clickable-row" data-href="Controleur?action=modifierAdherent&id=${item.idAdherent}">
+                        <tr>
                             <td>${item.idAdherent}</td>
                             <td>${item.nomAdherent}</td>
                             <td>${item.prenomAdherent}</td>
                             <td>${item.villeAdherent}</td>
+                            <td align="center">
+                                <a class="btn btn-primary clickable-row" data-href="Controleur?action=modifierAdherent&id=${item.idAdherent}"><em class="fa fa-pencil"></em></a>
+                                <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>
@@ -64,67 +71,14 @@
         </div>
     </div>
 
-<jsp:include page="footer.jsp" />
+<!--<jsp:include page="footer.jsp" />-->
 
 <script type="application/javascript">
-    function sortTable(n) {
-        var table, ligne, trier, i, x, y, aChanger, dir, cpt = 0;
-        table = document.getElementById("tableFilter");
-        trier = true;
-        dir = "asc";
-        while (trier) {
-            trier = false;
-            ligne = table.getElementsByTagName("tr");
-            for (i = 1; i < (ligne.length - 1); i++) {
-                aChanger = false;
-                x = ligne[i].getElementsByTagName("td")[n];
-                y = ligne[i + 1].getElementsByTagName("td")[n];
 
-                if (dir == "asc") {
-                    if(n == 0){
-                        var a = parseInt(x.textContent);
-                        var b = parseInt(y.textContent);
-                        if(a > b){
-                            aChanger = true;
-                            break;
-                        }
-                    }
-                    else if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        aChanger= true;
-                        break;
-                    }
-                } else if (dir == "desc") {
-                    if(n == 0){
-                        var a = parseInt(x.textContent);
-                        var b = parseInt(y.textContent);
-                        if(a < b){
-                            aChanger = true;
-                            break;
-                        }
-                    }
-                    else if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                        aChanger= true;
-                        break;
-                    }
-                }
-            }
-            if (aChanger) {
-
-                ligne[i].parentNode.insertBefore(ligne[i + 1], ligne[i]);
-
-                trier = true;
-                cpt ++;
-            } else {
-                if (cpt == 0 && dir == "asc") {
-                    dir = "desc";
-                    trier = true;
-                }
-            }
-        }
-    }
     $('.clickable-row').click(function(){
         window.location = $(this).data('href');
     });
+
 </script>
 </body>
 </html>

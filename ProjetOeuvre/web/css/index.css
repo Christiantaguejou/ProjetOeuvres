@@ -20,3 +20,11 @@
 .text {
     font-size: 12px;
 }
+a{
+    color: black;
+}
+a:hover{
+    color: #818181;
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -39,7 +39,9 @@
 
         <div class="col-md-9 col-xs-9 ">
         <div class="panel panel-default">
-            <div class="panel-heading">Ajout d'un adhérent</div>
+            <div class="panel-heading">
+                <div class="panel-title ">Ajout d'un Adhérents</div>
+            </div>
             <div class="panel-body">
             <DIV align="center">
                 <form class="form-horizontal" name='identification' method="post" action="Controleur?action=insererAdherent"  onsubmit="return teste()">
