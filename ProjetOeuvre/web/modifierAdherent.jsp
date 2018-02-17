@@ -43,27 +43,27 @@
         <div class="col-md-9 col-xs-9 ">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <div class="panel-title ">Ajout d'un Adhérents</div>
+                <div class="panel-title ">Modifier un Adhérents</div>
             </div>
             <div class="panel-body">
             <DIV align="center">
                 <form class="form-horizontal" name='identification' method="post" action="Controleur?action=saveAdherent" onsubmit="return teste()">
                     <div class="form-group">
                         <input type="text" class="form-control hidden" id="idAdherent" name="id" value="${adherent.idAdherent}">
-                        <label class="col-sm-3">Nom de l'adhérent:</label>
-                        <div class="col-sm-9">
+                        <label class="col-sm-4 col-xs-4">Nom de l'adhérent:</label>
+                        <div class="col-sm-8 col-xs-4">
                             <input type="text" class="form-control" id="nom" name="nom" value="${adherent.nomAdherent}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3">Prénom de l'adhérent:</label>
-                        <div class="col-sm-9">
+                        <label class="col-sm-4 col-xs-4">Prénom de l'adhérent:</label>
+                        <div class="col-sm-8 col-xs-4">
                             <input type="text" class="form-control"  id="prenom"  name="prenom" value="${adherent.prenomAdherent}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3">Ville de l'adhérent:</label>
-                        <div class="col-sm-9">
+                        <label class="col-sm-4 col-xs-4">Ville de l'adhérent:</label>
+                        <div class="col-sm-8 col-xs-4">
                             <input type="text" class="form-control"  id="ville" name="ville" value="${adherent.villeAdherent}">
                         </div>
                     </div>

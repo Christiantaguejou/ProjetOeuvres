@@ -25,32 +25,45 @@
 					<div class="panel-title ">Gestion de l'exposition 2018</div>
 				</div>
 				<div class="panel-body">
-					<div class="row content">
+                    <h4 align="center">Sélectionnez la fonctionnalité voulue:</h4>
 
-						<h4 style="text-align: center">Sélectionnez la fonctionnalité voulue:</h4>
-					<div class="col-md-1 col-xs-1"></div>
-					<div class="col-md-10 col-xs-10">
-						<div class="col-md-4 col-xs-4 fonctionnalite">
-							<img src="img/add.PNG" class="img-responsive image" alt="Image">
-							<div class="middle">
-								<a class="text" href="Controleur?action=ajouterAdherent">Ajout Adhérent</a>
-							</div>
-						</div>
-						<div class="col-md-4 col-xs-4 fonctionnalite">
-							<img src="img/list.png" class="img-responsive image"  alt="Image">
-							<div class="middle">
-								<a class="text" href="Controleur?action=listerAdherent">Lister Les Adhérents</a>
-							</div>
-						</div>
-						<div class="col-md-4 col-xs-4 fonctionnalite">
-							<img src="img/quit.png" class="img-responsive image"  alt="Image">
-							<div class="middle">
-								<a class="text" ref="javascript:fermer()">Quitter</a>
-							</div>
-						</div>
+					<div class="row content">
+                        <div class="col-md-1 col-xs-1"></div>
+                        <div class="col-md-10 col-xs-10">
+                            <div class="col-md-4 col-xs-4 fonctionnalite">
+                                <img src="img/add.PNG" class="img-responsive image" alt="Image">
+                                <div class="middle">
+                                    <a class="text" href="Controleur?action=ajouterAdherent">Ajout Adhérent</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-4 fonctionnalite">
+                                <img src="img/list.png" class="img-responsive image"  alt="Image">
+                                <div class="middle">
+                                    <a class="text" href="Controleur?action=listerAdherent">Lister Les Adhérents</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-4 fonctionnalite">
+                                <img src="img/quit.png" class="img-responsive image"  alt="Image">
+                                <div class="middle">
+                                    <a class="text" ref="javascript:fermer()">Quitter</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-xs-1"></div>
 					</div>
-					</div>
-					<div class="col-md-1 col-xs-1"></div>
+
+                    <div class="row content rowSpace">
+                        <div class="col-md-1 col-xs-1"></div>
+                        <div class="col-md-10 col-xs-10">
+                            <div class="col-md-4 col-xs-4 fonctionnalite">
+                                <img src="img/oeuvre.png" class="img-responsive image"  alt="Image">
+                                <div class="middle">
+                                    <a class="text" href="Controleur?action=ajouterOeuvre">Ajouter Une Oeuvre</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-xs-1"></div>
+                    </div>
 				</div>
 			</div>
 		</div>

@@ -28,3 +28,6 @@ a:hover{
     text-decoration: none;
     cursor: pointer;
 }
+.rowSpace{
+    margin-top: 10px;
+}

@@ -30,7 +30,7 @@ public class Controleur extends HttpServlet {
 	private static final String ERROR_KEY = "messageErreur";
 	private static final String ERROR_PAGE = "/erreur.jsp";
 	private static final String MODIFIER_ADHERENT = "modifierAdherent";
-    private static final String AJOUT_OEUVRE = "ajoutOeuvre";
+    private static final String AJOUT_OEUVRE = "ajouterOeuvre";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -77,7 +77,7 @@ public class Controleur extends HttpServlet {
 					e.printStackTrace();
 				}
 
-				destinationPage = "/listerAdherent.jsp";
+				destinationPage = "/ajouterOeuvre.jsp";
 				break;
 			case LISTER_ADHERENT:
 				try {
