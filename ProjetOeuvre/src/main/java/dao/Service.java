@@ -48,6 +48,27 @@ public class Service {
         }
     }
 
+    /**
+     * Insertion d'une oeuvre dans la BDD
+     * @param oeuvre
+     * @throws MonException
+     */
+    public void insertOeuvre(Oeuvrevente oeuvre) throws MonException {
+        String mysql;
+
+        DialogueBd unDialogueBd = DialogueBd.getInstance();
+        try {
+            mysql = "insert into oeuvrevente  (titre_oeuvrevente, etat_oeuvrevente, prix_oeuvrevente, id_proprietaire)  "
+                    + "values ('"+oeuvre.getTitreOeuvrevente()+"','"+"L"+"',"+oeuvre.getPrixOeuvrevente()+","
+                    +oeuvre.getProprietaire().getIdProprietaire()+")";
+
+            unDialogueBd.insertionBD(mysql);
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception exc) {
+            throw new MonException(exc.getMessage(), "systeme");
+        }
+    }
     public void modifyAdherent(Adherent adherent) throws MonException {
         String mysql;
         DialogueBd dialogueBd = DialogueBd.getInstance();
@@ -118,6 +139,44 @@ public class Service {
         }
     }
 
+    /**
+     * Permet d'afficher la liste des proprietaires
+     * @return
+     * @throws MonException
+     */
+    public List<Proprietaire> consulterListeProprietaire() throws MonException {
+        String mysql = "select * from proprietaire";
+        return consulterListeProprietaire(mysql);
+    }
+
+    private List<Proprietaire> consulterListeProprietaire(String mysql) throws MonException {
+        List<Object> rs;
+        List<Proprietaire> mesPropio = new ArrayList<Proprietaire>();
+        int index = 0;
+        try {
+            DialogueBd unDialogueBd = DialogueBd.getInstance();
+            rs = unDialogueBd.lecture(mysql);
+            while (index < rs.size()) {
+                // On cr�e un stage
+                Proprietaire proprio = new Proprietaire();
+                // il faut redecouper la liste pour retrouver les lignes
+                proprio.setIdProprietaire(Integer.parseInt(rs.get(index + 0).toString()));
+                proprio.setNomProprietaire(rs.get(index + 1).toString());
+                proprio.setPrenomProprietaire(rs.get(index + 2).toString());
+
+                // On incr�mente tous les 3 champs
+                index = index + 3;
+                mesPropio.add(proprio);
+            }
+
+            return mesPropio;
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception exc) {
+            throw new MonException(exc.getMessage(), "systeme");
+        }
+    }
+
     public void deleteAdherent(Adherent adherent) throws MonException {
         //@TODO supprimer les relations avec les oeuvres
         String mysql;
@@ -176,7 +235,7 @@ public class Service {
         Map mParam;
         List<Object> rs;
         Proprietaire unProprietaire = null;
-        String requete = " select * from Proprietaire where id_Proprietaire ?";
+        mysql = " select * from Proprietaire where id_Proprietaire ?";
         try {
             mParam = new HashMap();
             mParam.put(1, id);
@@ -189,6 +248,36 @@ public class Service {
                 unProprietaire.setIdProprietaire(Integer.parseInt(rs.get(0).toString()));
                 unProprietaire.setNomProprietaire(rs.get(1).toString());
                 unProprietaire.setPrenomProprietaire(rs.get(2).toString());
+            }
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception exc) {
+            throw new MonException(exc.getMessage(), "systeme");
+        }
+        return unProprietaire;
+    }
+
+    public Proprietaire rechercherProprietaire(String nomPrenom) throws MonException {
+
+        String[] identite = nomPrenom.split(" ");
+        Map mParams = new HashMap();
+        Map mParam;
+        List<Object> rs;
+        Proprietaire unProprietaire = null;
+        String requete = " select id_proprietaire from proprietaire where nom_proprietaire = ? AND prenom_proprietaire = ?";
+        try {
+            mParam = new HashMap();
+            mParam.put(1, identite[0]);
+            mParam.put(2, identite[1]);
+            mParams.put(0, mParam);
+            rs = DialogueBd.getInstance().lectureParametree(requete, mParams);
+            if (rs.size() > 0) {
+
+                unProprietaire = new Proprietaire();
+
+                unProprietaire.setIdProprietaire(Integer.parseInt(rs.get(0).toString()));
+                unProprietaire.setNomProprietaire(identite[0]);
+                unProprietaire.setPrenomProprietaire(identite[1]);
             }
         } catch (MonException e) {
             throw e;

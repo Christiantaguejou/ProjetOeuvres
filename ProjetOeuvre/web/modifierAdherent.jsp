@@ -49,22 +49,22 @@
             <DIV align="center">
                 <form class="form-horizontal" name='identification' method="post" action="Controleur?action=saveAdherent" onsubmit="return teste()">
                     <div class="form-group">
-                        <input type="text" class="form-control hidden" id="idAdherent" name="id" value="${adherent.idAdherent}">
+                        <input type="text" class="form-control hidden" id="idAdherent" name="id" value="${adherent.idAdherent}" required>
                         <label class="col-sm-4 col-xs-4">Nom de l'adhérent:</label>
                         <div class="col-sm-8 col-xs-4">
-                            <input type="text" class="form-control" id="nom" name="nom" value="${adherent.nomAdherent}">
+                            <input type="text" class="form-control" id="nom" name="nom" value="${adherent.nomAdherent}" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-4">Prénom de l'adhérent:</label>
                         <div class="col-sm-8 col-xs-4">
-                            <input type="text" class="form-control"  id="prenom"  name="prenom" value="${adherent.prenomAdherent}">
+                            <input type="text" class="form-control"  id="prenom"  name="prenom" value="${adherent.prenomAdherent}" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-4">Ville de l'adhérent:</label>
                         <div class="col-sm-8 col-xs-4">
-                            <input type="text" class="form-control"  id="ville" name="ville" value="${adherent.villeAdherent}">
+                            <input type="text" class="form-control"  id="ville" name="ville" value="${adherent.villeAdherent}" required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-default">Modifier</button>

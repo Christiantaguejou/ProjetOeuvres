@@ -48,19 +48,19 @@
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Nom de l'adhérent:</label>
                         <div class="col-md-8 col-xs-8">
-                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom de l'adhérent">
+                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom de l'adhérent" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Prénom de l'adhérent:</label>
                         <div class="col-md-8 col-xs-8">
-                            <input type="text" class="form-control"  id="prenom" name="prenom" placeholder="Prénom de l'adhérent">
+                            <input type="text" class="form-control"  id="prenom" name="prenom" placeholder="Prénom de l'adhérent" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Ville de l'adhérent:</label>
                         <div class="col-md-8 col-xs-8">
-                            <input type="text" class="form-control"  id="ville" name="ville" placeholder="Ville de l'adhérent">
+                            <input type="text" class="form-control"  id="ville" name="ville" placeholder="Ville de l'adhérent" required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-default">Ajouter</button>

@@ -44,7 +44,33 @@
                         <div class="panel-title ">Ajouter une Oeuvre</div>
                     </div>
                     <div class="panel-body">
-
+                        <DIV align="center">
+                            <form class="form-horizontal" name='identification' method="post" action="Controleur?action=insererOeuvre">
+                                <div class="form-group">
+                                    <label class="col-md-4 col-xs-4">Titre de l'oeuvre:</label>
+                                    <div class="col-md-8 col-xs-8">
+                                        <input type="text" class="form-control" id="titreOeuvre" name="titreOeuvre" placeholder="Titre de l'oeuvre" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 col-xs-4">Prix de l'oeuvre:</label>
+                                    <div class="col-md-8 col-xs-8">
+                                        <input type="number" step="0.01" min="0" class="form-control"  id="prixOeuvre" name="prixOeuvre" placeholder="Prix de l'oeuvre" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 col-xs-4">Nom du propriétaire:</label>
+                                    <div class="col-md-8 col-xs-8">
+                                        <select class="form-control" name="listeProprio" >
+                                            <c:forEach items="${mesPropio}" var="item">
+                                                <option> ${item.nomProprietaire} ${item.prenomProprietaire}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-default">Ajouter</button>
+                            </form>
+                        </DIV>
                     </div>
                 </div>
             </div>

@@ -31,6 +31,7 @@ public class Controleur extends HttpServlet {
 	private static final String ERROR_PAGE = "/erreur.jsp";
 	private static final String MODIFIER_ADHERENT = "modifierAdherent";
     private static final String AJOUT_OEUVRE = "ajouterOeuvre";
+	private static final String INSERER_OEUVRE = "insererOeuvre";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -70,7 +71,7 @@ public class Controleur extends HttpServlet {
 				try {
 
 					Service unService = new Service();
-					request.setAttribute("mesAdherents", unService.consulterListeAdherents());
+					request.setAttribute("mesPropio", unService.consulterListeProprietaire());
 
 				} catch (MonException e) {
 					// TODO Auto-generated catch block
@@ -78,6 +79,21 @@ public class Controleur extends HttpServlet {
 				}
 
 				destinationPage = "/ajouterOeuvre.jsp";
+				break;
+			case INSERER_OEUVRE:
+				try {
+
+					Service unService = new Service();
+					Oeuvrevente oeuvre = this.setParameterToOeuvrevente(request);
+
+					unService.insertOeuvre(oeuvre);
+
+				} catch (MonException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				destinationPage = "/index.jsp";
 				break;
 			case LISTER_ADHERENT:
 				try {
@@ -170,7 +186,7 @@ public class Controleur extends HttpServlet {
         Service unService = new Service();
         oeuvrevente.setTitreOeuvrevente(request.getParameter("titreOeuvre"));
         oeuvrevente.setPrixOeuvrevente(Float.parseFloat(request.getParameter("prixOeuvre")));
-        oeuvrevente.setProprietaire(unService.rechercherProprietaire(Integer.parseInt(request.getParameter("id_proprietaire"))));
-        return oeuvrevente;
+		oeuvrevente.setProprietaire(unService.rechercherProprietaire(request.getParameter("listeProprio")));
+		return oeuvrevente;
     }
 }
