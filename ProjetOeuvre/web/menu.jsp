@@ -17,6 +17,7 @@
         <div class="panel-body-big menu" >
             <div><a href="index.jsp"> Accueil </a></div>
             <div><a href="Controleur?action=listerAdherent"> Liste des Adhérents </a></div>
+            <div><a href="Controleur?action=listerOeuvre"> Liste des Oeuvres </a></div>
             <div><a href="Controleur?action=ajouterAdherent"> Ajouter un Adhérent </a></div>
             <div><a href="Controleur?action=ajouterOeuvre"> Ajouter une Oeuvre </a></div>
             <div><a href="#"> Quitter </a></div>

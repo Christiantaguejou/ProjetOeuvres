@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/listerOeuvre.css">
+    <link rel="stylesheet" href="css/liste.css">
+    <script type="application/javascript" src="js/listerOeuvre.js"></script>
 </head>
 <body>
 <jsp:include page="header.jsp" />
@@ -37,11 +39,11 @@
                         <br/>
                         <thead>
                         <tr>
-                            <th onclick="sortTable(0)" class="cursorClic"><p class="glyphicon glyphicon-sort " ></p> <a>Titre</a></th>
-                            <th onclick="sortTable(1)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  Prix</th>
-                            <th onclick="sortTable(2)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  Prénom Propriétaire</th>
-                            <th onclick="sortTable(2)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  Nom Propriétaire</th>
-                            <th><p style="display: inline">Réserver/Modifier</p></th>
+                            <th onclick="sortTable(0)" class="cursorClic"><p class="glyphicon glyphicon-sort "></p> <a>Titre</a></th>
+                            <th onclick="sortTable(1)" class="cursorClic"><p class="glyphicon glyphicon-sort "></p>  <a>Prix</a></th>
+                            <th onclick="sortTable(2)" class="cursorClic"><p class="glyphicon glyphicon-sort "></p>  <a>Prénom Propriétaire</a></th>
+                            <th onclick="sortTable(3)" class="cursorClic"><p class="glyphicon glyphicon-sort "></p>  <a>Nom Propriétaire</a></th>
+                            <th><p>Réserver/Modifier</p></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -52,8 +54,8 @@
                                 <td>${item.proprietaire.prenomProprietaire} </td>
                                 <td>${item.proprietaire.nomProprietaire}</td>
                                 <td align="center">
-                                    <a class="btn btn-primary clickable-row"><em class="fa fa-pencil"></em></a>
-                                    <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                    <a class="btn btn-primary clickable-row" data-href="#"><em class="fa fa-pencil"></em></a>
+                                    <a class="btn btn-danger clickable-row" data-href="#"><em class="fa fa-trash"></em></a>
                                 </td>
                             </tr>
                         </c:forEach>

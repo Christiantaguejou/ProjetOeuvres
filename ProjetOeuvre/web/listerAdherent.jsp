@@ -12,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/listerAdherent.css">
+    <link rel="stylesheet" href="css/liste.css">
     <script type="application/javascript" src="js/listerAdherent.js"></script>
 </head>
 <body>
@@ -49,7 +49,7 @@
                             <td>${item.villeAdherent}</td>
                             <td align="center">
                                 <a class="btn btn-primary clickable-row" data-href="Controleur?action=modifierAdherent&id=${item.idAdherent}"><em class="fa fa-pencil"></em></a>
-                                <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                <a class="btn btn-danger clickable-row" data-href="#"><em class="fa fa-trash"></em></a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -61,7 +61,6 @@
         </div>
     </div>
 
-<!--<jsp:include page="footer.jsp" />-->
 
 <script type="application/javascript">
 

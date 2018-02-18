@@ -1,8 +1,12 @@
-th a {
-    color: black;
-    font-size: 13px;
+th p{
+    font-size: 14px;
+    display: inline;
 }
-th a:hover {
+th a{
+    font-size: 14px;
     color: black;
-    font-size: 13px;
+    pointer-events: none;
+}
+tr td{
+    font-size: 14px;
 }
