@@ -32,6 +32,7 @@ public class Controleur extends HttpServlet {
 	private static final String MODIFIER_ADHERENT = "modifierAdherent";
     private static final String AJOUT_OEUVRE = "ajouterOeuvre";
 	private static final String INSERER_OEUVRE = "insererOeuvre";
+	private static final String LISTER_OEUVRE = "listerOeuvre";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -94,6 +95,20 @@ public class Controleur extends HttpServlet {
 				}
 
 				destinationPage = "/index.jsp";
+				break;
+			case LISTER_OEUVRE:
+				try {
+
+					Service unService = new Service();
+					request.setAttribute("mesOeuvres", unService.consulterListeOeuvres());
+
+
+				} catch (MonException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				destinationPage = "/listerOeuvre.jsp";
 				break;
 			case LISTER_ADHERENT:
 				try {

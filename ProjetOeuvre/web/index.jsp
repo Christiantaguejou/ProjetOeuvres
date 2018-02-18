@@ -61,6 +61,12 @@
                                     <a class="text" href="Controleur?action=ajouterOeuvre">Ajouter Une Oeuvre</a>
                                 </div>
                             </div>
+                            <div class="col-md-4 col-xs-4 fonctionnalite">
+                                <img src="img/gestion.png" class="img-responsive image"  alt="Image">
+                                <div class="middle">
+                                    <a class="text" href="Controleur?action=listerOeuvre">Gestion des Oeuvres</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-1 col-xs-1"></div>
                     </div>

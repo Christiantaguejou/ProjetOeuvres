@@ -17,26 +17,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/leftMenu.css">
 </head>
 <body>
     <jsp:include page="header.jsp" />
 
     <div class="container">
         <div class="row content">
-            <div class="col-md-3 col-xs-3 padding-0">
-                <div class="panel panel-default ">
-                    <div class="panel-heading">
-                        <div class="panel-title ">Navigation</div>
-                    </div>
-                    <div class="panel-body-big menu" >
-                        <div><a href="index.jsp"> Accueil </a></div>
-                        <div><a href="Controleur?action=listerAdherent"> Liste des Adhérents </a></div>
-                        <div><a href="Controleur?action=ajouterAdherent"> Ajouter un Adhérents </a></div>
-                        <div><a href="#"> Quitter </a></div>
-                    </div>
-                </div>
-            </div>
+
+            <jsp:include page="menu.jsp" />
 
             <div class="col-md-9 col-xs-9 ">
                 <div class="panel panel-default">

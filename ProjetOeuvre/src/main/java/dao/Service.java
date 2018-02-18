@@ -126,12 +126,53 @@ public class Service {
                 unA.setNomAdherent(rs.get(index + 1).toString());
                 unA.setPrenomAdherent(rs.get(index + 2).toString());
                 unA.setVilleAdherent(rs.get(index + 3).toString());
-                // On incr�mente tous les 3 champs
+
                 index = index + 4;
                 mesAdherents.add(unA);
             }
 
             return mesAdherents;
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception exc) {
+            throw new MonException(exc.getMessage(), "systeme");
+        }
+    }
+
+    /**
+     * Permet d'afficher la liste des oeuvres
+     * @return
+     * @throws MonException
+     */
+    public List<Oeuvrevente> consulterListeOeuvres() throws MonException {
+        String mysql = "select * from oeuvrevente";
+        return consulterListeOeuvres(mysql);
+    }
+
+    private List<Oeuvrevente> consulterListeOeuvres(String mysql) throws MonException {
+        List<Object> rs;
+        List<Oeuvrevente> mesOeuvres = new ArrayList<Oeuvrevente>();
+        int index = 0;
+        try {
+            DialogueBd unDialogueBd = DialogueBd.getInstance();
+            rs = unDialogueBd.lecture(mysql);
+
+            while (index < rs.size()) {
+
+                // On cr�e un stage
+                Oeuvrevente uneOeuvre = new Oeuvrevente();
+                // il faut redecouper la liste pour retrouver les lignes
+                uneOeuvre.setIdOeuvrevente(Integer.parseInt(rs.get(index + 0).toString()));
+                uneOeuvre.setTitreOeuvrevente(rs.get(index + 1).toString());
+                uneOeuvre.setEtatOeuvrevente(rs.get(index + 2).toString());
+                uneOeuvre.setPrixOeuvrevente(Float.parseFloat(rs.get(index + 3).toString()));
+                uneOeuvre.setProprietaire(rechercherProprietaire(Integer.parseInt(rs.get(index + 4).toString())));
+
+                index = index + 5;
+                mesOeuvres.add(uneOeuvre);
+            }
+
+            return mesOeuvres;
         } catch (MonException e) {
             throw e;
         } catch (Exception exc) {
@@ -235,7 +276,7 @@ public class Service {
         Map mParam;
         List<Object> rs;
         Proprietaire unProprietaire = null;
-        mysql = " select * from Proprietaire where id_Proprietaire ?";
+        mysql = "select * from proprietaire where id_proprietaire = ?";
         try {
             mParam = new HashMap();
             mParam.put(1, id);

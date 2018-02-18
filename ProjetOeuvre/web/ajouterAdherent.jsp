@@ -11,7 +11,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/ajoutAdherent.css">
-    <link rel="stylesheet" href="css/leftMenu.css">
     <title>Expo : Médiathèque De POLYTECH</title>
 
 </head>
@@ -24,23 +23,13 @@
 
     <div class="container">
         <div class="row content">
-            <div class="col-md-3 col-xs-3 padding-0">
-                <div class="panel panel-default ">
-                    <div class="panel-heading">
-                        <div class="panel-title ">Navigation</div>
-                    </div>
-                    <div class="panel-body-big menu" >
-                        <div><a href="index.jsp"> Accueil </a></div>
-                        <div><a href="Controleur?action=listerAdherent"> Liste des Adhérents </a></div>
-                        <div><a href="#"> Quitter </a></div>
-                    </div>
-                </div>
-            </div>
+
+            <jsp:include page="menu.jsp" />
 
         <div class="col-md-9 col-xs-9 ">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <div class="panel-title ">Ajout d'un Adhérents</div>
+                <div class="panel-title ">Ajouter un Adhérent</div>
             </div>
             <div class="panel-body">
             <DIV align="center">
