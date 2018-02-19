@@ -84,6 +84,7 @@ public class Service {
         }
     }
 
+
     // gestion des adherents
     // Consultation d'un adhérent par son numéro
     // Fabrique et renvoie un objet adhérent contenant le résultat de la requête
@@ -97,6 +98,21 @@ public class Service {
                 return null;
             } else {
                 return mesAdh.get(0);
+            }
+        } catch (MonException e) {
+            throw e;
+        }
+    }
+
+    public Oeuvrevente consulterOeuvre(int id) throws MonException {
+
+        try {
+            String mysql = "select * from oeuvrevente where id_oeuvrevente=" + id;
+            List<Oeuvrevente> mesOeuvres = consulterListeOeuvres(mysql);
+            if (mesOeuvres.isEmpty()) {
+                return null;
+            } else {
+                return mesOeuvres.get(0);
             }
         } catch (MonException e) {
             throw e;

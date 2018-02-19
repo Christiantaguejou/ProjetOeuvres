@@ -40,22 +40,26 @@
                                 <input type="text" class="form-control hidden" id="idAdherent" name="id"  required>
                                 <label class="col-sm-4 col-xs-4">Titre de L'Oeuvre:</label>
                                 <div class="col-sm-8 col-xs-4">
-                                    <input type="text" class="form-control" id="nom" name="nom" required>
+                                    <input type="text" class="form-control" id="titreOeuvre" name="titreOeuvre" value="${oeuvre.titreOeuvrevente}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 col-xs-4">Prix de l'Oeuvre:</label>
                                 <div class="col-sm-8 col-xs-4">
-                                    <input type="number" step="0.01" class="form-control"  id="prenom"  name="prenom"  required>
+                                    <input type="number" step="0.01" class="form-control"  id="prixOeuvre"  name="prixOeuvre"  value="${oeuvre.prixOeuvrevente}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 col-xs-4">Adhérent:</label>
                                 <div class="col-md-8 col-xs-8">
-                                    <select class="form-control" name="listeProprio" >
-                                            <option>a</option>
-                                        <option>a</option>
-                                        <option>a</option>
+                                    <select class="form-control" name="adherent" id="adherent">
+                                        <c:forEach items="${mesProprio}" var="item">
+                                            <option <c:if test = "${item.idProprietaire ==  oeuvre.proprietaire.idProprietaire}">
+                                                selected = "selected"
+                                            </c:if >>
+                                                    ${item.nomProprietaire} ${item.prenomProprietaire}
+                                               </option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>

@@ -125,8 +125,17 @@ public class Controleur extends HttpServlet {
 				destinationPage = "/listerAdherent.jsp";
 				break;
 			case PRET_OEUVRE:
+				try {
+					int id = Integer.parseInt(request.getParameter(ID));
+					Service unService = new Service();
+					request.setAttribute("oeuvre", unService.consulterOeuvre(id));
+					request.setAttribute("mesProprio", unService.consulterListeProprietaire());
+				} catch (MonException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				destinationPage = "/pretOeuvre.jsp";
-				break;
+			break;
 			case AJOUTER_ADHERENT:
 
 				destinationPage = "/ajouterAdherent.jsp";
