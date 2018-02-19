@@ -11,7 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/ajoutAdherent.css">
-    <title>Expo : Médiathèque De POLYTECH</title>
+    <title>Modifier Adhérent</title>
 
 </head>
 <SCRIPT language="Javascript" type="text/javascript"></SCRIPT>

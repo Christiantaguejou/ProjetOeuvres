@@ -54,7 +54,7 @@
                                 <td>${item.proprietaire.prenomProprietaire} </td>
                                 <td>${item.proprietaire.nomProprietaire}</td>
                                 <td align="center">
-                                    <a class="btn btn-success clickable-row" data-href="#" style="padding: 4px"><em class="fa fa-book"> Réserver</em></a>
+                                    <a class="btn btn-success clickable-row" data-href="Controleur?action=pretOeuvre" style="padding: 4px"><em class="fa fa-book"> Réserver</em></a>
                                     <a class="btn btn-primary clickable-row" data-href="#" style="padding: 4px"><em class="fa fa-pencil"> Modifier</em></a>
                                 </td>
                             </tr>

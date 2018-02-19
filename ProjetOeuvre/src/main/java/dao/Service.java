@@ -73,9 +73,9 @@ public class Service {
         String mysql;
         DialogueBd dialogueBd = DialogueBd.getInstance();
         try {
-            mysql = "UPDATE adherent SET nom_adherent=" + adherent.getNomAdherent() + ", prenom_adherent=" +
-                    adherent.getPrenomAdherent() + ", ville_adherent=" + adherent.getVilleAdherent() +
-                    " WHERE id_adherent=" + adherent.getIdAdherent();
+            mysql = "UPDATE adherent SET nom_adherent='" + adherent.getNomAdherent() + "', prenom_adherent='" +
+                    adherent.getPrenomAdherent() + "', ville_adherent='" + adherent.getVilleAdherent() +
+                    "' WHERE id_adherent=" + adherent.getIdAdherent();
             dialogueBd.insertionBD(mysql);
         } catch (MonException e) {
             throw e;

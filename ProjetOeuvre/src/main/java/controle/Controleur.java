@@ -33,6 +33,7 @@ public class Controleur extends HttpServlet {
     private static final String AJOUT_OEUVRE = "ajouterOeuvre";
 	private static final String INSERER_OEUVRE = "insererOeuvre";
 	private static final String LISTER_OEUVRE = "listerOeuvre";
+	private static final String PRET_OEUVRE = "pretOeuvre";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -122,6 +123,9 @@ public class Controleur extends HttpServlet {
 				}
 
 				destinationPage = "/listerAdherent.jsp";
+				break;
+			case PRET_OEUVRE:
+				destinationPage = "/pretOeuvre.jsp";
 				break;
 			case AJOUTER_ADHERENT:
 
