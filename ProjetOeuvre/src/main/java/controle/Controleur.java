@@ -129,7 +129,7 @@ public class Controleur extends HttpServlet {
 					int id = Integer.parseInt(request.getParameter(ID));
 					Service unService = new Service();
 					request.setAttribute("oeuvre", unService.consulterOeuvre(id));
-					request.setAttribute("mesProprio", unService.consulterListeProprietaire());
+					request.setAttribute("lesAdherents", unService.consulterListeAdherents());
 				} catch (MonException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -31,36 +31,40 @@
         <div class="col-md-9 col-xs-9 ">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="panel-title ">Modifier un Adhérents</div>
+                    <div class="panel-title ">Emprunter une Oeuvre</div>
                 </div>
                 <div class="panel-body">
                     <DIV align="center">
                         <form class="form-horizontal" name='identification' method="post" action="Controleur?action=saveAdherent" onsubmit="return teste()">
                             <div class="form-group">
-                                <input type="text" class="form-control hidden" id="idAdherent" name="id"  required>
+                                <input type="text" class="form-control hidden" id="idAdherent" name="id"  readonly>
                                 <label class="col-sm-4 col-xs-4">Titre de L'Oeuvre:</label>
                                 <div class="col-sm-8 col-xs-4">
-                                    <input type="text" class="form-control" id="titreOeuvre" name="titreOeuvre" value="${oeuvre.titreOeuvrevente}" required>
+                                    <input type="text" class="form-control" id="titreOeuvre" name="titreOeuvre" value="${oeuvre.titreOeuvrevente}" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 col-xs-4">Prix de l'Oeuvre:</label>
                                 <div class="col-sm-8 col-xs-4">
-                                    <input type="number" step="0.01" class="form-control"  id="prixOeuvre"  name="prixOeuvre"  value="${oeuvre.prixOeuvrevente}" required>
+                                    <input type="number" step="0.01" class="form-control"  id="prixOeuvre"  name="prixOeuvre"  value="${oeuvre.prixOeuvrevente}" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 col-xs-4">Adhérent:</label>
                                 <div class="col-md-8 col-xs-8">
                                     <select class="form-control" name="adherent" id="adherent">
-                                        <c:forEach items="${mesProprio}" var="item">
-                                            <option <c:if test = "${item.idProprietaire ==  oeuvre.proprietaire.idProprietaire}">
-                                                selected = "selected"
-                                            </c:if >>
-                                                    ${item.nomProprietaire} ${item.prenomProprietaire}
-                                               </option>
+                                        <c:forEach items="${lesAdherents}" var="item">
+                                            <option>
+                                                ${item.nomAdherent} ${item.prenomAdherent}
+                                            </option>
                                         </c:forEach>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 col-xs-4">Date de Réservation:</label>
+                                <div class="col-sm-8 col-xs-4">
+                                    <input type="date" class="form-control"  id="dateReservation"  name="dateReservation" >
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-default">Modifier</button>
