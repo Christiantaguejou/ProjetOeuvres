@@ -30,6 +30,7 @@ public class Controleur extends HttpServlet {
 	private static final String ERROR_KEY = "messageErreur";
 	private static final String ERROR_PAGE = "/erreur.jsp";
 	private static final String MODIFIER_ADHERENT = "modifierAdherent";
+	private static final String MODIFIER_OEUVRE = "modifierOeuvre";
     private static final String AJOUT_OEUVRE = "ajouterOeuvre";
 	private static final String INSERER_OEUVRE = "insererOeuvre";
 	private static final String LISTER_OEUVRE = "listerOeuvre";
@@ -175,6 +176,18 @@ public class Controleur extends HttpServlet {
 				}
 				destinationPage = "/modifierAdherent.jsp";
                 break;
+			case MODIFIER_OEUVRE:
+				try {
+					int id = Integer.parseInt(request.getParameter(ID));
+					Service unService = new Service();
+					request.setAttribute("oeuvre", unService.consulterOeuvre(id));
+					request.setAttribute("mesProprio", unService.consulterListeProprietaire());
+				} catch (MonException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				destinationPage = "/modifierOeuvre.jsp";
+				break;
             case DELETE_ADHERENT:
                 Service unService = new Service();
                 try {

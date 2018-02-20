@@ -55,7 +55,7 @@
                                 <td>${item.proprietaire.nomProprietaire}</td>
                                 <td align="center">
                                     <a class="btn btn-success clickable-row" data-href="Controleur?action=pretOeuvre&id=${item.idOeuvrevente}" style="padding: 4px"><em class="fa fa-book"> Réserver</em></a>
-                                    <a class="btn btn-primary clickable-row" data-href="#" style="padding: 4px"><em class="fa fa-pencil"> Modifier</em></a>
+                                    <a class="btn btn-primary clickable-row" data-href="Controleur?action=modifierOeuvre&id=${item.idOeuvrevente}" style="padding: 4px"><em class="fa fa-pencil"> Modifier</em></a>
                                 </td>
                             </tr>
                         </c:forEach>
