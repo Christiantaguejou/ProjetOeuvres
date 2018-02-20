@@ -23,6 +23,7 @@ public class Controleur extends HttpServlet {
 	private static final String ACTION_TYPE = "action";
 	private static final String ID = "id";
     private static final String SAVE_ADHERENT = "saveAdherent";
+	private static final String SAVE_OEUVRE = "saveOeuvre";
 	private static final String LISTER_ADHERENT = "listerAdherent";
 	private static final String AJOUTER_ADHERENT = "ajouterAdherent";
 	private static final String INSERER_ADHERENT = "insererAdherent";
@@ -165,6 +166,18 @@ public class Controleur extends HttpServlet {
                 }
                 destinationPage = "/index.jsp";
                 break;
+			case SAVE_OEUVRE:
+				try {
+					Oeuvrevente oeuvre = this.setParameterToOeuvrevente(request);
+					oeuvre.setIdOeuvrevente(Integer.parseInt(request.getParameter("idOeuvre")));
+
+					Service unService = new Service();
+					unService.modifyOeuvre(oeuvre);
+				}catch (MonException e){
+					e.printStackTrace();
+				}
+				destinationPage = "/index.jsp";
+				break;
             case MODIFIER_ADHERENT:
 				try {
 					int id = Integer.parseInt(request.getParameter(ID));
@@ -227,7 +240,11 @@ public class Controleur extends HttpServlet {
         Service unService = new Service();
         oeuvrevente.setTitreOeuvrevente(request.getParameter("titreOeuvre"));
         oeuvrevente.setPrixOeuvrevente(Float.parseFloat(request.getParameter("prixOeuvre")));
-		oeuvrevente.setProprietaire(unService.rechercherProprietaire(request.getParameter("listeProprio")));
+		oeuvrevente.setProprietaire(unService.rechercherProprietaire(request.getParameter("proprio")));
+		if(request.getParameter("etatOeuvre") != null)
+			oeuvrevente.setEtatOeuvrevente(request.getParameter("etatOeuvre"));
+		if(request.getParameter("idOeuvre") != null)
+			oeuvrevente.setIdOeuvrevente(Integer.parseInt(request.getParameter("idOeuvre")));
 		return oeuvrevente;
     }
 }

@@ -35,18 +35,27 @@
                 </div>
                 <div class="panel-body">
                     <DIV align="center">
-                        <form class="form-horizontal" name='identification' method="post" action="#" >
+                        <form class="form-horizontal" name='identification' method="post" action="Controleur?action=saveOeuvre" >
                             <div class="form-group">
-                                <input type="text" class="form-control hidden" id="idAdherent" name="id" value="idAdherent" required>
+                                <input type="text" class="form-control hidden" id="idOeuvre" name="idOeuvre" value="${oeuvre.idOeuvrevente}" required>
                                 <label class="col-sm-4 col-xs-4">Titre de l'Oeuvre:</label>
                                 <div class="col-sm-8 col-xs-4">
-                                    <input type="text" class="form-control" id="titre" name="titre" value="${oeuvre.titreOeuvrevente}" required>
+                                    <input type="text" class="form-control" id="titreOeuvre" name="titreOeuvre" value="${oeuvre.titreOeuvrevente}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 col-xs-4">Prix de l'Oeuvre:</label>
                                 <div class="col-sm-8 col-xs-4">
-                                    <input type="text" class="form-control"  id="prix"  name="prix" value="${oeuvre.prixOeuvrevente}" required>
+                                    <input type="text" class="form-control"  id="prixOeuvre"  name="prixOeuvre" value="${oeuvre.prixOeuvrevente}" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 col-xs-4">Etat de l'Oeuvre:</label>
+                                <div class="col-sm-8 col-xs-4">
+                                    <select class="form-control" name="etatOeuvre" id="etatOeuvre">
+                                        <option <c:if test ="${oeuvre.etatOeuvrevente == 'L'}"> selected="selected"</c:if> >L</option>
+                                        <option <c:if test ="${oeuvre.etatOeuvrevente == 'R'}"> selected="selected"</c:if> >R</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -63,7 +72,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-default">Modifier</button>
-                            <a href="#" id="deleteAdherent" class="btn btn-default">Annuler</a>
+                            <a href="Controleur?action=listerOeuvre" class="btn btn-default">Annuler</a>
                         </form>
                     </DIV>
                 </div>

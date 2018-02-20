@@ -83,6 +83,21 @@ public class Service {
             throw new MonException(ex.getMessage(), "systeme");
         }
     }
+        public void modifyOeuvre(Oeuvrevente oeuvre) throws MonException {
+        String mysql;
+        DialogueBd dialogueBd = DialogueBd.getInstance();
+        try {
+            mysql = "UPDATE oeuvrevente SET titre_oeuvrevente='" + oeuvre.getTitreOeuvrevente() + "', etat_oeuvrevente='" +
+                    oeuvre.getEtatOeuvrevente() + "', prix_oeuvrevente='" + oeuvre.getPrixOeuvrevente()
+                    + "', id_proprietaire=" + oeuvre.getProprietaire().getIdProprietaire()
+                    + " WHERE id_oeuvrevente=" + oeuvre.getIdOeuvrevente();
+            dialogueBd.insertionBD(mysql);
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception ex) {
+            throw new MonException(ex.getMessage(), "systeme");
+        }
+    }
 
 
     // gestion des adherents

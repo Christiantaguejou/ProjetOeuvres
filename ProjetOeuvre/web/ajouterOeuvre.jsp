@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 col-xs-4">Nom du propriétaire:</label>
                                     <div class="col-md-8 col-xs-8">
-                                        <select class="form-control" name="listeProprio" >
+                                        <select class="form-control" name="proprio" >
                                             <c:forEach items="${mesPropio}" var="item">
                                                 <option> ${item.nomProprietaire} ${item.prenomProprietaire}</option>
                                             </c:forEach>
