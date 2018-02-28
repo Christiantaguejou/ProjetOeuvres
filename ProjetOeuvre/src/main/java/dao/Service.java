@@ -2,6 +2,8 @@ package dao;
 
 import meserreurs.MonException;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import metier.*;
@@ -254,7 +256,80 @@ public class Service {
         String mysql;
         DialogueBd dialogueBd = DialogueBd.getInstance();
         try {
+            List<Reservation> reservationsAdherent = getReservations(adherent);
+            for (Reservation reservation :
+                    reservationsAdherent) {
+                deleteReservation(reservation);
+            }
             mysql = "DELETE FROM adherent WHERE id_adherent=" + adherent.getIdAdherent();
+            dialogueBd.insertionBD(mysql);
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception ex) {
+            throw new MonException(ex.getMessage(), "systeme");
+        }
+    }
+
+    public List<Reservation> getReservations(Oeuvrevente oeuvrevente) throws MonException {
+        List<Object> rs;
+        List<Reservation> reservations = new ArrayList<Reservation>();
+        String mysql = "Select * from reservation where id_oeuvrevente=" + oeuvrevente.getIdOeuvrevente();
+        int index = 0;
+        try {
+            DialogueBd unDialogueBd = DialogueBd.getInstance();
+            rs = unDialogueBd.lecture(mysql);
+            while (index < rs.size()) {
+                Reservation reservation = new Reservation();
+                reservation.setOeuvrevente(oeuvrevente);
+                Adherent adherent = consulterAdherent(Integer.parseInt(rs.get(index + 1).toString()));
+                reservation.setAdherent(adherent);
+                DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.FRENCH);
+                Date date = format.parse(rs.get(index + 2).toString());
+                reservation.setDate(date);
+                reservations.add(reservation);
+                index+= 4; //La table reservation a 4 colonnes donc on saute 4 champs
+            }
+            return reservations;
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception exc) {
+            throw new MonException(exc.getMessage(), "systeme");
+        }
+    }
+
+    public List<Reservation> getReservations(Adherent adherent) throws MonException {
+        List<Object> rs;
+        List<Reservation> reservations = new ArrayList<Reservation>();
+        String mysql = "Select * from reservation where id_adherent=" + adherent.getIdAdherent();
+        int index = 0;
+        try {
+            DialogueBd unDialogueBd = DialogueBd.getInstance();
+            rs = unDialogueBd.lecture(mysql);
+            while (index < rs.size()) {
+                Reservation reservation = new Reservation();
+                reservation.setAdherent(adherent);
+                Oeuvrevente oeuvrevente = consulterOeuvre(Integer.parseInt(rs.get(index).toString()));
+                reservation.setOeuvrevente(oeuvrevente);
+                DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.FRENCH);
+                Date date = format.parse(rs.get(index + 2).toString());
+                reservation.setDate(date);
+                reservations.add(reservation);
+                index+= 4; //La table reservation a 4 colonnes donc on saute 4 champs
+            }
+            return reservations;
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception exc) {
+            throw new MonException(exc.getMessage(), "systeme");
+        }
+    }
+
+    public void deleteReservation(Reservation reservation) throws MonException {
+        String mysql;
+        DialogueBd dialogueBd = DialogueBd.getInstance();
+        try {
+            mysql = "DELETE FROM reservation WHERE id_adherent=" + reservation.getAdherent().getIdAdherent()
+                + " AND id_oeuvrevente=" + reservation.getOeuvrevente().getIdOeuvrevente();
             dialogueBd.insertionBD(mysql);
         } catch (MonException e) {
             throw e;

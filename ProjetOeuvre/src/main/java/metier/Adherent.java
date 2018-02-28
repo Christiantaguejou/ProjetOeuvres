@@ -60,7 +60,7 @@ public class Adherent implements Serializable {
 	}
 
 	public String toString() {
-		return this.getNomAdherent() + this.getPrenomAdherent() + this.getVilleAdherent();
+		return "Adhérent:\nnom= "+ this.getNomAdherent() + " prenom= "+ this.getPrenomAdherent() + " ville= "+ this.getVilleAdherent()+"\n";
 	}
 
 }

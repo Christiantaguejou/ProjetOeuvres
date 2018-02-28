@@ -55,7 +55,8 @@
                             <input type="text" class="form-control"  id="ville" name="ville" value="${adherent.villeAdherent}" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-default">Modifier</button>
+                    <button type="submit" class="btn btn-default">Sauvegarder</button>
+                    <a href="#" id="cancel" class="btn btn-default">Annuler</a>
                     <a href="#" id="deleteAdherent" class="btn btn-default">Supprimer</a>
                 </form>
             </DIV>
@@ -85,7 +86,11 @@
                 }
             });
         }
-    })
+    });
+
+    $('#cancel').click(function(){
+        window.location = "Controleur?action=listerAdherent";
+    });
 </script>
 </body>
 </html>

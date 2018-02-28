@@ -54,4 +54,8 @@ public class Reservation implements Serializable {
 		this.oeuvrevente = oeuvrevente;
 	}
 
+	public String toString(){
+		return  this.getAdherent().toString() + this.getOeuvrevente().getIdOeuvrevente();
+	}
+
 }
