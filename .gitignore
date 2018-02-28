@@ -1,3 +1,9 @@
+#ProjetOeuvre
 ProjetOeuvre/out/
 ProjetOeuvre/target/
 ProjetOeuvre/.idea/
+
+#ProjetOeuvreSring
+ProjetOeuvreSpring/.idea/
+ProjetOeuvreSpring/target/
+ProjetOeuvreSpring/out/
