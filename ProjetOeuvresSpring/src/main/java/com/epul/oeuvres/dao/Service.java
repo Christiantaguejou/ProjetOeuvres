@@ -1,6 +1,9 @@
 package com.epul.oeuvres.dao;
 
 import com.epul.oeuvres.meserreurs.MonException;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.epul.oeuvres.metier.*;
@@ -8,9 +11,29 @@ import com.epul.oeuvres.persistance.*;
 
 public class Service {
 
-	// Mise à jour des caractéristiques d'un adhérent
-	// Le booleen indique s'il s'agit d'un nouvel adhérent, auquel cas on fait
-	// une création
+	/**
+	 * en cours de modif
+	 */
+	public void ajoutOeuvre(Oeuvrevente oeuvrevente) throws MonException {
+		String mysql;
+
+		DialogueBd unDialogueBd = DialogueBd.getInstance();
+		try {
+			mysql = "insert into oeuvrevente  (titre_oeuvrevente,etat_oeuvrevente,prix_oeuvrevente,id_proprietaire)  " + "values ('"
+					+ oeuvrevente.getTitreOeuvrevente()  ;
+			mysql += "'" + ",'L','" + oeuvrevente.getPrixOeuvrevente() +"','"+ oeuvrevente.getProprietaire().getIdProprietaire()+ "')";
+
+			unDialogueBd.insertionBD(mysql);
+		} catch (MonException e) {
+			throw e;
+		} catch (Exception exc) {
+			throw new MonException(exc.getMessage(), "systeme");
+		}
+	}
+
+	// Mise ï¿½ jour des caractï¿½ristiques d'un adhï¿½rent
+	// Le booleen indique s'il s'agit d'un nouvel adhï¿½rent, auquel cas on fait
+	// une crï¿½ation
 
 	public void insertAdherent(Adherent unAdherent) throws MonException {
 		String mysql;
@@ -30,35 +53,97 @@ public class Service {
 		}
 	}
 
+    /**
+     * Insertion d'une oeuvre dans la BDD
+     * @param oeuvre
+     * @throws MonException
+     */
+    public void insertOeuvre(Oeuvrevente oeuvre) throws MonException {
+        String mysql;
+
+        DialogueBd unDialogueBd = DialogueBd.getInstance();
+        try {
+            mysql = "insert into oeuvrevente  (titre_oeuvrevente, etat_oeuvrevente, prix_oeuvrevente, id_proprietaire)  "
+                    + "values ('"+oeuvre.getTitreOeuvrevente()+"','"+"L"+"',"+oeuvre.getPrixOeuvrevente()+","
+                    +oeuvre.getProprietaire().getIdProprietaire()+")";
+
+            unDialogueBd.insertionBD(mysql);
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception exc) {
+            throw new MonException(exc.getMessage(), "systeme");
+        }
+    }
+    public void modifyAdherent(Adherent adherent) throws MonException {
+        String mysql;
+        DialogueBd dialogueBd = DialogueBd.getInstance();
+        try {
+            mysql = "UPDATE adherent SET nom_adherent='" + adherent.getNomAdherent() + "', prenom_adherent='" +
+                    adherent.getPrenomAdherent() + "', ville_adherent='" + adherent.getVilleAdherent() +
+                    "' WHERE id_adherent=" + adherent.getIdAdherent();
+            dialogueBd.insertionBD(mysql);
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception ex) {
+            throw new MonException(ex.getMessage(), "systeme");
+        }
+    }
+
+    public void modifyOeuvre(Oeuvrevente oeuvre) throws MonException {
+        String mysql;
+        DialogueBd dialogueBd = DialogueBd.getInstance();
+        try {
+            mysql = "UPDATE oeuvrevente SET titre_oeuvrevente='" + oeuvre.getTitreOeuvrevente() + "', etat_oeuvrevente='" +
+                    oeuvre.getEtatOeuvrevente() + "', prix_oeuvrevente='" + oeuvre.getPrixOeuvrevente()
+                    + "', id_proprietaire=" + oeuvre.getProprietaire().getIdProprietaire()
+                    + " WHERE id_oeuvrevente=" + oeuvre.getIdOeuvrevente();
+            dialogueBd.insertionBD(mysql);
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception ex) {
+            throw new MonException(ex.getMessage(), "systeme");
+        }
+    }
+
 	// gestion des adherents
-	// Consultation d'un adhérent par son numéro
-	// Fabrique et renvoie un objet adhérent contenant le résultat de la requête
+	// Consultation d'un adhï¿½rent par son numï¿½ro
+	// Fabrique et renvoie un objet adhï¿½rent contenant le rï¿½sultat de la requï¿½te
 	// BDD
 	public Adherent consulterAdherent(int numero) throws MonException {
 		
 		 Map mParams = new HashMap();
 	     Map mParam;
-	  try
-	  {
-		String mysql = "select * from adherent where numero_adherent=?";
-		 mParam = new HashMap();
-	     mParam.put(1, numero);
-	     mParams.put(0, mParam); 
-		List<Adherent> mesAdh = consulterListeAdherents(mysql);
-		if (mesAdh.isEmpty())
-			return null;
-		else {
-			return mesAdh.get(0);
-		}
-	  } catch (MonException e)
-		{
-			throw e;
-		}
+        try {
+            String mysql = "select * from adherent where id_adherent=" + numero;
+            List<Adherent> mesAdh = consulterListeAdherents(mysql);
+            if (mesAdh.isEmpty()) {
+                return null;
+            } else {
+                return mesAdh.get(0);
+            }
+        } catch (MonException e) {
+            throw e;
+        }
 	}
 
-	// Consultation des adhérents
-	// Fabrique et renvoie une liste d'objets adhérent contenant le résultat de
-	// la requête BDD
+    public Oeuvrevente consulterOeuvre(int id) throws MonException {
+
+        try {
+            String mysql = "select * from oeuvrevente where id_oeuvrevente=" + id;
+            List<Oeuvrevente> mesOeuvres = consulterListeOeuvres(mysql);
+            if (mesOeuvres.isEmpty()) {
+                return null;
+            } else {
+                return mesOeuvres.get(0);
+            }
+        } catch (MonException e) {
+            throw e;
+        }
+    }
+
+	// Consultation des adhï¿½rents
+	// Fabrique et renvoie une liste d'objets adhï¿½rent contenant le rï¿½sultat de
+	// la requï¿½te BDD
 	public List<Adherent> consulterListeAdherents() throws MonException {
 		String mysql = "select * from adherent";
 		return consulterListeAdherents(mysql);
@@ -72,14 +157,14 @@ public class Service {
 			DialogueBd unDialogueBd = DialogueBd.getInstance();
 			rs =unDialogueBd.lecture(mysql);
 			while (index < rs.size()) {
-				// On crée un stage
+				// On crï¿½e un stage
 				Adherent unA = new Adherent();
 				// il faut redecouper la liste pour retrouver les lignes
 				unA.setIdAdherent(Integer.parseInt(rs.get(index + 0).toString()));
 				unA.setNomAdherent(rs.get(index + 1).toString());
 				unA.setPrenomAdherent(rs.get(index + 2).toString());
 				unA.setVilleAdherent(rs.get(index + 3).toString());
-				// On incrémente tous les 3 champs
+				// On incrï¿½mente tous les 3 champs
 				index = index + 4;
 				mesAdherents.add(unA);
 			}
@@ -92,7 +177,172 @@ public class Service {
 			throw new MonException(exc.getMessage(), "systeme");
 		}
 	}
-	
+
+    /**
+     * Permet d'afficher la liste des oeuvres
+     * @return
+     * @throws MonException
+     */
+    public List<Oeuvrevente> consulterListeOeuvres() throws MonException {
+        String mysql = "select * from oeuvrevente";
+        return consulterListeOeuvres(mysql);
+    }
+
+    private List<Oeuvrevente> consulterListeOeuvres(String mysql) throws MonException {
+        List<Object> rs;
+        List<Oeuvrevente> mesOeuvres = new ArrayList<Oeuvrevente>();
+        int index = 0;
+        try {
+            DialogueBd unDialogueBd = DialogueBd.getInstance();
+            rs = unDialogueBd.lecture(mysql);
+
+            while (index < rs.size()) {
+
+                // On crï¿½e un stage
+                Oeuvrevente uneOeuvre = new Oeuvrevente();
+                // il faut redecouper la liste pour retrouver les lignes
+                uneOeuvre.setIdOeuvrevente(Integer.parseInt(rs.get(index + 0).toString()));
+                uneOeuvre.setTitreOeuvrevente(rs.get(index + 1).toString());
+                uneOeuvre.setEtatOeuvrevente(rs.get(index + 2).toString());
+                uneOeuvre.setPrixOeuvrevente(Float.parseFloat(rs.get(index + 3).toString()));
+                uneOeuvre.setProprietaire(rechercherProprietaire(Integer.parseInt(rs.get(index + 4).toString())));
+
+                index = index + 5;
+                mesOeuvres.add(uneOeuvre);
+            }
+
+            return mesOeuvres;
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception exc) {
+            throw new MonException(exc.getMessage(), "systeme");
+        }
+    }
+
+    /**
+     * Permet d'afficher la liste des proprietaires
+     * @return
+     * @throws MonException
+     */
+    public List<Proprietaire> consulterListeProprietaire() throws MonException {
+        String mysql = "select * from proprietaire";
+        return consulterListeProprietaire(mysql);
+    }
+
+    private List<Proprietaire> consulterListeProprietaire(String mysql) throws MonException {
+        List<Object> rs;
+        List<Proprietaire> mesPropio = new ArrayList<Proprietaire>();
+        int index = 0;
+        try {
+            DialogueBd unDialogueBd = DialogueBd.getInstance();
+            rs = unDialogueBd.lecture(mysql);
+            while (index < rs.size()) {
+                // On crï¿½e un stage
+                Proprietaire proprio = new Proprietaire();
+                // il faut redecouper la liste pour retrouver les lignes
+                proprio.setIdProprietaire(Integer.parseInt(rs.get(index + 0).toString()));
+                proprio.setNomProprietaire(rs.get(index + 1).toString());
+                proprio.setPrenomProprietaire(rs.get(index + 2).toString());
+
+                // On incrï¿½mente tous les 3 champs
+                index = index + 3;
+                mesPropio.add(proprio);
+            }
+
+            return mesPropio;
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception exc) {
+            throw new MonException(exc.getMessage(), "systeme");
+        }
+    }
+
+    public void deleteAdherent(Adherent adherent) throws MonException {
+        //@TODO supprimer les relations avec les oeuvres
+        String mysql;
+        DialogueBd dialogueBd = DialogueBd.getInstance();
+        try {
+            List<Reservation> reservationsAdherent = getReservations(adherent);
+            for (Reservation reservation :
+                    reservationsAdherent) {
+                deleteReservation(reservation);
+            }
+            mysql = "DELETE FROM adherent WHERE id_adherent=" + adherent.getIdAdherent();
+            dialogueBd.insertionBD(mysql);
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception ex) {
+            throw new MonException(ex.getMessage(), "systeme");
+        }
+    }
+
+    public List<Reservation> getReservations(Oeuvrevente oeuvrevente) throws MonException {
+        List<Object> rs;
+        List<Reservation> reservations = new ArrayList<Reservation>();
+        String mysql = "Select * from reservation where id_oeuvrevente=" + oeuvrevente.getIdOeuvrevente();
+        int index = 0;
+        try {
+            DialogueBd unDialogueBd = DialogueBd.getInstance();
+            rs = unDialogueBd.lecture(mysql);
+            while (index < rs.size()) {
+                Reservation reservation = new Reservation();
+                reservation.setOeuvrevente(oeuvrevente);
+                Adherent adherent = consulterAdherent(Integer.parseInt(rs.get(index + 1).toString()));
+                reservation.setAdherent(adherent);
+                DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.FRENCH);
+                Date date = format.parse(rs.get(index + 2).toString());
+                reservation.setDate(date);
+                reservations.add(reservation);
+                index+= 4; //La table reservation a 4 colonnes donc on saute 4 champs
+            }
+            return reservations;
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception exc) {
+            throw new MonException(exc.getMessage(), "systeme");
+        }
+    }
+
+    public List<Reservation> getReservations(Adherent adherent) throws MonException {
+        List<Object> rs;
+        List<Reservation> reservations = new ArrayList<Reservation>();
+        String mysql = "Select * from reservation where id_adherent=" + adherent.getIdAdherent();
+        int index = 0;
+        try {
+            DialogueBd unDialogueBd = DialogueBd.getInstance();
+            rs = unDialogueBd.lecture(mysql);
+            while (index < rs.size()) {
+                Reservation reservation = new Reservation();
+                reservation.setAdherent(adherent);
+                Oeuvrevente oeuvrevente = consulterOeuvre(Integer.parseInt(rs.get(index).toString()));
+                reservation.setOeuvrevente(oeuvrevente);
+                DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.FRENCH);
+                Date date = format.parse(rs.get(index + 2).toString());
+                reservation.setDate(date);
+                reservations.add(reservation);
+                index+= 4; //La table reservation a 4 colonnes donc on saute 4 champs
+            }
+            return reservations;
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception exc) {
+            throw new MonException(exc.getMessage(), "systeme");
+        }
+    }
+
+    public void deleteReservation(Reservation reservation) throws MonException {
+        String mysql;
+        DialogueBd dialogueBd = DialogueBd.getInstance();
+        try {
+            mysql = "DELETE FROM reservation WHERE id_adherent=" + reservation.getAdherent().getIdAdherent()
+                    + " AND id_oeuvrevente=" + reservation.getOeuvrevente().getIdOeuvrevente();
+            dialogueBd.insertionBD(mysql);
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception ex) {
+            throw new MonException(ex.getMessage(), "systeme");
+        }
+    }
 	
 	public Oeuvrevente rechercherOeuvreIdParam(int id) throws MonException
 	{
@@ -118,7 +368,7 @@ public class Service {
 					uneOeuvre.setEtatOeuvrevente(rs.get(2).toString());
 					uneOeuvre.setPrixOeuvrevente(Float.parseFloat(rs.get(3).toString()));
 					int num = Integer.parseInt(rs.get(4).toString());
-					// On appelle la recherche d'un propriétaire
+					// On appelle la recherche d'un propriï¿½taire
 					uneOeuvre.setProprietaire(rechercherProprietaire(num));
 				}
 		} 
@@ -167,9 +417,35 @@ public class Service {
 			throw new MonException(exc.getMessage(), "systeme");
 		}
 		return unProprietaire;
-	}	
+	}
 
-	
-	
+    public Proprietaire rechercherProprietaire(String nomPrenom) throws MonException {
 
+        String[] identite = nomPrenom.split(" ");
+        Map mParams = new HashMap();
+        Map mParam;
+        List<Object> rs;
+        Proprietaire unProprietaire = null;
+        String requete = " select id_proprietaire from proprietaire where nom_proprietaire = ? AND prenom_proprietaire = ?";
+        try {
+            mParam = new HashMap();
+            mParam.put(1, identite[0]);
+            mParam.put(2, identite[1]);
+            mParams.put(0, mParam);
+            rs = DialogueBd.getInstance().lectureParametree(requete, mParams);
+            if (rs.size() > 0) {
+
+                unProprietaire = new Proprietaire();
+
+                unProprietaire.setIdProprietaire(Integer.parseInt(rs.get(0).toString()));
+                unProprietaire.setNomProprietaire(identite[0]);
+                unProprietaire.setPrenomProprietaire(identite[1]);
+            }
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception exc) {
+            throw new MonException(exc.getMessage(), "systeme");
+        }
+        return unProprietaire;
+    }
 }

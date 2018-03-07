@@ -1,16 +1,17 @@
 package com.epul.oeuvres.metier;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
 
 
 /**
  * The persistent class for the reservation database table.
- * 
+ *
  */
 public class Reservation implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Date date;
 	private Adherent adherent;
 	private Oeuvrevente oeuvrevente;
@@ -51,6 +52,10 @@ public class Reservation implements Serializable {
 
 	public void setOeuvrevente(Oeuvrevente oeuvrevente) {
 		this.oeuvrevente = oeuvrevente;
+	}
+
+	public String toString(){
+		return  this.getAdherent().toString() + this.getOeuvrevente().getIdOeuvrevente();
 	}
 
 }
