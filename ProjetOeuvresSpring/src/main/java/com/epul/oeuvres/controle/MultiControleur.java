@@ -252,7 +252,26 @@ public class MultiControleur {
 	public ModelAndView AfficheErreur(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return new ModelAndView("Erreur");
 	}
-	
+
+    protected Adherent setParameterToAdherent(HttpServletRequest request) {
+        Adherent unAdherent = new Adherent();
+        unAdherent.setNomAdherent(request.getParameter("nom"));
+        unAdherent.setPrenomAdherent(request.getParameter("prenom"));
+        unAdherent.setVilleAdherent(request.getParameter("ville"));
+        return unAdherent;
+    }
+    protected Oeuvrevente setParameterToOeuvrevente(HttpServletRequest request) throws MonException {
+        Oeuvrevente oeuvrevente = new Oeuvrevente();
+        Service unService = new Service();
+        oeuvrevente.setTitreOeuvrevente(request.getParameter("titreOeuvre"));
+        oeuvrevente.setPrixOeuvrevente(Float.parseFloat(request.getParameter("prixOeuvre")));
+        oeuvrevente.setProprietaire(unService.rechercherProprietaire(request.getParameter("proprio")));
+        if(request.getParameter("etatOeuvre") != null)
+            oeuvrevente.setEtatOeuvrevente(request.getParameter("etatOeuvre"));
+        if(request.getParameter("idOeuvre") != null)
+            oeuvrevente.setIdOeuvrevente(Integer.parseInt(request.getParameter("idOeuvre")));
+        return oeuvrevente;
+    }
 	
 
 }
