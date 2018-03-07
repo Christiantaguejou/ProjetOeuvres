@@ -70,6 +70,166 @@ public class MultiControleur {
 		return new ModelAndView(destinationPage);
 	}
 
+    @RequestMapping(value = "saveAdherent.htm")
+    public ModelAndView saveAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String destinationPage = "";
+        try {
+            Adherent adherent = this.setParameterToAdherent(request);
+            adherent.setIdAdherent(Integer.parseInt(request.getParameter("id")));
+            Service unService = new Service();
+            unService.modifyAdherent(adherent);
+        }catch (MonException e){
+            e.printStackTrace();
+        }
+        destinationPage = "/index.jsp";
+        return new ModelAndView(destinationPage);
+    }
+
+    @RequestMapping(value = "modifierAdherent.htm")
+    public ModelAndView modifierAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage = "";
+        try {
+            int id = Integer.parseInt(request.getParameter(ID));
+            Service unService = new Service();
+            request.setAttribute("adherent", unService.consulterAdherent(id));
+        } catch (MonException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        destinationPage = "/modifierAdherent.jsp";
+        return new ModelAndView(destinationPage);
+    }
+
+    @RequestMapping(value = "deleteAdherent.htm")
+    public ModelAndView deleteAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage = "";
+        Service unService = new Service();
+        try {
+            Adherent adherentToDelete = unService.consulterAdherent(Integer.parseInt(request.getParameter(ID)));
+            if (adherentToDelete == null) {
+                response.getWriter().write("error");
+                return;
+            }
+            unService.deleteAdherent(adherentToDelete);
+        } catch (MonException e) {
+            e.printStackTrace();
+            response.getWriter().write("error");
+            return;
+        }
+        response.getWriter().write("AdherentSupprimer");
+        return;
+    }
+
+    /**
+     * Oeuvres
+     */
+
+    @RequestMapping(value = "listerOeuvre.htm")
+    public ModelAndView listerOeuvres(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String destinationPage = "";
+        try {
+
+            Service unService = new Service();
+            request.setAttribute("mesOeuvres", unService.consulterListeOeuvres());
+
+
+        } catch (MonException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        destinationPage = "/listerOeuvre.jsp";
+        return new ModelAndView(destinationPage);
+    }
+
+    @RequestMapping(value = "ajouterOeuvre.htm")
+    public ModelAndView ajoutOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String destinationPage = "";
+        try {
+
+            Service unService = new Service();
+            request.setAttribute("mesPropio", unService.consulterListeProprietaire());
+
+        } catch (MonException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        destinationPage = "/ajouterOeuvre.jsp";
+        return new ModelAndView(destinationPage);
+    }
+
+    @RequestMapping(value = "insererOeuvre.htm")
+    public ModelAndView insererOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String destinationPage = "";
+        try {
+
+            Service unService = new Service();
+            Oeuvrevente oeuvre = this.setParameterToOeuvrevente(request);
+
+            unService.insertOeuvre(oeuvre);
+
+        } catch (MonException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        destinationPage = "/index.jsp";
+        return new ModelAndView(destinationPage);
+    }
+
+	@RequestMapping(value = "pretOeuvre.htm")
+    public ModelAndView pretOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage = "";
+        try {
+            int id = Integer.parseInt(request.getParameter(ID));
+            Service unService = new Service();
+            request.setAttribute("oeuvre", unService.consulterOeuvre(id));
+            request.setAttribute("lesAdherents", unService.consulterListeAdherents());
+        } catch (MonException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        destinationPage = "/pretOeuvre.jsp";
+        return new ModelAndView(destinationPage);
+    }
+
+    @RequestMapping(value = "saveOeuvre.htm")
+    public ModelAndView saveOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage = "";
+        try {
+            Oeuvrevente oeuvre = this.setParameterToOeuvrevente(request);
+            oeuvre.setIdOeuvrevente(Integer.parseInt(request.getParameter("idOeuvre")));
+
+            Service unService = new Service();
+            unService.modifyOeuvre(oeuvre);
+        }catch (MonException e){
+            e.printStackTrace();
+        }
+        destinationPage = "/index.jsp";
+        return new ModelAndView(destinationPage);
+    }
+
+	@RequestMapping(value = "modifierOeuvre.htm")
+    public ModelAndView modiferOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage = "";
+        try {
+            int id = Integer.parseInt(request.getParameter(ID));
+            Service unService = new Service();
+            request.setAttribute("oeuvre", unService.consulterOeuvre(id));
+            request.setAttribute("mesProprio", unService.consulterListeProprietaire());
+        } catch (MonException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        destinationPage = "/modifierOeuvre.jsp";
+        return new ModelAndView(destinationPage);
+    }
+
 	// /
 	// / Affichage de la page d'accueil
 	// /
