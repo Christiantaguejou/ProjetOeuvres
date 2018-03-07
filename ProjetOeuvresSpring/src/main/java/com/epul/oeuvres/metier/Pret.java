@@ -6,17 +6,17 @@ import java.util.Date;
 
 /**
  * The persistent class for the pret database table.
- * 
+ *
  */
 public class Pret implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private Date date;
 	private int duree;
 	private Oeuvrepret oeuvrepret;
 	private Adherent adherent;
 
-	
+
 	public Pret( Date date, int duree, Oeuvrepret oeuvrepret, Adherent adherent) {
 		super();
 		this.date = date;

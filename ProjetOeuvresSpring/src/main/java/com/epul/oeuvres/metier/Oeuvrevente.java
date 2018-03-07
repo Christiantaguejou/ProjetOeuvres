@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * The persistent class for the oeuvrevente database table.
- * 
+ *
  */
 
 public class Oeuvrevente implements Serializable {
@@ -18,7 +18,7 @@ public class Oeuvrevente implements Serializable {
 
 
 	public Oeuvrevente(int idOeuvrevente, String etatOeuvrevente, float prixOeuvrevente, String titreOeuvrevente,
-			Proprietaire proprietaire) {
+					   Proprietaire proprietaire) {
 		super();
 		this.idOeuvrevente = idOeuvrevente;
 		this.etatOeuvrevente = etatOeuvrevente;

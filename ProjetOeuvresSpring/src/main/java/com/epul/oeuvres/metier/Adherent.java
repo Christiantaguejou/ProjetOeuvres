@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * The persistent class for the adherent database table.
- * 
+ *
  */
 
 public class Adherent implements Serializable {
@@ -15,7 +15,7 @@ public class Adherent implements Serializable {
 	private String prenomAdherent;
 	private String villeAdherent;
 
-	
+
 	public Adherent(int idAdherent, String nomAdherent, String prenomAdherent, String villeAdherent) {
 		super();
 		this.idAdherent = idAdherent;
@@ -57,6 +57,10 @@ public class Adherent implements Serializable {
 
 	public void setVilleAdherent(String villeAdherent) {
 		this.villeAdherent = villeAdherent;
+	}
+
+	public String toString() {
+		return "Adhérent:\nnom= "+ this.getNomAdherent() + " prenom= "+ this.getPrenomAdherent() + " ville= "+ this.getVilleAdherent()+"\n";
 	}
 
 }
