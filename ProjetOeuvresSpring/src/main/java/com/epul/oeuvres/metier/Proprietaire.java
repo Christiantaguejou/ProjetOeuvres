@@ -1,13 +1,13 @@
 package com.epul.oeuvres.metier;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
 import java.util.List;
 
 
 /**
  * The persistent class for the proprietaire database table.
- *
+ * 
  */
 
 public class Proprietaire implements Serializable {
@@ -15,8 +15,8 @@ public class Proprietaire implements Serializable {
 
 	private int idProprietaire;
 	private String nomProprietaire;
-	private String prenomProprietaire;
-
+    private String prenomProprietaire;
+    
 	public Proprietaire() {
 	}
 
