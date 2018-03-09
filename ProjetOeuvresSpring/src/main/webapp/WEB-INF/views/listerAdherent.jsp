@@ -11,9 +11,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/liste.css">
-    <script type="application/javascript" src="js/listerAdherent.js"></script>
+    <link rel="stylesheet" href="/resources/css/style.css">
+    <link rel="stylesheet" href="/resources/css/liste.css">
+    <script type="application/javascript" src="/resources/js/listerAdherent.js"></script>
 </head>
 <body>
 <jsp:include page="header.jsp" />
@@ -48,7 +48,7 @@
                             <td>${item.prenomAdherent}</td>
                             <td>${item.villeAdherent}</td>
                             <td align="center">
-                                <a class="btn btn-primary clickable-row" data-href="Controleur?action=modifierAdherent&id=${item.idAdherent}"><em class="fa fa-pencil"></em></a>
+                                <a class="btn btn-primary clickable-row" data-href="modifierAdherent.htm?id=${item.idAdherent}"><em class="fa fa-pencil"></em></a>
                                 <a class="btn btn-danger clickable-row" data-href="#"><em class="fa fa-trash"></em></a>
                             </td>
                         </tr>

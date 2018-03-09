@@ -23,7 +23,7 @@ public class MultiControleur {
     private static final String ID = "id";
 
 	@RequestMapping(value = "listerAdherent.htm")
-	public ModelAndView afficherLesStages(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView listerAdherents(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String destinationPage;
 		try {
 			// HttpSession session = request.getSession();
@@ -65,7 +65,7 @@ public class MultiControleur {
 			destinationPage = "ajouterAdherent";
 		} catch (Exception e) {
 			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "rreur";
+			destinationPage = "Erreur";
 		}
 
 		return new ModelAndView(destinationPage);
@@ -83,7 +83,7 @@ public class MultiControleur {
         }catch (MonException e){
             e.printStackTrace();
         }
-        destinationPage = "/index.jsp";
+        destinationPage = "index";
         return new ModelAndView(destinationPage);
     }
 
@@ -98,7 +98,7 @@ public class MultiControleur {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        destinationPage = "/modifierAdherent.jsp";
+        destinationPage = "modifierAdherent";
         return new ModelAndView(destinationPage);
     }
 
@@ -110,7 +110,7 @@ public class MultiControleur {
             Adherent adherentToDelete = unService.consulterAdherent(Integer.parseInt(request.getParameter(ID)));
             if (adherentToDelete == null) {
                 response.getWriter().write("error");
-                destinationPage = "/Erreur.jsp";
+                destinationPage = "Erreur";
 
                 return new ModelAndView(destinationPage);
             }
@@ -143,7 +143,7 @@ public class MultiControleur {
             e.printStackTrace();
         }
 
-        destinationPage = "/listerOeuvre.jsp";
+        destinationPage = "listerOeuvre";
         return new ModelAndView(destinationPage);
     }
 
@@ -161,7 +161,7 @@ public class MultiControleur {
             e.printStackTrace();
         }
 
-        destinationPage = "/ajouterOeuvre.jsp";
+        destinationPage = "ajouterOeuvre";
         return new ModelAndView(destinationPage);
     }
 
@@ -181,7 +181,7 @@ public class MultiControleur {
             e.printStackTrace();
         }
 
-        destinationPage = "/index.jsp";
+        destinationPage = "index";
         return new ModelAndView(destinationPage);
     }
 
@@ -197,7 +197,7 @@ public class MultiControleur {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        destinationPage = "/pretOeuvre.jsp";
+        destinationPage = "pretOeuvre";
         return new ModelAndView(destinationPage);
     }
 
@@ -213,7 +213,7 @@ public class MultiControleur {
         }catch (MonException e){
             e.printStackTrace();
         }
-        destinationPage = "/index.jsp";
+        destinationPage = "index";
         return new ModelAndView(destinationPage);
     }
 
@@ -229,7 +229,7 @@ public class MultiControleur {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        destinationPage = "/modifierOeuvre.jsp";
+        destinationPage = "modifierOeuvre";
         return new ModelAndView(destinationPage);
     }
 
@@ -238,7 +238,7 @@ public class MultiControleur {
 	// /
 	@RequestMapping(value = "index.htm", method = RequestMethod.GET)
 	public ModelAndView Afficheindex(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return new ModelAndView("home");
+		return new ModelAndView("index");
 	}
 
 	// /
@@ -246,7 +246,7 @@ public class MultiControleur {
 		// /
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public ModelAndView Afficheindex2(HttpServletRequest request, HttpServletResponse response) throws Exception {
-			return new ModelAndView("home");
+			return new ModelAndView("index");
 		}
 	// /
 	// / Affichage de la page d'accueil

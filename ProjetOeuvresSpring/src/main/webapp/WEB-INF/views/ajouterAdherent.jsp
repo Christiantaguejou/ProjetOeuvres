@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/ajoutAdherent.css">
+    <link rel="stylesheet" href="/resources/css/style.css">
+    <link rel="stylesheet" href="/resources/css/ajoutAdherent.css">
     <title>Expo : Médiathèque De POLYTECH</title>
 
 </head>
 <SCRIPT language="Javascript" type="text/javascript"></SCRIPT>
-<script type="text/javascript" src="js/fonctControle.js"></script>
+<script type="text/javascript" src="/resources/js/fonctControle.js"></script>
 
 
 <body>
@@ -33,7 +33,7 @@
             </div>
             <div class="panel-body">
             <DIV align="center">
-                <form class="form-horizontal" name='identification' method="post" action="Controleur?action=insererAdherent"  onsubmit="return teste()">
+                <form class="form-horizontal" name='identification' method="post" action="insererAdherent.htm"  onsubmit="return teste()">
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Nom de l'adhérent:</label>
                         <div class="col-md-8 col-xs-8">
