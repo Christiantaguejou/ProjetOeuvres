@@ -1,0 +1,9 @@
+html, body
+{
+    background-color: lightgrey;
+    height: 100%;
+}
+.container{
+    border-radius: 3px;
+    width: 1000px;
+}
