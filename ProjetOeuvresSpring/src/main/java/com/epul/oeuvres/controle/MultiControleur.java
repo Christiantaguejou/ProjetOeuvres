@@ -13,13 +13,14 @@ import com.epul.oeuvres.meserreurs.*;
 import com.epul.oeuvres.metier.*;
 
 ///
-/// Les méthode du contrôleur répondent à des sollicitations
+/// Les mï¿½thode du contrï¿½leur rï¿½pondent ï¿½ des sollicitations
 /// des pages JSP
 
 @Controller
 public class MultiControleur {
 
 //	private static final Logger logger = LoggerFactory.getLogger(MultiControleur.class);
+    private static final String ID = "id";
 
 	@RequestMapping(value = "listerAdherent.htm")
 	public ModelAndView afficherLesStages(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -109,16 +110,18 @@ public class MultiControleur {
             Adherent adherentToDelete = unService.consulterAdherent(Integer.parseInt(request.getParameter(ID)));
             if (adherentToDelete == null) {
                 response.getWriter().write("error");
-                return;
+                destinationPage = "/Erreur.jsp";
+
+                return new ModelAndView(destinationPage);
             }
             unService.deleteAdherent(adherentToDelete);
         } catch (MonException e) {
             e.printStackTrace();
             response.getWriter().write("error");
-            return;
+            return new ModelAndView(destinationPage);
         }
         response.getWriter().write("AdherentSupprimer");
-        return;
+        return new ModelAndView(destinationPage);
     }
 
     /**
