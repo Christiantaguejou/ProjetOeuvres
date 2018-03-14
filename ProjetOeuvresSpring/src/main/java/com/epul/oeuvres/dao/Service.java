@@ -105,6 +105,45 @@ public class Service extends EntityService{
 		return adherent;
 	}
 
+	public List<OeuvreventeEntity> consulterListeOeuvres() {
+		List<OeuvreventeEntity> oeuvresVente = null;
+        EntityTransaction transaction = null;
+        try {
+            transaction = startTransaction();
+            transaction.begin();
+            oeuvresVente = (List<OeuvreventeEntity>)entitymanager.createQuery("SELECT a FROM OeuvreventeEntity a ORDER BY a.titreOeuvrevente").getResultList();
+            entitymanager.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return oeuvresVente;
+	}
+
+//    public OeuvreventeEntity get(int numero) throws MonException {
+//        List<AdherentEntity> adherents = null;
+//        AdherentEntity adherent = new AdherentEntity();
+//        try {
+//            EntityTransaction transac = startTransaction();
+//            transac.begin();
+//
+//            adherents = (List<AdherentEntity>)entitymanager.createQuery("SELECT a FROM AdherentEntity a WHERE a.idAndherent="+numero).getResultList();
+//            adherent = adherents.get(0);
+//            entitymanager.close();
+//        }catch (RuntimeException e)
+//        {
+//            new MonException("Erreur de lecture", e.getMessage());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return adherent;
+//    }
+
+    public int rechercherProprietaire(String proprio) {
+	    return 0;
+    }
+
+
+
 	/**
 	 * Insertion d'une oeuvre dans la BDD
 	 * @param oeuvre
@@ -154,4 +193,8 @@ public class Service extends EntityService{
 		}
 		return oeuvre;
 	}
+
+    public AdherentEntity consulterListeProprietaire() {
+	    return null;
+    }
 }
