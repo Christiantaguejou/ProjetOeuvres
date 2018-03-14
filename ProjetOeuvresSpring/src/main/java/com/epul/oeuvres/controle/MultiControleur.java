@@ -141,15 +141,10 @@ public class MultiControleur {
     public ModelAndView ajoutOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         String destinationPage = "";
-        try {
 
             Service unService = new Service();
             request.setAttribute("mesPropio", unService.consulterListeProprietaire());
 
-        } catch (MonException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
 
         destinationPage = "ajouterOeuvre";
         return new ModelAndView(destinationPage);

@@ -197,4 +197,8 @@ public class Service extends EntityService{
     public AdherentEntity consulterListeProprietaire() {
 	    return null;
     }
+
+    public boolean deleteAdherent(AdherentEntity adherentToDelete) {
+        return false;
+    }
 }
