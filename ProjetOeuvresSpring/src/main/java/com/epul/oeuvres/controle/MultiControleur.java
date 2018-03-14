@@ -162,7 +162,7 @@ public class MultiControleur {
         try {
 
             Service unService = new Service();
-            Oeuvrevente oeuvre = this.setParameterToOeuvrevente(request);
+            OeuvreventeEntity oeuvre = this.setParameterToOeuvrevente(request);
 
             unService.insertOeuvre(oeuvre);
 
