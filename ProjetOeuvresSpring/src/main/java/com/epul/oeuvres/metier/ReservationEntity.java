@@ -8,7 +8,7 @@ import java.sql.Date;
 @IdClass(ReservationEntityPK.class)
 public class ReservationEntity {
     private int idOeuvrevente;
-    private OeuvrepretEntity oeuvrepretEntity;
+    private OeuvreventeEntity oeuvreventeEntity;
     private int idAdherent;
     private AdherentEntity adherentEntity;
     private Date dateReservation;
@@ -81,12 +81,12 @@ public class ReservationEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_oeuvrevente",referencedColumnName = "id_oeuvrevente",nullable = false)
-    public OeuvrepretEntity getOeuvrepretEntity() {
-        return oeuvrepretEntity;
+    public OeuvreventeEntity getOeuvreventeEntity() {
+        return oeuvreventeEntity;
     }
 
-    public void setOeuvrepretEntity(OeuvrepretEntity oeuvrepretEntity) {
-        this.oeuvrepretEntity = oeuvrepretEntity;
+    public void setOeuvreventeEntity(OeuvreventeEntity oeuvreventeEntity) {
+        this.oeuvreventeEntity = oeuvreventeEntity;
     }
 
     @ManyToOne
