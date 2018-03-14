@@ -130,19 +130,9 @@ public class MultiControleur {
 
     @RequestMapping(value = "listerOeuvre.htm")
     public ModelAndView listerOeuvres(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
         String destinationPage = "";
-        try {
-
-            Service unService = new Service();
-            request.setAttribute("mesOeuvres", unService.consulterListeOeuvres());
-
-
-        } catch (MonException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
+        Service unService = new Service();
+        request.setAttribute("mesOeuvres", unService.consulterListeOeuvres());
         destinationPage = "listerOeuvre";
         return new ModelAndView(destinationPage);
     }
@@ -263,12 +253,12 @@ public class MultiControleur {
         unAdherent.setVilleAdherent(request.getParameter("ville"));
         return unAdherent;
     }
-    protected Oeuvrevente setParameterToOeuvrevente(HttpServletRequest request) throws MonException {
-        Oeuvrevente oeuvrevente = new Oeuvrevente();
+    protected OeuvreventeEntity setParameterToOeuvrevente(HttpServletRequest request) throws MonException {
+        OeuvreventeEntity oeuvrevente = new OeuvreventeEntity();
         Service unService = new Service();
         oeuvrevente.setTitreOeuvrevente(request.getParameter("titreOeuvre"));
         oeuvrevente.setPrixOeuvrevente(Float.parseFloat(request.getParameter("prixOeuvre")));
-        oeuvrevente.setProprietaire(unService.rechercherProprietaire(request.getParameter("proprio")));
+        oeuvrevente.setIdProprietaire(unService.rechercherProprietaire(request.getParameter("proprio")));
         if(request.getParameter("etatOeuvre") != null)
             oeuvrevente.setEtatOeuvrevente(request.getParameter("etatOeuvre"));
         if(request.getParameter("idOeuvre") != null)

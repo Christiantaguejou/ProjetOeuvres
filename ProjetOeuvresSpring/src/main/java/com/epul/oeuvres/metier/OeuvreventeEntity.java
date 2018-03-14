@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class OeuvreventeEntity {
     private int idOeuvrevente;
     private String titreOeuvrevente;
-    private String etatOeuvrevente;
+    private String etatOeuvrevente = "L";
     private double prixOeuvrevente;
     private int idProprietaire;
     private ProprietaireEntity proprietaireEntity;
