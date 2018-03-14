@@ -109,4 +109,12 @@ public class Service extends EntityService{
 
     public int rechercherProprietaire(String proprio) {
     }
+
+    public OeuvrepretEntity consulterOeuvre(int id) {
+        return null;
+    }
+
+    public void modifyOeuvre(OeuvreventeEntity oeuvre) {
+
+    }
 }

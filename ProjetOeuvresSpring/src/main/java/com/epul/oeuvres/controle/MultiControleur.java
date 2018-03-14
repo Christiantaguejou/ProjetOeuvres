@@ -195,7 +195,7 @@ public class MultiControleur {
     public ModelAndView saveOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage = "";
         try {
-            Oeuvrevente oeuvre = this.setParameterToOeuvrevente(request);
+            OeuvreventeEntity oeuvre = this.setParameterToOeuvrevente(request);
             oeuvre.setIdOeuvrevente(Integer.parseInt(request.getParameter("idOeuvre")));
 
             Service unService = new Service();
