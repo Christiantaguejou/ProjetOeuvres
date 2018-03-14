@@ -107,7 +107,7 @@ public class MultiControleur {
         String destinationPage = "";
         Service unService = new Service();
         try {
-            Adherent adherentToDelete = unService.consulterAdherent(Integer.parseInt(request.getParameter(ID)));
+            AdherentEntity adherentToDelete = unService.consulterAdherent(Integer.parseInt(request.getParameter(ID)));
             if (adherentToDelete == null) {
                 response.getWriter().write("error");
                 destinationPage = "Erreur";
