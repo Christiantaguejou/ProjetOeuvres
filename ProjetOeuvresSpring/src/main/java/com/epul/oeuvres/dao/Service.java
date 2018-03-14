@@ -61,7 +61,7 @@ public class Service extends EntityService{
 			EntityTransaction transac = startTransaction();
 			transac.begin();
 
-			adherents = (List<AdherentEntity>)entitymanager.createQuery("SELECT a FROM AdherentEntity a WHERE a.idAndherent="+numero).getResultList();
+			adherents = (List<AdherentEntity>)entitymanager.createQuery("SELECT a FROM AdherentEntity a WHERE a.idAdherent="+numero).getResultList();
 			adherent = adherents.get(0);
 			entitymanager.close();
 		}catch (RuntimeException e)

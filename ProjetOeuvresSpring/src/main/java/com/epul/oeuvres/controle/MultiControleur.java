@@ -27,9 +27,9 @@ public class MultiControleur {
 		String destinationPage;
 		try {
 			// HttpSession session = request.getSession();
-			Service unService = new Service();
-			request.setAttribute("mesAdherents", unService.consulterListeAdherents());
-			destinationPage = "listerAdherent";
+            Service unService = new Service();
+            request.setAttribute("mesAdherents", unService.consulterListeAdherents());
+            destinationPage = "listerAdherent";
 		} catch (MonException e) {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "Erreur";
@@ -43,12 +43,12 @@ public class MultiControleur {
 
 		String destinationPage = "";
 		try {
-			Adherent unAdherent = new Adherent();
-			unAdherent.setNomAdherent(request.getParameter("txtnom"));
-			unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
-			unAdherent.setVilleAdherent(request.getParameter("txtville"));
-			Service unService = new Service();
-			unService.insertAdherent(unAdherent);
+            AdherentEntity unAdherent = new AdherentEntity();
+            unAdherent.setNomAdherent(request.getParameter("txtnom"));
+            unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
+            unAdherent.setVilleAdherent(request.getParameter("txtville"));
+            Service unService = new Service();
+            unService.insertAdherent(unAdherent);
 		} catch (Exception e) {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "Erreur";
@@ -60,15 +60,15 @@ public class MultiControleur {
 	@RequestMapping(value = "ajouterAdherent.htm")
 	public ModelAndView ajouterAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		String destinationPage = "";
-		try {
-			destinationPage = "ajouterAdherent";
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "Erreur";
-		}
+        String destinationPage = "";
+        try {
+            destinationPage = "ajouterAdherent";
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "Erreur";
+        }
 
-		return new ModelAndView(destinationPage);
+        return new ModelAndView(destinationPage);
 	}
 
     @RequestMapping(value = "saveAdherent.htm")
