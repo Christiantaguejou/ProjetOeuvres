@@ -76,7 +76,7 @@ public class MultiControleur {
 
         String destinationPage = "";
         try {
-            Adherent adherent = this.setParameterToAdherent(request);
+            AdherentEntity adherent = this.setParameterToAdherent(request);
             adherent.setIdAdherent(Integer.parseInt(request.getParameter("id")));
             Service unService = new Service();
             unService.modifyAdherent(adherent);
@@ -256,8 +256,8 @@ public class MultiControleur {
 		return new ModelAndView("Erreur");
 	}
 
-    protected Adherent setParameterToAdherent(HttpServletRequest request) {
-        Adherent unAdherent = new Adherent();
+    protected AdherentEntity setParameterToAdherent(HttpServletRequest request) {
+        AdherentEntity unAdherent = new AdherentEntity();
         unAdherent.setNomAdherent(request.getParameter("nom"));
         unAdherent.setPrenomAdherent(request.getParameter("prenom"));
         unAdherent.setVilleAdherent(request.getParameter("ville"));
