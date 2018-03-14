@@ -56,14 +56,11 @@ public class Service extends EntityService{
 	/* Consultation d'une adherent par son numéro
 	*/
 	public AdherentEntity adherentById(int numero) throws MonException {
-		List<AdherentEntity> adherents = null;
 		AdherentEntity adherent = new AdherentEntity();
 		try {
 			EntityTransaction transac = startTransaction();
 			transac.begin();
-
-			adherents = (List<AdherentEntity>)entitymanager.createQuery("SELECT a FROM AdherentEntity a WHERE a.idAdherent="+numero).getResultList();
-			adherent = adherents.get(0);
+			adherent = entitymanager.find(AdherentEntity.class, numero);
 			transac.commit();
 			entitymanager.close();
 		}catch (RuntimeException e)
@@ -98,7 +95,7 @@ public class Service extends EntityService{
 		try{
 			EntityTransaction transac = startTransaction();
 			transac.begin();
-			adherent = (AdherentEntity) entitymanager.createQuery("SELECT * FROM AdherentEntity a WHERE a.idAdherent="+numero);
+			adherent = entitymanager.find(AdherentEntity.class, numero);
 			transac.commit();
 			entitymanager.close();
 		}catch (Exception ex) {
@@ -147,7 +144,7 @@ public class Service extends EntityService{
 		try {
 			EntityTransaction transac = startTransaction();
 			transac.begin();
-			oeuvre = (OeuvreventeEntity) entitymanager.createQuery("SELECT * FROM OeuvreventeEntity o WHERE o.idOeuvrevente="+id);
+			oeuvre =  entitymanager.find(OeuvreventeEntity.class, id);
 			transac.commit();
 			entitymanager.close();
 		} catch (MonException e) {
