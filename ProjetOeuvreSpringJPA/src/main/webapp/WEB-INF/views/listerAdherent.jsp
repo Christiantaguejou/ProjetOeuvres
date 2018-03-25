@@ -7,35 +7,67 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Affichage de tous les adhérents</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/resources/css/style.css">
+    <link rel="stylesheet" href="/resources/css/liste.css">
+    <script type="application/javascript" src="/resources/js/listerAdherent.js"></script>
 </head>
 <body>
-	<P>
-		<A href="index.htm"><FONT face="Arial" color="#004080">Retour
-				Accueil</FONT></A>
-	</P>
-	<P align="center">
-		<FONT face="Arial" size="5" color="#004080"><U> <STRONG>Listing&nbsp;des
-					Adhérents </STRONG></U></FONT>
-	</P>
+<jsp:include page="header.jsp" />
 
-	<TABLE BORDER="1">
-		<CAPTION>Tableau des Adhérents</CAPTION>
-		<TR>
-			<TH>Numero</TH>
-			<TH>Nom</TH>
-			<TH>Prénom</TH>
-			<TH>Ville</TH>
+    <div class="container">
+        <div class="row content">
 
-		</TR>
+            <jsp:include page="menu.jsp" />
 
-		<c:forEach items="${mesAdherents}" var="item">
-			<tr>
-				<td>${item.idAdherent}</td>
-				<td>${item.nomAdherent}</td>
-				<td>${item.prenomAdherent}</td>
-                <td>${item.villeAdherent}</td>
-			</tr>
-		</c:forEach>
-	</TABLE>
+            <div class="col-md-9 col-xs-9">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                <div class="panel-title ">Listing des Adhérents</div>
+            </div>
+            <div class="panel-body-big menu" >
+            <table id="tableFilter" class="table table-striped table-hover">
+                <br/>
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  N° des adhérents</th>
+                        <th onclick="sortTable(1)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  Nom</th>
+                        <th onclick="sortTable(2)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  Prénom</th>
+                        <th onclick="sortTable(3)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  Ville</th>
+                        <th><p style="display: inline">Paramètres</p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${mesAdherents}" var="item">
+                        <tr>
+                            <td>${item.idAdherent}</td>
+                            <td>${item.nomAdherent}</td>
+                            <td>${item.prenomAdherent}</td>
+                            <td>${item.villeAdherent}</td>
+                            <td align="center">
+                                <a class="btn btn-primary clickable-row" data-href="modifierAdherent.htm?id=${item.idAdherent}"><em class="fa fa-pencil"></em></a>
+                                <a class="btn btn-danger clickable-row" data-href="#"><em class="fa fa-trash"></em></a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+<script type="application/javascript">
+
+    $('.clickable-row').click(function(){
+        window.location = $(this).data('href');
+    });
+
+</script>
 </body>
 </html>

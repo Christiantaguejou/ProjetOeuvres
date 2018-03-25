@@ -13,6 +13,8 @@ public class OeuvreventeEntity {
     private String etatOeuvrevente;
     private double prixOeuvrevente;
 
+    private ProprietaireEntity proprietaireEntity;
+
     @Id
     @Column(name = "id_oeuvrevente")
     public int getIdOeuvrevente() {
@@ -53,6 +55,18 @@ public class OeuvreventeEntity {
         this.prixOeuvrevente = prixOeuvrevente;
     }
 
+
+    @Basic
+    @Column(name = "id_proprietaire")
+    private int idProprietaire;
+
+    public int getIdProprietaire() {
+        return idProprietaire;
+    }
+    public void setIdProprietaire(int idProprietaire) {
+        this.idProprietaire = idProprietaire;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,6 +84,13 @@ public class OeuvreventeEntity {
         return true;
     }
 
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_proprietaire",referencedColumnName = "id_proprietaire",nullable = false)
+    public ProprietaireEntity getProprietaireEntity() {
+        return proprietaireEntity;
+    }
     @Override
     public int hashCode() {
         int result;
@@ -80,5 +101,9 @@ public class OeuvreventeEntity {
         temp = Double.doubleToLongBits(prixOeuvrevente);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
+    }
+
+    public void setProprietaireEntity(ProprietaireEntity proprietaireEntity) {
+        this.proprietaireEntity = proprietaireEntity;
     }
 }
