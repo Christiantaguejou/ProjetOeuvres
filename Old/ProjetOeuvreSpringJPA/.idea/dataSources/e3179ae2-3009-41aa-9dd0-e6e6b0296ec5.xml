@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="baseoeuvre@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="baseoeuvre">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="autolib"/>
+    <schema id="4" parent="1" name="baseaeroport"/>
+    <schema id="5" parent="1" name="cerisaie"/>
+    <schema id="6" parent="1" name="cinema"/>
+    <schema id="7" parent="1" name="cinema_jee"/>
+    <schema id="8" parent="1" name="commercial"/>
+    <schema id="9" parent="1" name="dbusers"/>
+    <schema id="10" parent="1" name="electraticket"/>
+    <schema id="11" parent="1" name="emiagefr_miage_consortium"/>
+    <schema id="12" parent="1" name="gsb"/>
+    <schema id="13" parent="1" name="information_schema"/>
+    <schema id="14" parent="1" name="instapics"/>
+    <schema id="15" parent="1" name="isi_projet2_tardymartial_remondvictor"/>
+    <schema id="16" parent="1" name="lesinscriptions"/>
+    <schema id="17" parent="1" name="mangas"/>
+    <schema id="18" parent="1" name="mespays"/>
+    <schema id="19" parent="1" name="messtages"/>
+    <schema id="20" parent="1" name="monsite"/>
+    <schema id="21" parent="1" name="mysql"/>
+    <schema id="22" parent="1" name="performance_schema"/>
+    <schema id="23" parent="1" name="phpmyadmin"/>
+    <schema id="24" parent="1" name="projetpermis"/>
+    <schema id="25" parent="1" name="runwaylicence"/>
+    <schema id="26" parent="1" name="test"/>
+    <table id="27" parent="2" name="adherent"/>
+    <table id="28" parent="2" name="oeuvrepret"/>
+    <table id="29" parent="2" name="oeuvrevente"/>
+    <table id="30" parent="2" name="proprietaire"/>
+    <table id="31" parent="2" name="reservation"/>
+    <table id="32" parent="2" name="sequence"/>
+    <column id="33" parent="27" name="id_adherent">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="34" parent="27" name="nom_adherent">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="27" name="prenom_adherent">
+      <Position>3</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="36" parent="27" name="ville_adherent">
+      <Position>4</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <key id="37" parent="27" name="PRIMARY">
+      <ColNames>id_adherent</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="38" parent="28" name="id_oeuvrepret">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="39" parent="28" name="titre_oeuvrepret">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="28" name="id_proprietaire">
+      <Position>3</Position>
+      <DataType>int(10) unsigned|0</DataType>
+    </column>
+    <index id="41" parent="28" name="id_proprietaire">
+      <ColNames>id_proprietaire</ColNames>
+    </index>
+    <key id="42" parent="28" name="PRIMARY">
+      <ColNames>id_oeuvrepret</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="43" parent="28" name="oeuvrepret_ibfk_1">
+      <ColNames>id_proprietaire</ColNames>
+      <RefSchemaName>baseoeuvre</RefSchemaName>
+      <RefTableName>proprietaire</RefTableName>
+      <RefColNames>id_proprietaire</RefColNames>
+    </foreign-key>
+    <column id="44" parent="29" name="id_oeuvrevente">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="45" parent="29" name="titre_oeuvrevente">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="29" name="etat_oeuvrevente">
+      <Position>3</Position>
+      <DataType>varchar(1)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="29" name="prix_oeuvrevente">
+      <Position>4</Position>
+      <DataType>float|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="48" parent="29" name="id_proprietaire">
+      <Position>5</Position>
+      <DataType>int(10) unsigned|0</DataType>
+    </column>
+    <index id="49" parent="29" name="id_proprietaire">
+      <ColNames>id_proprietaire</ColNames>
+    </index>
+    <key id="50" parent="29" name="PRIMARY">
+      <ColNames>id_oeuvrevente</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="51" parent="29" name="oeuvrevente_ibfk_1">
+      <ColNames>id_proprietaire</ColNames>
+      <RefSchemaName>baseoeuvre</RefSchemaName>
+      <RefTableName>proprietaire</RefTableName>
+      <RefColNames>id_proprietaire</RefColNames>
+    </foreign-key>
+    <column id="52" parent="30" name="id_proprietaire">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="53" parent="30" name="nom_proprietaire">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="54" parent="30" name="prenom_proprietaire">
+      <Position>3</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <key id="55" parent="30" name="PRIMARY">
+      <ColNames>id_proprietaire</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="56" parent="31" name="id_oeuvrevente">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="57" parent="31" name="id_adherent">
+      <Position>2</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="58" parent="31" name="date_reservation">
+      <Position>3</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="31" name="statut">
+      <Position>4</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="60" parent="31" name="id_adherent">
+      <ColNames>id_adherent</ColNames>
+    </index>
+    <key id="61" parent="31" name="PRIMARY">
+      <ColNames>id_oeuvrevente
+id_adherent</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="62" parent="31" name="reservation_ibfk_1">
+      <ColNames>id_oeuvrevente</ColNames>
+      <RefSchemaName>baseoeuvre</RefSchemaName>
+      <RefTableName>oeuvrevente</RefTableName>
+      <RefColNames>id_oeuvrevente</RefColNames>
+    </foreign-key>
+    <foreign-key id="63" parent="31" name="reservation_ibfk_2">
+      <ColNames>id_adherent</ColNames>
+      <RefSchemaName>baseoeuvre</RefSchemaName>
+      <RefTableName>adherent</RefTableName>
+      <RefColNames>id_adherent</RefColNames>
+    </foreign-key>
+    <column id="64" parent="32" name="SEQ_NAME">
+      <Position>1</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="65" parent="32" name="SEQ_COUNT">
+      <Position>2</Position>
+      <DataType>decimal(38)|0</DataType>
+    </column>
+    <key id="66" parent="32" name="PRIMARY">
+      <ColNames>SEQ_NAME</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
