@@ -105,7 +105,7 @@ public class MultiControleur {
 
     @RequestMapping(value = "deleteAdherent.htm")
     public ModelAndView deleteAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String destinationPage = "";
+        String destinationPage = "listerAdherent";
         Service unService = new Service();
         try {
             AdherentEntity adherentToDelete = unService.consulterAdherent(Integer.parseInt(request.getParameter(ID)));
@@ -121,7 +121,7 @@ public class MultiControleur {
             response.getWriter().write("error");
             return new ModelAndView(destinationPage);
         }
-        response.getWriter().write("AdherentSupprimer");
+        //response.getWriter().write("AdherentSupprimer");
         return new ModelAndView(destinationPage);
     }
 

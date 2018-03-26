@@ -91,6 +91,7 @@ public class OeuvreventeEntity {
     public ProprietaireEntity getProprietaireEntity() {
         return proprietaireEntity;
     }
+
     @Override
     public int hashCode() {
         int result;
