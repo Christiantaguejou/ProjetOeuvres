@@ -187,6 +187,22 @@ public class MultiControleur {
         return new ModelAndView(destinationPage);
     }
 
+    @RequestMapping(value = "savePret.htm")
+    public ModelAndView savePret(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage = "";
+        /*try {
+            int id = Integer.parseInt(request.getParameter(ID));
+            Service unService = new Service();
+            request.setAttribute("oeuvre", unService.consulterOeuvre(id));
+            request.setAttribute("lesAdherents", unService.consulterListeAdherents());
+        } catch (MonException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        destinationPage = "pretOeuvre";
+        return new ModelAndView(destinationPage);*/
+    }
+
     @RequestMapping(value = "saveOeuvre.htm")
     public ModelAndView saveOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage = "";
