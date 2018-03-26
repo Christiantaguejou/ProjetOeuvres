@@ -51,8 +51,8 @@
                             <tr>
                                 <td>${item.titreOeuvrevente}</td>
                                 <td>${item.prixOeuvrevente}</td>
-                                <td>${item.proprietaire.prenomProprietaire} </td>
-                                <td>${item.proprietaire.nomProprietaire}</td>
+                                <td>${item.proprietaireEntity.prenomProprietaire} </td>
+                                <td>${item.proprietaireEntity.nomProprietaire}</td>
                                 <td align="center">
                                     <a class="btn btn-success clickable-row" data-href="pretOeuvre.htm?id=${item.idOeuvrevente}" style="padding: 4px"><em class="fa fa-book"> Réserver</em></a>
                                     <a class="btn btn-primary clickable-row" data-href="modifierOeuvre.htm?id=${item.idOeuvrevente}" style="padding: 4px"><em class="fa fa-pencil"> Modifier</em></a>

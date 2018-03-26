@@ -55,18 +55,6 @@ public class OeuvreventeEntity {
         this.prixOeuvrevente = prixOeuvrevente;
     }
 
-
-    @Basic
-    @Column(name = "id_proprietaire")
-    private int idProprietaire;
-
-    public int getIdProprietaire() {
-        return idProprietaire;
-    }
-    public void setIdProprietaire(int idProprietaire) {
-        this.idProprietaire = idProprietaire;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

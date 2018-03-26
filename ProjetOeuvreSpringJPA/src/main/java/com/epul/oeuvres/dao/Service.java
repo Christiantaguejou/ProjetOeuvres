@@ -144,7 +144,7 @@ public class Service extends EntityService {
 //        return adherent;
 //    }
 
-    public int rechercherProprietaire(String proprio) {
+    public ProprietaireEntity  rechercherProprietaire(String proprio) {
         EntityTransaction transaction = null;
         String[] identite = proprio.split(" ");
         ProprietaireEntity proprietaireEntity=null;
@@ -157,7 +157,7 @@ public class Service extends EntityService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return proprietaireEntity.getIdProprietaire();
+        return proprietaireEntity;
     }
 
 
