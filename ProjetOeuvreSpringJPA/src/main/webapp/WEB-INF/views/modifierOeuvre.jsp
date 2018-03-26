@@ -64,7 +64,7 @@
                                     <select class="form-control" name="proprio" id="proprio">
                                         <c:forEach items="${mesProprio}" var="item">
                                             <option
-                                                <c:if test = "${item.idProprietaire == oeuvre.proprietaire.idProprietaire}">
+                                                <c:if test = "${item.idProprietaire == oeuvre.proprietaireEntity.idProprietaire}">
                                                     selected="selected"
                                                 </c:if> > ${item.nomProprietaire} ${item.prenomProprietaire}</option>
                                         </c:forEach>

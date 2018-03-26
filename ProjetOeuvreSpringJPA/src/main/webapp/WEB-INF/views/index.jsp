@@ -64,7 +64,13 @@
                             <div class="col-md-4 col-xs-4 fonctionnalite">
                                 <img src="/resources/img/gestion.png" class="img-responsive image"  alt="Image">
                                 <div class="middle">
-                                    <a class="text" href="listerOeuvre.htm">Gestion des Oeuvres</a>
+                                    <a class="text" href="listerOeuvre.htm">Lister Oeuvres</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-4 fonctionnalite">
+                                <img src="/resources/img/gestion.png" class="img-responsive image"  alt="Image">
+                                <div class="middle">
+                                    <a class="text" href="listerReservations.htm">Lister Réservations</a>
                                 </div>
                             </div>
                         </div>

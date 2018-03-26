@@ -255,6 +255,7 @@ public class MultiControleur {
         oeuvrevente.setTitreOeuvrevente(request.getParameter("titreOeuvre"));
         oeuvrevente.setPrixOeuvrevente(Float.parseFloat(request.getParameter("prixOeuvre")));
         oeuvrevente.setProprietaireEntity(unService.rechercherProprietaire(request.getParameter("proprio")));
+        oeuvrevente.setEtatOeuvrevente("L");
         if(request.getParameter("etatOeuvre") != null)
             oeuvrevente.setEtatOeuvrevente(request.getParameter("etatOeuvre"));
         if(request.getParameter("idOeuvre") != null)

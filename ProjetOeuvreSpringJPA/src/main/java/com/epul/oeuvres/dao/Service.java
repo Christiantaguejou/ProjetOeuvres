@@ -67,15 +67,7 @@ public class Service extends EntityService {
     }
 
     public void test() {
-        AdherentEntity unAdherent = new AdherentEntity();
-        unAdherent.setNomAdherent("mark");
-        unAdherent.setPrenomAdherent("mark");
-        unAdherent.setVilleAdherent("mark");
-        try {
-            this.insertAdherent(unAdherent);
-        } catch (MonException e) {
-            e.printStackTrace();
-        }
+       System.out.println(rechercherProprietaire("DUPONT Isabelle"));
     }
 
     public void modifyAdherent(AdherentEntity adherent) throws MonException {
@@ -151,7 +143,7 @@ public class Service extends EntityService {
         try {
             transaction = startTransaction();
             transaction.begin();
-            String query ="SELECT a FROM ProprietaireEntity a WHERE  a.nomProprietaire ="+identite[0]+" AND a.prenomProprietaire="+identite[1];
+            String query ="SELECT a FROM ProprietaireEntity a WHERE  a.nomProprietaire='"+identite[0]+"'  AND a.prenomProprietaire='"+identite[1]+"'";
             proprietaireEntity = (ProprietaireEntity) entitymanager.createQuery(query).getSingleResult();
             entitymanager.close();
         } catch (Exception e) {
