@@ -186,11 +186,11 @@ public class MultiControleur {
         destinationPage = "pretOeuvre";
         return new ModelAndView(destinationPage);
     }
-
+/*
     @RequestMapping(value = "savePret.htm")
     public ModelAndView savePret(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage = "";
-        /*try {
+        try {
             int id = Integer.parseInt(request.getParameter(ID));
             Service unService = new Service();
             request.setAttribute("oeuvre", unService.consulterOeuvre(id));
@@ -200,9 +200,9 @@ public class MultiControleur {
             e.printStackTrace();
         }
         destinationPage = "pretOeuvre";
-        return new ModelAndView(destinationPage);*/
+        return new ModelAndView(destinationPage);
     }
-
+*/
     @RequestMapping(value = "saveOeuvre.htm")
     public ModelAndView saveOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage = "";
