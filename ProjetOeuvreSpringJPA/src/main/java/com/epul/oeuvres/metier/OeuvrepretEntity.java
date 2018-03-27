@@ -46,19 +46,9 @@ public class OeuvrepretEntity {
 
         return true;
     }
-    @Basic
-    @Column(name = "id_proprietaire")
-    private int idProprietaire;
-
-    public int getIdProprietaire() {
-        return idProprietaire;
-    }
-    public void setIdProprietaire(int idProprietaire) {
-        this.idProprietaire = idProprietaire;
-    }
 
     @ManyToOne
-    @JoinColumn(name = "id_proprietaire",referencedColumnName = "id_proprietaire",nullable = false)
+    @JoinColumn(name = "id_proprietaire", referencedColumnName = "id_proprietaire",nullable = false)
     public ProprietaireEntity getProprietaireEntity() {
         return proprietaireEntity;
     }

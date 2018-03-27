@@ -186,6 +186,15 @@ public class MultiControleur {
         destinationPage = "pretOeuvre";
         return new ModelAndView(destinationPage);
     }
+
+    @RequestMapping(value = "listerReservations.htm")
+    public ModelAndView listerReservations(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage = "";
+        Service unService = new Service();
+        request.setAttribute("listeReservations", unService.consulterListeReservations());
+        destinationPage = "listerReservations";
+        return new ModelAndView(destinationPage);
+    }
 /*
     @RequestMapping(value = "savePret.htm")
     public ModelAndView savePret(HttpServletRequest request, HttpServletResponse response) throws Exception {

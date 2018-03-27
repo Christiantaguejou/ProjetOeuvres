@@ -5,24 +5,19 @@
   Time: 21:45
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-        <%@ page language="java" contentType="text/html; charset=UTF-8"
-                 pageEncoding="UTF-8" %>
-        <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-        <html>
+        <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Affichage de tous les adhérents</title>
+            <title>Affichage de tous les prêts</title>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            <link rel="stylesheet"
-                  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="/resources/css/style.css">
             <link rel="stylesheet" href="/resources/css/liste.css">
             <script type="application/javascript" src="/resources/js/listerAdherent.js"></script>
@@ -45,33 +40,17 @@
                         <br/>
                         <thead>
                         <tr>
-                            <th onclick="sortTable(0)" class="cursorClic"><p class="glyphicon glyphicon-sort "
-                                                                             style="display: inline"></p> Titre oeuvre
-                            </th>
-                            <th onclick="sortTable(1)" class="cursorClic"><p class="glyphicon glyphicon-sort "
-                                                                             style="display: inline"></p> Date Réservation
-                            </th>
-                            <th onclick="sortTable(2)" class="cursorClic"><p class="glyphicon glyphicon-sort "
-                                                                             style="display: inline"></p> Statut
-                            </th>
-
-                            <th><p style="display: inline">Paramètres</p></th>
+                            <th onclick="sortTable(0)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  Titre</th>
+                            <th onclick="sortTable(1)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  ID Propriétaire</th>
+                            <th onclick="sortTable(2)" class="cursorClic"><p class="glyphicon glyphicon-sort " style="display: inline"></p>  ID Pret</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${mesAdherents}" var="item">
+                        <c:forEach items="${listeReservations}" var="item">
                             <tr>
-                                <td>${item.oeuvreventeByIdOeuvrevente.titreOeuvrevente}</td>
-                                <td>${item.date}</td>
-                                <td>${item.statut}</td>
-                                <td align="center">
-                                    <a class="btn btn-primary clickable-row"
-                                       data-href="supprimerReservation.htm?id=${item.idAdherent}"><em
-                                            class="fa fa-pencil"></em></a>
-                                    <a class="btn btn-danger clickable-row"
-                                       data-href="confirmerReservation.htm?id=${item.idAdherent}"><em
-                                            class="fa fa-trash"></em></a>
-                                </td>
+                                <td>${item.titreOeuvrepret}</td>
+                                <td>${item.proprietaireEntity.nomProprietaire} ${item.proprietaireEntity.prenomProprietaire}</td>
+                                <td>${item.idOeuvrepret}</td>
                             </tr>
                         </c:forEach>
                         </tbody>

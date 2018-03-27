@@ -67,8 +67,8 @@
                                     <input type="date" class="form-control"  id="dateReservation"  name="dateReservation" >
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-default">Modifier</button>
-                            <a href="#" id="deleteAdherent" class="btn btn-default">Supprimer</a>
+                            <button type="submit" class="btn btn-default">Emprunter</button>
+                            <a href="listerOeuvre.htm" id="deleteAdherent" class="btn btn-default">Annuler</a>
                         </form>
                     </DIV>
                 </div>

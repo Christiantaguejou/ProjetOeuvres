@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
-    <link rel="stylesheet" href="css/leftMenu.css">
+    <link rel="stylesheet" href="resources/css/leftMenu.css">
 </head>
 <div class="col-md-3 col-xs-3 padding-0">
     <div class="panel panel-default ">
