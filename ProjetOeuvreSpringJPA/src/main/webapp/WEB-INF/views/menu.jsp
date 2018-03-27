@@ -18,6 +18,7 @@
             <div><a href="index.htm"> Accueil </a></div>
             <div><a href="listerAdherent.htm"> Liste des Adhérents </a></div>
             <div><a href="listerOeuvre.htm"> Liste des Oeuvres </a></div>
+            <div><a href="listerReservations.htm"> Liste des Réservations </a></div>
             <div><a href="ajouterAdherent.htm"> Ajouter un Adhérent </a></div>
             <div><a href="ajouterOeuvre.htm"> Ajouter une Oeuvre </a></div>
             <div><a href="#"> Quitter </a></div>

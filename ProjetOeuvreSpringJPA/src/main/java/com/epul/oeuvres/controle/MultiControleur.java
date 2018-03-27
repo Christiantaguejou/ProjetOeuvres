@@ -219,6 +219,35 @@ public class MultiControleur {
         return new ModelAndView(destinationPage);
     }
 
+    @RequestMapping(value = "listerReservations.htm" )
+    public ModelAndView listerReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage = "";
+        Service unService = new Service();
+        request.setAttribute("reservations", unService.consulterListeReservation());
+        destinationPage = "listerReservations";
+        return new ModelAndView(destinationPage);
+    }
+
+    /**
+     * +    public void deleteReservation(Reservation reservation) throws MonException {
+     +        String mysql;
+     +        DialogueBd dialogueBd = DialogueBd.getInstance();
+     +        try {
+     +            mysql = "DELETE FROM reservation WHERE id_adherent=" + reservation.getAdherent().getIdAdherent()
+     +                    + " AND id_oeuvrevente=" + reservation.getOeuvrevente().getIdOeuvrevente();
+     +            dialogueBd.insertionBD(mysql);
+     +        } catch (MonException e) {
+     +            throw e;
+     +        } catch (Exception ex) {
+     +            throw new MonException(ex.getMessage(), "systeme");
+     +        }
+     +    }
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+
 	@RequestMapping(value = "modifierOeuvre.htm")
     public ModelAndView modiferOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage = "";

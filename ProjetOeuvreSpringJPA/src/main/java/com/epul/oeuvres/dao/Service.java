@@ -239,4 +239,17 @@ public class Service extends EntityService {
     }
 
 
+    public List<OeuvreventeEntity> consulterListeReservation() {
+        List<OeuvreventeEntity> reservations = null;
+        EntityTransaction transaction = null;
+        try {
+            transaction = startTransaction();
+            transaction.begin();
+            reservations = (List<OeuvreventeEntity>) entitymanager.createQuery("SELECT a FROM ReservationEntity a ORDER BY a.dateReservation").getResultList();
+            entitymanager.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return reservations;
+    }
 }
