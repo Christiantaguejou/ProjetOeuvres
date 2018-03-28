@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.epul.oeuvres.dao.Service;
 import com.epul.oeuvres.meserreurs.*;
 import com.epul.oeuvres.metier.*;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -37,19 +39,18 @@ public class MultiControleur {
     }
 
     @RequestMapping(value = "insererAdherent.htm")
-    public ModelAndView insererAdherent(HttpServletRequest request, HttpServletResponse response) {
+    public View insererAdherent(HttpServletRequest request, HttpServletResponse response) {
 
-        String destinationPage = "";
-        destinationPage = "index";
+        String destinationPage = "listerAdherent.htm";
         try {
             Service unService = new Service();
             unService.insertAdherent(setParameterToAdherent(request));
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
-            destinationPage = "Erreur";
+            destinationPage = "erreur.htm";
         }
 
-        return new ModelAndView(destinationPage);
+        return new RedirectView(destinationPage);
     }
 
     @RequestMapping(value = "ajouterAdherent.htm")
@@ -67,9 +68,8 @@ public class MultiControleur {
     }
 
     @RequestMapping(value = "saveAdherent.htm")
-    public ModelAndView saveAdherent(HttpServletRequest request, HttpServletResponse response) {
+    public View saveAdherent(HttpServletRequest request, HttpServletResponse response) {
 
-        String destinationPage = "";
         try {
             AdherentEntity adherent = this.setParameterToAdherent(request);
             adherent.setIdAdherent(Integer.parseInt(request.getParameter("id")));
@@ -78,8 +78,7 @@ public class MultiControleur {
         } catch (MonException e) {
             e.printStackTrace();
         }
-        destinationPage = "index";
-        return new ModelAndView(destinationPage);
+        return new RedirectView("listerAdherent.htm");
     }
 
     @RequestMapping(value = "modifierAdherent.htm")
@@ -97,7 +96,7 @@ public class MultiControleur {
     }
 
     @RequestMapping(value = "deleteAdherent.htm")
-    public ModelAndView deleteAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public RedirectView deleteAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage = "index";
         Service unService = new Service();
         try {
@@ -106,15 +105,15 @@ public class MultiControleur {
                 response.getWriter().write("error");
                 destinationPage = "Erreur";
 
-                return new ModelAndView(destinationPage);
+                return new RedirectView("erreur.htm");
             }
             unService.deleteAdherent(adherentToDelete);
         } catch (MonException e) {
             e.printStackTrace();
             response.getWriter().write("error");
-            return new ModelAndView(destinationPage);
+            return new RedirectView("erreur.htm");
         }
-        return new ModelAndView(destinationPage);
+        return new RedirectView(destinationPage);
     }
 
     /**
@@ -144,9 +143,8 @@ public class MultiControleur {
     }
 
     @RequestMapping(value = "insererOeuvre.htm")
-    public ModelAndView insererOeuvre(HttpServletRequest request, HttpServletResponse response) {
+    public View insererOeuvre(HttpServletRequest request, HttpServletResponse response) {
 
-        String destinationPage = "";
         try {
 
             Service unService = new Service();
@@ -155,17 +153,14 @@ public class MultiControleur {
             unService.insertOeuvre(oeuvre);
 
         } catch (MonException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        destinationPage = "index";
-        return new ModelAndView(destinationPage);
+        return new RedirectView("listerOeuvre.htm");
     }
 
     @RequestMapping(value = "saveOeuvre.htm")
-    public ModelAndView saveOeuvre(HttpServletRequest request, HttpServletResponse response) {
-        String destinationPage = "";
+    public View saveOeuvre(HttpServletRequest request, HttpServletResponse response) {
         try {
             OeuvreventeEntity oeuvre = this.setParameterToOeuvrevente(request);
             oeuvre.setIdOeuvrevente(Integer.parseInt(request.getParameter("idOeuvre")));
@@ -175,8 +170,7 @@ public class MultiControleur {
         } catch (MonException e) {
             e.printStackTrace();
         }
-        destinationPage = "index";
-        return new ModelAndView(destinationPage);
+        return new RedirectView("listerOeuvre.htm");
     }
 
     @RequestMapping(value = "modifierOeuvre.htm")
@@ -230,8 +224,7 @@ public class MultiControleur {
     }
 
     @RequestMapping(value = "saveReservation.htm")
-    public ModelAndView insererReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+    public View insererReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
         try {
             Service unService = new Service();
             ReservationEntity reservation = this.setParameterToReservation(request);
@@ -240,46 +233,34 @@ public class MultiControleur {
         } catch (MonException e) {
             e.printStackTrace();
         }
-        String destinationPage = "index";
-        return new ModelAndView(destinationPage);
+        return new RedirectView("listerReservations.htm");
     }
 
     @RequestMapping(value = "supprimerReservation.htm")
-    public ModelAndView supprimerReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String destinationPage = "";
+    public View supprimerReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Service unService = new Service();
         ReservationEntity reservationToDelete = unService.consulterReservation(Integer.parseInt(request.getParameter("adherent")), Integer.parseInt(request.getParameter("oeuvre")));
         if (reservationToDelete == null) {
             response.getWriter().write("error");
-            destinationPage = "Erreur";
 
-            return new ModelAndView(destinationPage);
+            return new RedirectView("listerReservations.htm");
         }
         unService.deleteReservation(reservationToDelete);
-        destinationPage = "index";
-        return new ModelAndView(destinationPage);
+        return new RedirectView("listerReservations.htm");
     }
 
     @RequestMapping(value = "confirmerReservation.htm")
-    public ModelAndView confirmerReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String destinationPage = "";
+    public View confirmerReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        RedirectView redirectView = new RedirectView("listerReservations.htm");
         Service unService = new Service();
         try {
             ReservationEntity reservationToConfirm = unService.consulterReservation(Integer.parseInt(request.getParameter("adherent")), Integer.parseInt(request.getParameter("oeuvre")));
-            if (reservationToConfirm == null) {
-                response.getWriter().write("error");
-                destinationPage = "Erreur";
-
-                return new ModelAndView(destinationPage);
-            }
             unService.confirmerReservation(reservationToConfirm);
         } catch (MonException e) {
             e.printStackTrace();
             response.getWriter().write("error");
-            return new ModelAndView(destinationPage);
         }
-        destinationPage = "index";
-        return new ModelAndView(destinationPage);
+        return redirectView;
     }
 
     // /
