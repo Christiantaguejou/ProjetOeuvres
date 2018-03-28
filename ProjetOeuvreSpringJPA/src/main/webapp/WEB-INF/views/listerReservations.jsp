@@ -61,7 +61,7 @@
                                     <c:if test="${item.entity.statut != 'confirmée'}">
                                     <a class="btn btn-primary clickable-row"
                                        data-href="confirmerReservation.htm?adherent=${item.entity.idAdherent}&oeuvre=${item.entity.idOeuvrevente}"><em
-                                            class="fa fa-pencil"></em> Confirmer</a>
+                                            class="fa fa-pencil"></em></a>
                                     <a class="btn btn-danger clickable-row"
                                        data-href="supprimerReservation.htm?adherent=${item.entity.idAdherent}&oeuvre=${item.entity.idOeuvrevente}"><em
                                             class="fa fa-trash"></em></a>
