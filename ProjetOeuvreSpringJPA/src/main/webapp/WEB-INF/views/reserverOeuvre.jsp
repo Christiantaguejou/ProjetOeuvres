@@ -31,11 +31,11 @@
         <div class="col-md-9 col-xs-9 ">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="panel-title ">Emprunter une Oeuvre</div>
+                    <div class="panel-title ">Réserver une Oeuvre</div>
                 </div>
                 <div class="panel-body">
                     <DIV align="center">
-                        <form class="form-horizontal" name='identification' method="post" action="savePret.htm">
+                        <form class="form-horizontal" name='identification' method="post" action="saveReservation.htm">
                             <div class="form-group">
                                 <input type="text" class="form-control hidden" id="idOeuvrevente" name="id"  value="${oeuvre.idOeuvrevente}" readonly>
                                 <label class="col-sm-4 col-xs-4">Titre de L'Oeuvre:</label>
@@ -67,7 +67,7 @@
                                     <input type="date" class="form-control"  id="dateReservation"  name="dateReservation" >
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-default">Sauvegarder</button>
+                            <button type="submit" class="btn btn-default">Reserver</button>
                             <a href="#" id="deleteReservation" class="btn btn-default">Supprimer</a>
                         </form>
                     </DIV>

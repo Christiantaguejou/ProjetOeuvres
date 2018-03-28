@@ -211,8 +211,8 @@ public class MultiControleur {
      * Reservations
      */
 
-    @RequestMapping(value = "pretOeuvre.htm")
-    public ModelAndView pretOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "reserverOeuvre.htm")
+    public ModelAndView reserverOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage = "";
         try {
             int id = Integer.parseInt(request.getParameter(ID));
@@ -223,12 +223,12 @@ public class MultiControleur {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        destinationPage = "pretOeuvre";
+        destinationPage = "reserverOeuvre";
         return new ModelAndView(destinationPage);
     }
     /*
-    @RequestMapping(value = "savePret.htm")
-    public ModelAndView savePret(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "saveReservation.htm")
+    public ModelAndView saveReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage = "";
         try {
             int id = Integer.parseInt(request.getParameter(ID));
@@ -252,30 +252,28 @@ public class MultiControleur {
         return new ModelAndView(destinationPage);
     }
 
-    @RequestMapping(value = "savePret.htm")
+    @RequestMapping(value = "saveReservation.htm")
     public ModelAndView insererReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         try {
-
             Service unService = new Service();
             ReservationEntity reservation = this.setParameterToReservation(request);
-
             unService.insertReservation(reservation);
 
         } catch (MonException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        return listerAdherents(request, response);
+        return new ModelAndView("redirect:listerReservations.htm");
     }
 
     @RequestMapping(value = "deleteReservation.htm")
-    public ModelAndView deleteReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String destinationPage = "listerAdherent";
+    public ModelAndView supprimerReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        adherent=${item.entity.idAdherent}&oeuvre=${item.entity.idOeuvrevente}
+        String destinationPage = "listerReservation";
         Service unService = new Service();
         try {
-            ReservationEntity reservationToDelete = unService.consulterReservation(Integer.parseInt(request.getParameter(ID)));
+            ReservationEntity reservationToDelete = unService.consulterReservation(Integer.parseInt(request.getParameter("adherent")), Integer.parseInt(request.getParameter("oeuvre")));
             if (reservationToDelete == null) {
                 response.getWriter().write("error");
                 destinationPage = "Erreur";
@@ -288,7 +286,28 @@ public class MultiControleur {
             response.getWriter().write("error");
             return new ModelAndView(destinationPage);
         }
-        //response.getWriter().write("AdherentSupprimer");
+        return new ModelAndView(destinationPage);
+    }
+
+    @RequestMapping(value = "confirmerReservation.htm")
+    public ModelAndView confirmerReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        adherent=${item.entity.idAdherent}&oeuvre=${item.entity.idOeuvrevente}
+        String destinationPage = "listerReservation";
+        Service unService = new Service();
+        try {
+            ReservationEntity reservationToConfirm = unService.consulterReservation(Integer.parseInt(request.getParameter("adherent")), Integer.parseInt(request.getParameter("oeuvre")));
+            if (reservationToConfirm == null) {
+                response.getWriter().write("error");
+                destinationPage = "Erreur";
+
+                return new ModelAndView(destinationPage);
+            }
+            unService.confirmerReservation(reservationToConfirm);
+        } catch (MonException e) {
+            e.printStackTrace();
+            response.getWriter().write("error");
+            return new ModelAndView(destinationPage);
+        }
         return new ModelAndView(destinationPage);
     }
 

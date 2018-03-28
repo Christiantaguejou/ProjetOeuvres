@@ -228,26 +228,43 @@ public class Service extends EntityService {
         return proprietaireEntities;
     }
 
-    public List<OeuvreventeEntity> consulterListeReservation() {
-        List<OeuvreventeEntity> reservations = null;
+    public List<Reservation> consulterListeReservation() {
+        List<ReservationEntity> entities = null;
+        List<Reservation> reservations = null;
         EntityTransaction transaction = null;
         try {
             transaction = startTransaction();
             transaction.begin();
-            reservations = (List<OeuvreventeEntity>) entitymanager.createQuery("SELECT a FROM ReservationEntity a ORDER BY a.dateReservation").getResultList();
+            entities = (List<ReservationEntity>) entitymanager.createQuery("SELECT a FROM ReservationEntity a ORDER BY a.dateReservation").getResultList();
             entitymanager.close();
+            if (entities != null) {
+                reservations = new ArrayList<>();
+                for (ReservationEntity entity : entities) {
+                    reservations.add(associateObject(entity));
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return reservations;
     }
 
-    public ReservationEntity consulterReservation(int id) throws Exception{
+    private Reservation associateObject(ReservationEntity entity) throws Exception{
+        Reservation reservation = new Reservation(entity);
+        reservation.setAdherent(consulterAdherent(entity.getIdAdherent()));
+        reservation.setOeuvre(consulterOeuvre(entity.getIdOeuvrevente()));
+        return reservation;
+    }
+
+    public ReservationEntity consulterReservation(int adherent, int oeuvre) throws Exception{
         ReservationEntity reservation = null;
+        ReservationEntityPK pk = new ReservationEntityPK();
+        pk.setIdAdherent(adherent);
+        pk.setIdOeuvrevente(oeuvre);
         try {
             EntityTransaction transac = startTransaction();
             transac.begin();
-            reservation = entitymanager.find(ReservationEntity.class, id);
+            reservation = entitymanager.find(ReservationEntity.class, pk);
             transac.commit();
             entitymanager.close();
         } catch (MonException e) {
@@ -262,11 +279,12 @@ public class Service extends EntityService {
         insert(reservationToInsert);
     }
 
-    public void modifyReservation(ReservationEntity reservationToModify) throws Exception {
-        modify(reservationToModify);
+    public boolean deleteReservation(ReservationEntity reservationToDelete) throws Exception{
+        return delete(reservationToDelete);
     }
 
-    public boolean deleteReservation(ReservationEntity reservationToDelete) {
-        return delete(reservationToDelete);
+    public void confirmerReservation(ReservationEntity reservationToConfirm) throws Exception{
+        reservationToConfirm.setStatut("confirmée");
+        modify(reservationToConfirm);
     }
 }
