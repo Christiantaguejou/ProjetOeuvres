@@ -175,22 +175,6 @@ public class MultiControleur {
         return new ModelAndView(destinationPage);
     }
 
-	@RequestMapping(value = "pretOeuvre.htm")
-    public ModelAndView pretOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String destinationPage = "";
-        try {
-            int id = Integer.parseInt(request.getParameter(ID));
-            Service unService = new Service();
-            request.setAttribute("oeuvre", unService.consulterOeuvre(id));
-            request.setAttribute("lesAdherents", unService.consulterListeAdherents());
-        } catch (MonException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        destinationPage = "pretOeuvre";
-        return new ModelAndView(destinationPage);
-    }
-
     @RequestMapping(value = "saveOeuvre.htm")
     public ModelAndView saveOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage = "";
@@ -227,6 +211,21 @@ public class MultiControleur {
      * Reservations
      */
 
+    @RequestMapping(value = "pretOeuvre.htm")
+    public ModelAndView pretOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage = "";
+        try {
+            int id = Integer.parseInt(request.getParameter(ID));
+            Service unService = new Service();
+            request.setAttribute("oeuvre", unService.consulterOeuvre(id));
+            request.setAttribute("lesAdherents", unService.consulterListeAdherents());
+        } catch (MonException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        destinationPage = "pretOeuvre";
+        return new ModelAndView(destinationPage);
+    }
     /*
     @RequestMapping(value = "savePret.htm")
     public ModelAndView savePret(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -256,7 +255,6 @@ public class MultiControleur {
     @RequestMapping(value = "savePret.htm")
     public ModelAndView insererReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String destinationPage = "";
         try {
 
             Service unService = new Service();
@@ -269,8 +267,7 @@ public class MultiControleur {
             e.printStackTrace();
         }
 
-        destinationPage = "index";
-        return new ModelAndView(destinationPage);
+        return listerAdherents(request, response);
     }
 
     @RequestMapping(value = "deleteReservation.htm")
@@ -342,12 +339,11 @@ public class MultiControleur {
 
     private ReservationEntity setParameterToReservation(HttpServletRequest request) throws Exception {
         ReservationEntity reservation = new ReservationEntity();
-        String date = request.getParameter("dateReservation");
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        reservation.setIdAdherent(Integer.parseInt(request.getParameter("idAdherent")));
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        reservation.setIdAdherent(Integer.parseInt(request.getParameter("adherent")));
         reservation.setDateReservation(new Date(format.parse(request.getParameter("dateReservation")).getTime()));
-        reservation.setIdOeuvrevente(Integer.parseInt(request.getParameter("idOeuvrevente")));
-        reservation.setStatut("confirmée");
+        reservation.setIdOeuvrevente(Integer.parseInt(request.getParameter("id")));
+        reservation.setStatut("en attente");
         return reservation;
     }
 	

@@ -35,10 +35,9 @@
                 </div>
                 <div class="panel-body">
                     <DIV align="center">
-                        <form class="form-horizontal" name='identification' method="post" action="savePret.htm"">
+                        <form class="form-horizontal" name='identification' method="post" action="savePret.htm">
                             <div class="form-group">
-                                <input type="text" class="form-control hidden" id="idAdherent" name="id"  readonly>
-                                <input type="text" class="form-control hidden" id="idOeuvrevente" name="id"  readonly>
+                                <input type="text" class="form-control hidden" id="idOeuvrevente" name="id"  value="${oeuvre.idOeuvrevente}" readonly>
                                 <label class="col-sm-4 col-xs-4">Titre de L'Oeuvre:</label>
                                 <div class="col-sm-8 col-xs-4">
                                     <input type="text" class="form-control" id="titreOeuvre" name="titreOeuvre" value="${oeuvre.titreOeuvrevente}" readonly>
@@ -55,7 +54,7 @@
                                 <div class="col-md-8 col-xs-8">
                                     <select class="form-control" name="adherent" id="adherent">
                                         <c:forEach items="${lesAdherents}" var="item">
-                                            <option>
+                                            <option value="${item.idAdherent}">
                                                 ${item.nomAdherent} ${item.prenomAdherent}
                                             </option>
                                         </c:forEach>
