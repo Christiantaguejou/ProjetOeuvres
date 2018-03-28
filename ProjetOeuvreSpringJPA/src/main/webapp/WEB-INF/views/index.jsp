@@ -16,9 +16,7 @@
 </head>
 
 <body>
-
 		<jsp:include page="header.jsp" />
-
 		<div class="container">
 			<div class="panel panel-default">
 				<div class="panel-heading">

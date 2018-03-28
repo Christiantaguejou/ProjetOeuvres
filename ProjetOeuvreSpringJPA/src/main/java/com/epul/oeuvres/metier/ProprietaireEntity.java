@@ -52,10 +52,7 @@ public class ProprietaireEntity {
         if (idProprietaire != that.idProprietaire) return false;
         if (nomProprietaire != null ? !nomProprietaire.equals(that.nomProprietaire) : that.nomProprietaire != null)
             return false;
-        if (prenomProprietaire != null ? !prenomProprietaire.equals(that.prenomProprietaire) : that.prenomProprietaire != null)
-            return false;
-
-        return true;
+        return prenomProprietaire != null ? prenomProprietaire.equals(that.prenomProprietaire) : that.prenomProprietaire == null;
     }
 
     @Override

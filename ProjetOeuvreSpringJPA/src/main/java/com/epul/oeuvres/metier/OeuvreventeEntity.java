@@ -66,10 +66,7 @@ public class OeuvreventeEntity {
         if (Double.compare(that.prixOeuvrevente, prixOeuvrevente) != 0) return false;
         if (titreOeuvrevente != null ? !titreOeuvrevente.equals(that.titreOeuvrevente) : that.titreOeuvrevente != null)
             return false;
-        if (etatOeuvrevente != null ? !etatOeuvrevente.equals(that.etatOeuvrevente) : that.etatOeuvrevente != null)
-            return false;
-
-        return true;
+        return etatOeuvrevente != null ? etatOeuvrevente.equals(that.etatOeuvrevente) : that.etatOeuvrevente == null;
     }
 
 

@@ -68,9 +68,7 @@ public class ReservationEntity {
         if (idAdherent != that.idAdherent) return false;
         if (dateReservation != null ? !dateReservation.equals(that.dateReservation) : that.dateReservation != null)
             return false;
-        if (statut != null ? !statut.equals(that.statut) : that.statut != null) return false;
-
-        return true;
+        return statut != null ? statut.equals(that.statut) : that.statut == null;
     }
 
     @Override
