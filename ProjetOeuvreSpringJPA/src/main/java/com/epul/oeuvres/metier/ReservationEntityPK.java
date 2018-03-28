@@ -39,9 +39,7 @@ public class ReservationEntityPK implements Serializable {
         ReservationEntityPK that = (ReservationEntityPK) o;
 
         if (idOeuvrevente != that.idOeuvrevente) return false;
-        if (idAdherent != that.idAdherent) return false;
-
-        return true;
+        return idAdherent == that.idAdherent;
     }
 
     @Override

@@ -41,10 +41,7 @@ public class OeuvrepretEntity {
         OeuvrepretEntity that = (OeuvrepretEntity) o;
 
         if (idOeuvrepret != that.idOeuvrepret) return false;
-        if (titreOeuvrepret != null ? !titreOeuvrepret.equals(that.titreOeuvrepret) : that.titreOeuvrepret != null)
-            return false;
-
-        return true;
+        return titreOeuvrepret != null ? titreOeuvrepret.equals(that.titreOeuvrepret) : that.titreOeuvrepret == null;
     }
 
     @ManyToOne

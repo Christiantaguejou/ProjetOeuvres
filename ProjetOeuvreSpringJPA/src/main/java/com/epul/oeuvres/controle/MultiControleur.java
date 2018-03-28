@@ -16,54 +16,44 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 
-///
-/// Les m�thode du contr�leur r�pondent � des sollicitations
-/// des pages JSP
-
 @Controller
 public class MultiControleur {
 
-//	private static final Logger logger = LoggerFactory.getLogger(MultiControleur.class);
     private static final String ID = "id";
 
-	@RequestMapping(value = "listerAdherent.htm")
-	public ModelAndView listerAdherents(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String destinationPage;
-		try {
-			// HttpSession session = request.getSession();
+    @RequestMapping(value = "listerAdherent.htm")
+    public ModelAndView listerAdherents(HttpServletRequest request, HttpServletResponse response) {
+        String destinationPage;
+        try {
             Service unService = new Service();
             request.setAttribute("mesAdherents", unService.consulterListeAdherents());
             destinationPage = "listerAdherent";
-		} catch (MonException e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "Erreur";
+        } catch (MonException e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "Erreur";
 
-		}
-		return new ModelAndView(destinationPage);
-	}
+        }
+        return new ModelAndView(destinationPage);
+    }
 
-	@RequestMapping(value = "insererAdherent.htm")
-	public ModelAndView insererAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "insererAdherent.htm")
+    public ModelAndView insererAdherent(HttpServletRequest request, HttpServletResponse response) {
 
-		String destinationPage = "";
+        String destinationPage = "";
         destinationPage = "index";
-		try {
-           /* AdherentEntity unAdherent = new AdherentEntity();
-            unAdherent.setNomAdherent(request.getParameter("txtnom"));
-            unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
-            unAdherent.setVilleAdherent(request.getParameter("txtville"));*/
+        try {
             Service unService = new Service();
             unService.insertAdherent(setParameterToAdherent(request));
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "Erreur";
-		}
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "Erreur";
+        }
 
-		return new ModelAndView(destinationPage);
-	}
+        return new ModelAndView(destinationPage);
+    }
 
-	@RequestMapping(value = "ajouterAdherent.htm")
-	public ModelAndView ajouterAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "ajouterAdherent.htm")
+    public ModelAndView ajouterAdherent(HttpServletRequest request, HttpServletResponse response) {
 
         String destinationPage = "";
         try {
@@ -74,10 +64,10 @@ public class MultiControleur {
         }
 
         return new ModelAndView(destinationPage);
-	}
+    }
 
     @RequestMapping(value = "saveAdherent.htm")
-    public ModelAndView saveAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView saveAdherent(HttpServletRequest request, HttpServletResponse response) {
 
         String destinationPage = "";
         try {
@@ -85,7 +75,7 @@ public class MultiControleur {
             adherent.setIdAdherent(Integer.parseInt(request.getParameter("id")));
             Service unService = new Service();
             unService.modifyAdherent(adherent);
-        }catch (MonException e){
+        } catch (MonException e) {
             e.printStackTrace();
         }
         destinationPage = "index";
@@ -93,14 +83,13 @@ public class MultiControleur {
     }
 
     @RequestMapping(value = "modifierAdherent.htm")
-    public ModelAndView modifierAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView modifierAdherent(HttpServletRequest request, HttpServletResponse response) {
         String destinationPage = "";
         try {
             int id = Integer.parseInt(request.getParameter(ID));
             Service unService = new Service();
             request.setAttribute("adherent", unService.consulterAdherent(id));
         } catch (MonException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         destinationPage = "modifierAdherent";
@@ -125,7 +114,6 @@ public class MultiControleur {
             response.getWriter().write("error");
             return new ModelAndView(destinationPage);
         }
-        //response.getWriter().write("AdherentSupprimer");
         return new ModelAndView(destinationPage);
     }
 
@@ -134,7 +122,7 @@ public class MultiControleur {
      */
 
     @RequestMapping(value = "listerOeuvre.htm")
-    public ModelAndView listerOeuvres(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView listerOeuvres(HttpServletRequest request, HttpServletResponse response) {
         String destinationPage = "";
         Service unService = new Service();
         request.setAttribute("mesOeuvres", unService.consulterListeOeuvres());
@@ -143,12 +131,12 @@ public class MultiControleur {
     }
 
     @RequestMapping(value = "ajouterOeuvre.htm")
-    public ModelAndView ajoutOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView ajoutOeuvre(HttpServletRequest request, HttpServletResponse response) {
 
         String destinationPage = "";
 
-            Service unService = new Service();
-            request.setAttribute("mesPropio", unService.consulterListeProprietaire());
+        Service unService = new Service();
+        request.setAttribute("mesPropio", unService.consulterListeProprietaire());
 
 
         destinationPage = "ajouterOeuvre";
@@ -156,7 +144,7 @@ public class MultiControleur {
     }
 
     @RequestMapping(value = "insererOeuvre.htm")
-    public ModelAndView insererOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView insererOeuvre(HttpServletRequest request, HttpServletResponse response) {
 
         String destinationPage = "";
         try {
@@ -176,7 +164,7 @@ public class MultiControleur {
     }
 
     @RequestMapping(value = "saveOeuvre.htm")
-    public ModelAndView saveOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView saveOeuvre(HttpServletRequest request, HttpServletResponse response) {
         String destinationPage = "";
         try {
             OeuvreventeEntity oeuvre = this.setParameterToOeuvrevente(request);
@@ -184,15 +172,15 @@ public class MultiControleur {
 
             Service unService = new Service();
             unService.modifyOeuvre(oeuvre);
-        }catch (MonException e){
+        } catch (MonException e) {
             e.printStackTrace();
         }
         destinationPage = "index";
         return new ModelAndView(destinationPage);
     }
 
-	@RequestMapping(value = "modifierOeuvre.htm")
-    public ModelAndView modiferOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "modifierOeuvre.htm")
+    public ModelAndView modiferOeuvre(HttpServletRequest request, HttpServletResponse response) {
         String destinationPage = "";
         try {
             int id = Integer.parseInt(request.getParameter(ID));
@@ -212,7 +200,7 @@ public class MultiControleur {
      */
 
     @RequestMapping(value = "reserverOeuvre.htm")
-    public ModelAndView reserverOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView reserverOeuvre(HttpServletRequest request, HttpServletResponse response) {
         String destinationPage = "";
         try {
             int id = Integer.parseInt(request.getParameter(ID));
@@ -227,12 +215,17 @@ public class MultiControleur {
         return new ModelAndView(destinationPage);
     }
 
-    @RequestMapping(value = "listerReservations.htm" )
-    public ModelAndView listerReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "listerReservations.htm")
+    public ModelAndView listerReservation(HttpServletRequest request, HttpServletResponse response) {
         String destinationPage = "";
         Service unService = new Service();
-        request.setAttribute("reservations", unService.consulterListeReservation());
-        destinationPage = "listerReservations";
+        try {
+            request.setAttribute("reservations", unService.consulterListeReservation());
+            destinationPage = "listerReservations";
+        } catch (Exception e) {
+            destinationPage = "Erreur";
+            e.printStackTrace();
+        }
         return new ModelAndView(destinationPage);
     }
 
@@ -245,7 +238,6 @@ public class MultiControleur {
             unService.insertReservation(reservation);
 
         } catch (MonException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         String destinationPage = "index";
@@ -254,30 +246,22 @@ public class MultiControleur {
 
     @RequestMapping(value = "supprimerReservation.htm")
     public ModelAndView supprimerReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        adherent=${item.entity.idAdherent}&oeuvre=${item.entity.idOeuvrevente}
         String destinationPage = "";
         Service unService = new Service();
-        try {
-            ReservationEntity reservationToDelete = unService.consulterReservation(Integer.parseInt(request.getParameter("adherent")), Integer.parseInt(request.getParameter("oeuvre")));
-            if (reservationToDelete == null) {
-                response.getWriter().write("error");
-                destinationPage = "Erreur";
-
-                return new ModelAndView(destinationPage);
-            }
-            unService.deleteReservation(reservationToDelete);
-        } catch (MonException e) {
-            e.printStackTrace();
+        ReservationEntity reservationToDelete = unService.consulterReservation(Integer.parseInt(request.getParameter("adherent")), Integer.parseInt(request.getParameter("oeuvre")));
+        if (reservationToDelete == null) {
             response.getWriter().write("error");
+            destinationPage = "Erreur";
+
             return new ModelAndView(destinationPage);
         }
+        unService.deleteReservation(reservationToDelete);
         destinationPage = "index";
         return new ModelAndView(destinationPage);
     }
 
     @RequestMapping(value = "confirmerReservation.htm")
     public ModelAndView confirmerReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        adherent=${item.entity.idAdherent}&oeuvre=${item.entity.idOeuvrevente}
         String destinationPage = "";
         Service unService = new Service();
         try {
@@ -298,28 +282,29 @@ public class MultiControleur {
         return new ModelAndView(destinationPage);
     }
 
-	// /
-	// / Affichage de la page d'accueil
-	// /
-	@RequestMapping(value = "index.htm", method = RequestMethod.GET)
-	public ModelAndView Afficheindex(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return new ModelAndView("index");
-	}
+    // /
+    // / Affichage de la page d'accueil
+    // /
+    @RequestMapping(value = "index.htm", method = RequestMethod.GET)
+    public ModelAndView Afficheindex(HttpServletRequest request, HttpServletResponse response) {
+        return new ModelAndView("index");
+    }
 
-	// /
-		// / Affichage de la page d'accueil
-		// /
-		@RequestMapping(value = "/", method = RequestMethod.GET)
-		public ModelAndView Afficheindex2(HttpServletRequest request, HttpServletResponse response) throws Exception {
-			return new ModelAndView("index");
-		}
-	// /
-	// / Affichage de la page d'accueil
-	// /
-	@RequestMapping(value = "erreur.htm", method = RequestMethod.GET)
-	public ModelAndView AfficheErreur(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return new ModelAndView("Erreur");
-	}
+    // /
+    // / Affichage de la page d'accueil
+    // /
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView Afficheindex2(HttpServletRequest request, HttpServletResponse response) {
+        return new ModelAndView("index");
+    }
+
+    // /
+    // / Affichage de la page d'accueil
+    // /
+    @RequestMapping(value = "erreur.htm", method = RequestMethod.GET)
+    public ModelAndView AfficheErreur(HttpServletRequest request, HttpServletResponse response) {
+        return new ModelAndView("Erreur");
+    }
 
     private AdherentEntity setParameterToAdherent(HttpServletRequest request) {
         AdherentEntity unAdherent = new AdherentEntity();
@@ -329,16 +314,16 @@ public class MultiControleur {
         return unAdherent;
     }
 
-    private OeuvreventeEntity setParameterToOeuvrevente(HttpServletRequest request) throws MonException {
+    private OeuvreventeEntity setParameterToOeuvrevente(HttpServletRequest request) {
         OeuvreventeEntity oeuvrevente = new OeuvreventeEntity();
         Service unService = new Service();
         oeuvrevente.setTitreOeuvrevente(request.getParameter("titreOeuvre"));
         oeuvrevente.setPrixOeuvrevente(Float.parseFloat(request.getParameter("prixOeuvre")));
         oeuvrevente.setProprietaireEntity(unService.rechercherProprietaire(request.getParameter("proprio")));
         oeuvrevente.setEtatOeuvrevente("L");
-        if(request.getParameter("etatOeuvre") != null)
+        if (request.getParameter("etatOeuvre") != null)
             oeuvrevente.setEtatOeuvrevente(request.getParameter("etatOeuvre"));
-        if(request.getParameter("idOeuvre") != null)
+        if (request.getParameter("idOeuvre") != null)
             oeuvrevente.setIdOeuvrevente(Integer.parseInt(request.getParameter("idOeuvre")));
         return oeuvrevente;
     }
@@ -352,6 +337,5 @@ public class MultiControleur {
         reservation.setStatut("en attente");
         return reservation;
     }
-	
 
 }

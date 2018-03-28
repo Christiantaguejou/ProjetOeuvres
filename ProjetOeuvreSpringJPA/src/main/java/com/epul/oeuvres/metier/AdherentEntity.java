@@ -64,10 +64,7 @@ public class AdherentEntity {
         if (nomAdherent != null ? !nomAdherent.equals(that.nomAdherent) : that.nomAdherent != null) return false;
         if (prenomAdherent != null ? !prenomAdherent.equals(that.prenomAdherent) : that.prenomAdherent != null)
             return false;
-        if (villeAdherent != null ? !villeAdherent.equals(that.villeAdherent) : that.villeAdherent != null)
-            return false;
-
-        return true;
+        return villeAdherent != null ? villeAdherent.equals(that.villeAdherent) : that.villeAdherent == null;
     }
 
     @Override

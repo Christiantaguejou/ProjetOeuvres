@@ -5,55 +5,33 @@ import com.epul.oeuvres.meserreurs.MonException;
 import java.util.*;
 
 import com.epul.oeuvres.metier.*;
-import javax.persistence.Query;
 
 import javax.persistence.EntityTransaction;
 
 public class Service extends EntityService {
 
     private void insert(Object object) throws MonException {
-        try {
-            EntityTransaction transac = startTransaction();
-            transac.begin();
-            entitymanager.persist(object);
-            transac.commit();
-            entitymanager.close();
-        } catch (MonException e) {
-            throw e;
-        } catch (Exception exc) {
-            throw new MonException(exc.getMessage(), "systeme");
-        }
+        EntityTransaction transac = startTransaction();
+        transac.begin();
+        entitymanager.persist(object);
+        transac.commit();
+        entitymanager.close();
     }
 
     private void modify(Object object) throws MonException {
-        try {
-            EntityTransaction transac = startTransaction();
-            transac.begin();
-            entitymanager.merge(object);
-            transac.commit();
-            entitymanager.close();
-        } catch (MonException e) {
-            throw e;
-        } catch (Exception ex) {
-            throw new MonException(ex.getMessage(), "systeme");
-        }
+        EntityTransaction transac = startTransaction();
+        transac.begin();
+        entitymanager.merge(object);
+        transac.commit();
+        entitymanager.close();
     }
 
     private boolean delete(Object object) {
-        try {
-            EntityTransaction transac = startTransaction();
-            transac.begin();
-            entitymanager.remove(entitymanager.merge(object));
-            transac.commit();
-            entitymanager.close();
-        } catch (Exception ex) {
-            try {
-                throw new MonException(ex.getMessage(), "systeme");
-            } catch (MonException e) {
-                e.printStackTrace();
-            }
-        }
-
+        EntityTransaction transac = startTransaction();
+        transac.begin();
+        entitymanager.remove(entitymanager.merge(object));
+        transac.commit();
+        entitymanager.close();
         return true;
     }
 
@@ -69,41 +47,15 @@ public class Service extends EntityService {
      * */
     public List<AdherentEntity> consulterListeAdherents() throws MonException {
         List<AdherentEntity> mesAdherents = null;
-        try {
-            EntityTransaction transac = startTransaction();
-            transac.begin();
-            mesAdherents = (List<AdherentEntity>) entitymanager.createQuery("SELECT a FROM AdherentEntity a ORDER BY a.nomAdherent").getResultList();
-            entitymanager.close();
-        } catch (RuntimeException e) {
-            new MonException("Erreur de lecture", e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        EntityTransaction transac = startTransaction();
+        transac.begin();
+        mesAdherents = (List<AdherentEntity>) entitymanager.createQuery("SELECT a FROM AdherentEntity a ORDER BY a.nomAdherent").getResultList();
+        entitymanager.close();
         return mesAdherents;
     }
 
-    /* Consultation d'une adherent par son numéro
-    */
-    public AdherentEntity adherentById(int numero) throws MonException {
-        List<AdherentEntity> adherents = null;
-        AdherentEntity adherent = new AdherentEntity();
-        try {
-            EntityTransaction transac = startTransaction();
-            transac.begin();
-
-            adherents = (List<AdherentEntity>) entitymanager.createQuery("SELECT a FROM AdherentEntity a WHERE a.idAdherent=" + numero).getResultList();
-            adherent = adherents.get(0);
-            entitymanager.close();
-        } catch (RuntimeException e) {
-            new MonException("Erreur de lecture", e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return adherent;
-    }
-
     public void test() {
-       System.out.println(rechercherProprietaire("DUPONT Isabelle"));
+        System.out.println(rechercherProprietaire("DUPONT Isabelle"));
     }
 
     public void modifyAdherent(AdherentEntity adherent) throws MonException {
@@ -147,46 +99,14 @@ public class Service extends EntityService {
         return oeuvresVente;
     }
 
-    public List<OeuvrepretEntity> consulterListeReservations() {
-        List<OeuvrepretEntity> oeuvresPret = null;
-        EntityTransaction transaction = null;
-        try {
-            transaction = startTransaction();
-            transaction.begin();
-            oeuvresPret = (List<OeuvrepretEntity>) entitymanager.createQuery("SELECT a FROM OeuvrepretEntity a ORDER BY a.titreOeuvrepret").getResultList();
-            entitymanager.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return oeuvresPret;
-    }
-//    public OeuvreventeEntity get(int numero) throws MonException {
-//        List<AdherentEntity> adherents = null;
-//        AdherentEntity adherent = new AdherentEntity();
-//        try {
-//            EntityTransaction transac = startTransaction();
-//            transac.begin();
-//
-//            adherents = (List<AdherentEntity>)entitymanager.createQuery("SELECT a FROM AdherentEntity a WHERE a.idAndherent="+numero).getResultList();
-//            adherent = adherents.get(0);
-//            entitymanager.close();
-//        }catch (RuntimeException e)
-//        {
-//            new MonException("Erreur de lecture", e.getMessage());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return adherent;
-//    }
-
-    public ProprietaireEntity  rechercherProprietaire(String proprio) {
+    public ProprietaireEntity rechercherProprietaire(String proprio) {
         EntityTransaction transaction = null;
         String[] identite = proprio.split(" ");
-        ProprietaireEntity proprietaireEntity=null;
+        ProprietaireEntity proprietaireEntity = null;
         try {
             transaction = startTransaction();
             transaction.begin();
-            String query ="SELECT a FROM ProprietaireEntity a WHERE  a.nomProprietaire='"+identite[0]+"'  AND a.prenomProprietaire='"+identite[1]+"'";
+            String query = "SELECT a FROM ProprietaireEntity a WHERE  a.nomProprietaire='" + identite[0] + "'  AND a.prenomProprietaire='" + identite[1] + "'";
             proprietaireEntity = (ProprietaireEntity) entitymanager.createQuery(query).getSingleResult();
             entitymanager.close();
         } catch (Exception e) {
@@ -212,17 +132,11 @@ public class Service extends EntityService {
 
     public OeuvreventeEntity consulterOeuvre(int id) throws MonException {
         OeuvreventeEntity oeuvre = null;
-        try {
-            EntityTransaction transac = startTransaction();
-            transac.begin();
-            oeuvre = entitymanager.find(OeuvreventeEntity.class, id);
-            transac.commit();
-            entitymanager.close();
-        } catch (MonException e) {
-            throw e;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        EntityTransaction transac = startTransaction();
+        transac.begin();
+        oeuvre = entitymanager.find(OeuvreventeEntity.class, id);
+        transac.commit();
+        entitymanager.close();
         return oeuvre;
     }
 
@@ -230,46 +144,38 @@ public class Service extends EntityService {
 
         List<ProprietaireEntity> proprietaireEntities = null;
         EntityTransaction transaction = null;
-        try {
-            transaction = startTransaction();
-            transaction.begin();
-            proprietaireEntities = (List<ProprietaireEntity>) entitymanager.createQuery("SELECT a FROM ProprietaireEntity a ORDER BY a.idProprietaire").getResultList();
-            entitymanager.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        transaction = startTransaction();
+        transaction.begin();
+        proprietaireEntities = (List<ProprietaireEntity>) entitymanager.createQuery("SELECT a FROM ProprietaireEntity a ORDER BY a.idProprietaire").getResultList();
+        entitymanager.close();
         return proprietaireEntities;
     }
 
-    public List<Reservation> consulterListeReservation() {
+    public List<Reservation> consulterListeReservation() throws Exception {
         List<ReservationEntity> entities = null;
         List<Reservation> reservations = null;
         EntityTransaction transaction = null;
-        try {
-            transaction = startTransaction();
-            transaction.begin();
-            entities = (List<ReservationEntity>) entitymanager.createQuery("SELECT a FROM ReservationEntity a ORDER BY a.dateReservation").getResultList();
-            entitymanager.close();
-            if (entities != null) {
-                reservations = new ArrayList<>();
-                for (ReservationEntity entity : entities) {
-                    reservations.add(associateObject(entity));
-                }
+        transaction = startTransaction();
+        transaction.begin();
+        entities = (List<ReservationEntity>) entitymanager.createQuery("SELECT a FROM ReservationEntity a ORDER BY a.dateReservation").getResultList();
+        entitymanager.close();
+        if (entities != null) {
+            reservations = new ArrayList<>();
+            for (ReservationEntity entity : entities) {
+                reservations.add(associateObject(entity));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return reservations;
     }
 
-    private Reservation associateObject(ReservationEntity entity) throws Exception{
+    private Reservation associateObject(ReservationEntity entity) throws MonException {
         Reservation reservation = new Reservation(entity);
         reservation.setAdherent(consulterAdherent(entity.getIdAdherent()));
         reservation.setOeuvre(consulterOeuvre(entity.getIdOeuvrevente()));
         return reservation;
     }
 
-    public ReservationEntity consulterReservation(int adherent, int oeuvre) throws Exception{
+    public ReservationEntity consulterReservation(int adherent, int oeuvre) {
         ReservationEntity reservation = null;
         ReservationEntityPK pk = new ReservationEntityPK();
         pk.setIdAdherent(adherent);
@@ -280,23 +186,21 @@ public class Service extends EntityService {
             reservation = entitymanager.find(ReservationEntity.class, pk);
             transac.commit();
             entitymanager.close();
-        } catch (MonException e) {
-            throw e;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return reservation;
     }
 
-    public void insertReservation(ReservationEntity reservationToInsert) throws Exception {
+    public void insertReservation(ReservationEntity reservationToInsert) throws MonException {
         insert(reservationToInsert);
     }
 
-    public boolean deleteReservation(ReservationEntity reservationToDelete) throws Exception{
+    public boolean deleteReservation(ReservationEntity reservationToDelete) {
         return delete(reservationToDelete);
     }
 
-    public void confirmerReservation(ReservationEntity reservationToConfirm) throws Exception{
+    public void confirmerReservation(ReservationEntity reservationToConfirm) throws MonException {
         reservationToConfirm.setStatut("confirmée");
         modify(reservationToConfirm);
     }
