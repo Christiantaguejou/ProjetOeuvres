@@ -5,16 +5,12 @@
   Time: 21:45
   To change this template use File | Settings | File Templates.
 --%>
-<<<<<<< HEAD
-
-=======
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>
->>>>>>> 076f5d935853bb1641a75631bf1d39dea839326e
-        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-        <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>Affichage de tous les prêts</title>
