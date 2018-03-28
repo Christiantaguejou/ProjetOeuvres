@@ -12,6 +12,10 @@ import com.epul.oeuvres.dao.Service;
 import com.epul.oeuvres.meserreurs.*;
 import com.epul.oeuvres.metier.*;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
+
 ///
 /// Les m�thode du contr�leur r�pondent � des sollicitations
 /// des pages JSP
@@ -186,23 +190,7 @@ public class MultiControleur {
         destinationPage = "pretOeuvre";
         return new ModelAndView(destinationPage);
     }
-/*
-    @RequestMapping(value = "savePret.htm")
-    public ModelAndView savePret(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String destinationPage = "";
-        try {
-            int id = Integer.parseInt(request.getParameter(ID));
-            Service unService = new Service();
-            request.setAttribute("oeuvre", unService.consulterOeuvre(id));
-            request.setAttribute("lesAdherents", unService.consulterListeAdherents());
-        } catch (MonException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        destinationPage = "pretOeuvre";
-        return new ModelAndView(destinationPage);
-    }
-*/
+
     @RequestMapping(value = "saveOeuvre.htm")
     public ModelAndView saveOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage = "";
@@ -219,35 +207,6 @@ public class MultiControleur {
         return new ModelAndView(destinationPage);
     }
 
-    @RequestMapping(value = "listerReservations.htm" )
-    public ModelAndView listerReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String destinationPage = "";
-        Service unService = new Service();
-        request.setAttribute("reservations", unService.consulterListeReservation());
-        destinationPage = "listerReservations";
-        return new ModelAndView(destinationPage);
-    }
-
-    /**
-     * +    public void deleteReservation(Reservation reservation) throws MonException {
-     +        String mysql;
-     +        DialogueBd dialogueBd = DialogueBd.getInstance();
-     +        try {
-     +            mysql = "DELETE FROM reservation WHERE id_adherent=" + reservation.getAdherent().getIdAdherent()
-     +                    + " AND id_oeuvrevente=" + reservation.getOeuvrevente().getIdOeuvrevente();
-     +            dialogueBd.insertionBD(mysql);
-     +        } catch (MonException e) {
-     +            throw e;
-     +        } catch (Exception ex) {
-     +            throw new MonException(ex.getMessage(), "systeme");
-     +        }
-     +    }
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
-
 	@RequestMapping(value = "modifierOeuvre.htm")
     public ModelAndView modiferOeuvre(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage = "";
@@ -261,6 +220,78 @@ public class MultiControleur {
             e.printStackTrace();
         }
         destinationPage = "modifierOeuvre";
+        return new ModelAndView(destinationPage);
+    }
+
+    /**
+     * Reservations
+     */
+
+    /*
+    @RequestMapping(value = "savePret.htm")
+    public ModelAndView savePret(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage = "";
+        try {
+            int id = Integer.parseInt(request.getParameter(ID));
+            Service unService = new Service();
+            request.setAttribute("oeuvre", unService.consulterOeuvre(id));
+            request.setAttribute("lesAdherents", unService.consulterListeAdherents());
+        } catch (MonException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        destinationPage = "pretOeuvre";
+        return new ModelAndView(destinationPage);
+    }
+*/
+    @RequestMapping(value = "listerReservations.htm" )
+    public ModelAndView listerReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage = "";
+        Service unService = new Service();
+        request.setAttribute("reservations", unService.consulterListeReservation());
+        destinationPage = "listerReservations";
+        return new ModelAndView(destinationPage);
+    }
+
+    @RequestMapping(value = "savePret.htm")
+    public ModelAndView insererReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String destinationPage = "";
+        try {
+
+            Service unService = new Service();
+            ReservationEntity reservation = this.setParameterToReservation(request);
+
+            unService.insertReservation(reservation);
+
+        } catch (MonException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        destinationPage = "index";
+        return new ModelAndView(destinationPage);
+    }
+
+    @RequestMapping(value = "deleteReservation.htm")
+    public ModelAndView deleteReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String destinationPage = "listerAdherent";
+        Service unService = new Service();
+        try {
+            ReservationEntity reservationToDelete = unService.consulterReservation(Integer.parseInt(request.getParameter(ID)));
+            if (reservationToDelete == null) {
+                response.getWriter().write("error");
+                destinationPage = "Erreur";
+
+                return new ModelAndView(destinationPage);
+            }
+            unService.deleteReservation(reservationToDelete);
+        } catch (MonException e) {
+            e.printStackTrace();
+            response.getWriter().write("error");
+            return new ModelAndView(destinationPage);
+        }
+        //response.getWriter().write("AdherentSupprimer");
         return new ModelAndView(destinationPage);
     }
 
@@ -287,14 +318,15 @@ public class MultiControleur {
 		return new ModelAndView("Erreur");
 	}
 
-    protected AdherentEntity setParameterToAdherent(HttpServletRequest request) {
+    private AdherentEntity setParameterToAdherent(HttpServletRequest request) {
         AdherentEntity unAdherent = new AdherentEntity();
         unAdherent.setNomAdherent(request.getParameter("nom"));
         unAdherent.setPrenomAdherent(request.getParameter("prenom"));
         unAdherent.setVilleAdherent(request.getParameter("ville"));
         return unAdherent;
     }
-    protected OeuvreventeEntity setParameterToOeuvrevente(HttpServletRequest request) throws MonException {
+
+    private OeuvreventeEntity setParameterToOeuvrevente(HttpServletRequest request) throws MonException {
         OeuvreventeEntity oeuvrevente = new OeuvreventeEntity();
         Service unService = new Service();
         oeuvrevente.setTitreOeuvrevente(request.getParameter("titreOeuvre"));
@@ -306,6 +338,17 @@ public class MultiControleur {
         if(request.getParameter("idOeuvre") != null)
             oeuvrevente.setIdOeuvrevente(Integer.parseInt(request.getParameter("idOeuvre")));
         return oeuvrevente;
+    }
+
+    private ReservationEntity setParameterToReservation(HttpServletRequest request) throws Exception {
+        ReservationEntity reservation = new ReservationEntity();
+        String date = request.getParameter("dateReservation");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        reservation.setIdAdherent(Integer.parseInt(request.getParameter("idAdherent")));
+        reservation.setDateReservation(new Date(format.parse(request.getParameter("dateReservation")).getTime()));
+        reservation.setIdOeuvrevente(Integer.parseInt(request.getParameter("idOeuvrevente")));
+        reservation.setStatut("confirmée");
+        return reservation;
     }
 	
 

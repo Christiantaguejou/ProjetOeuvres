@@ -11,21 +11,57 @@ import javax.persistence.EntityTransaction;
 
 public class Service extends EntityService {
 
+    private void insert(Object object) throws MonException {
+        try {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            entitymanager.persist(object);
+            transac.commit();
+            entitymanager.close();
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception exc) {
+            throw new MonException(exc.getMessage(), "systeme");
+        }
+    }
+
+    private void modify(Object object) throws MonException {
+        try {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            entitymanager.merge(object);
+            transac.commit();
+            entitymanager.close();
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception ex) {
+            throw new MonException(ex.getMessage(), "systeme");
+        }
+    }
+
+    private boolean delete(Object object) {
+        try {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            entitymanager.remove(entitymanager.merge(object));
+            transac.commit();
+            entitymanager.close();
+        } catch (Exception ex) {
+            try {
+                throw new MonException(ex.getMessage(), "systeme");
+            } catch (MonException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return true;
+    }
+
     /* Insertion d'un adherent
      * param Adherent unAdherent
      * */
     public void insertAdherent(AdherentEntity unAdherent) throws MonException {
-        try {
-            EntityTransaction transac = startTransaction();
-            transac.begin();
-            entitymanager.persist(unAdherent);
-            transac.commit();
-            entitymanager.close();
-        } catch (RuntimeException e) {
-            new MonException("Erreur de lecture", e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        insert(unAdherent);
     }
 
 
@@ -71,17 +107,11 @@ public class Service extends EntityService {
     }
 
     public void modifyAdherent(AdherentEntity adherent) throws MonException {
-        try {
-            EntityTransaction transac = startTransaction();
-            transac.begin();
-            entitymanager.merge(adherent);
-            transac.commit();
-            entitymanager.close();
-        } catch (MonException e) {
-            throw e;
-        } catch (Exception ex) {
-            throw new MonException(ex.getMessage(), "systeme");
-        }
+        modify(adherent);
+    }
+
+    public boolean deleteAdherent(AdherentEntity adherentToDelete) {
+        return delete(adherentToDelete);
     }
 
     // gestion des adherents
@@ -160,32 +190,11 @@ public class Service extends EntityService {
      * @throws MonException
      */
     public void insertOeuvre(OeuvreventeEntity oeuvre) throws MonException {
-
-        try {
-            EntityTransaction transac = startTransaction();
-            transac.begin();
-            entitymanager.persist(oeuvre);
-            transac.commit();
-            entitymanager.close();
-        } catch (MonException e) {
-            throw e;
-        } catch (Exception exc) {
-            throw new MonException(exc.getMessage(), "systeme");
-        }
+        insert(oeuvre);
     }
 
     public void modifyOeuvre(OeuvreventeEntity oeuvre) throws MonException {
-        try {
-            EntityTransaction transac = startTransaction();
-            transac.begin();
-            entitymanager.merge(oeuvre);
-            transac.commit();
-            entitymanager.close();
-        } catch (MonException e) {
-            throw e;
-        } catch (Exception ex) {
-            throw new MonException(ex.getMessage(), "systeme");
-        }
+        modify(oeuvre);
     }
 
     public OeuvreventeEntity consulterOeuvre(int id) throws MonException {
@@ -219,26 +228,6 @@ public class Service extends EntityService {
         return proprietaireEntities;
     }
 
-    public boolean deleteAdherent(AdherentEntity adherentToDelete) {
-
-        try {
-            EntityTransaction transac = startTransaction();
-            transac.begin();
-            entitymanager.remove(entitymanager.merge(adherentToDelete));
-            transac.commit();
-            entitymanager.close();
-        } catch (Exception ex) {
-            try {
-                throw new MonException(ex.getMessage(), "systeme");
-            } catch (MonException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return true;
-    }
-
-
     public List<OeuvreventeEntity> consulterListeReservation() {
         List<OeuvreventeEntity> reservations = null;
         EntityTransaction transaction = null;
@@ -251,5 +240,33 @@ public class Service extends EntityService {
             e.printStackTrace();
         }
         return reservations;
+    }
+
+    public ReservationEntity consulterReservation(int id) throws Exception{
+        ReservationEntity reservation = null;
+        try {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            reservation = entitymanager.find(ReservationEntity.class, id);
+            transac.commit();
+            entitymanager.close();
+        } catch (MonException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return reservation;
+    }
+
+    public void insertReservation(ReservationEntity reservationToInsert) throws Exception {
+        insert(reservationToInsert);
+    }
+
+    public void modifyReservation(ReservationEntity reservationToModify) throws Exception {
+        modify(reservationToModify);
+    }
+
+    public boolean deleteReservation(ReservationEntity reservationToDelete) {
+        return delete(reservationToDelete);
     }
 }

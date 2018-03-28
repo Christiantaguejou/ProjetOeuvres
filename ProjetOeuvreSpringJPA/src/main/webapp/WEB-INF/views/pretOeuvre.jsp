@@ -35,9 +35,10 @@
                 </div>
                 <div class="panel-body">
                     <DIV align="center">
-                        <form class="form-horizontal" name='identification' method="post" action="" onsubmit="return teste()">
+                        <form class="form-horizontal" name='identification' method="post" action="savePret.htm"">
                             <div class="form-group">
                                 <input type="text" class="form-control hidden" id="idAdherent" name="id"  readonly>
+                                <input type="text" class="form-control hidden" id="idOeuvrevente" name="id"  readonly>
                                 <label class="col-sm-4 col-xs-4">Titre de L'Oeuvre:</label>
                                 <div class="col-sm-8 col-xs-4">
                                     <input type="text" class="form-control" id="titreOeuvre" name="titreOeuvre" value="${oeuvre.titreOeuvrevente}" readonly>
@@ -68,7 +69,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-default">Modifier</button>
-                            <a href="#" id="deleteAdherent" class="btn btn-default">Supprimer</a>
+                            <a href="#" id="deleteReservation" class="btn btn-default">Supprimer</a>
                         </form>
                     </DIV>
                 </div>
