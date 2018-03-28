@@ -264,10 +264,10 @@ public class MultiControleur {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return new ModelAndView("redirect:listerReservations.htm");
+        return listerReservation(request, response);
     }
 
-    @RequestMapping(value = "deleteReservation.htm")
+    @RequestMapping(value = "supprimerReservation.htm")
     public ModelAndView supprimerReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //        adherent=${item.entity.idAdherent}&oeuvre=${item.entity.idOeuvrevente}
         String destinationPage = "listerReservation";
@@ -286,7 +286,7 @@ public class MultiControleur {
             response.getWriter().write("error");
             return new ModelAndView(destinationPage);
         }
-        return new ModelAndView(destinationPage);
+        return listerReservation(request, response);
     }
 
     @RequestMapping(value = "confirmerReservation.htm")
@@ -308,7 +308,7 @@ public class MultiControleur {
             response.getWriter().write("error");
             return new ModelAndView(destinationPage);
         }
-        return new ModelAndView(destinationPage);
+        return listerReservation(request, response);
     }
 
 	// /
