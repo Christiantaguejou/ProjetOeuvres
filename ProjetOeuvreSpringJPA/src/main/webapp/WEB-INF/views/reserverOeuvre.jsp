@@ -64,7 +64,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 col-xs-4">Date de Réservation:</label>
                                 <div class="col-sm-8 col-xs-4">
-                                    <input type="date" class="form-control"  id="dateReservation"  name="dateReservation" >
+                                    <input type="date" class="form-control"  id="dateReservation"  name="dateReservation" required>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-default">Reserver</button>

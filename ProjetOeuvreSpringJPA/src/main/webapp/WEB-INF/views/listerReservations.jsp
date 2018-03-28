@@ -40,17 +40,13 @@
                         <br/>
                         <thead>
                         <tr>
-                            <th onclick="sortTable(0)" class="cursorClic"><p class="glyphicon glyphicon-sort "
-                                                                             style="display: inline"></p> Adhérent
+                            <th class="cursorClic"><p  style="display: inline"></p> Adhérent
                             </th>
-                            <th onclick="sortTable(1)" class="cursorClic"><p class="glyphicon glyphicon-sort "
-                                                                             style="display: inline"></p> Titre oeuvre
+                            <th class="cursorClic"><p  style="display: inline"></p> Titre oeuvre
                             </th>
-                            <th onclick="sortTable(2)" class="cursorClic"><p class="glyphicon glyphicon-sort "
-                                                                             style="display: inline"></p> Date Réservation
+                            <th  class="cursorClic"><p style="display: inline"></p> Date Réservation
                             </th>
-                            <th onclick="sortTable(3)" class="cursorClic"><p class="glyphicon glyphicon-sort "
-                                                                             style="display: inline"></p> Statut
+                            <th class="cursorClic"><p style="display: inline"></p> Statut
                             </th>
 
                             <th><p style="display: inline">Paramètres</p></th>
