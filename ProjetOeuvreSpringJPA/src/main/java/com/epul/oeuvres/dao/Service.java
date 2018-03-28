@@ -192,8 +192,12 @@ public class Service extends EntityService {
         return reservation;
     }
 
-    public void insertReservation(ReservationEntity reservationToInsert) throws MonException {
+    public boolean insertReservation(ReservationEntity reservationToInsert) throws MonException {
+        if (consulterReservation(reservationToInsert.getIdAdherent(), reservationToInsert.getIdOeuvrevente()) != null) {
+            return false;
+        }
         insert(reservationToInsert);
+        return true;
     }
 
     public boolean deleteReservation(ReservationEntity reservationToDelete) {

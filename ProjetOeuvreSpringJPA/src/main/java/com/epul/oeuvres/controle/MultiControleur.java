@@ -225,10 +225,13 @@ public class MultiControleur {
 
     @RequestMapping(value = "saveReservation.htm")
     public View insererReservation(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        RedirectView redirect = new RedirectView("listerReservations.htm");
         try {
             Service unService = new Service();
             ReservationEntity reservation = this.setParameterToReservation(request);
-            unService.insertReservation(reservation);
+            if (! unService.insertReservation(reservation)) {
+                return new RedirectView("listerReservations.htm?success=false");
+            }
 
         } catch (MonException e) {
             e.printStackTrace();
