@@ -84,6 +84,23 @@
         window.location = $(this).data('href');
     });
 
+    function checkError() {
+        var url = window.location.href;
+        var tab = url.split('?');
+        console.log(tab);
+        console.log(tab.length);
+        if (tab.length < 2) {
+            console.log(tab.length);
+            return;
+        }
+        if (tab[1] == "success=false") {
+            console.log("echec");
+            alert('Vous avez essayez de réserver une oeuvre qui est déjà réservé par cet adhérent');
+        }
+    }
+    $(document).ready(function () {
+        checkError();
+    });
 </script>
 </body>
 </html>
