@@ -345,7 +345,7 @@ public class MultiControleur {
 
     private ReservationEntity setParameterToReservation(HttpServletRequest request) throws Exception {
         ReservationEntity reservation = new ReservationEntity();
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
         reservation.setIdAdherent(Integer.parseInt(request.getParameter("adherent")));
         reservation.setDateReservation(new Date(format.parse(request.getParameter("dateReservation")).getTime()));
         reservation.setIdOeuvrevente(Integer.parseInt(request.getParameter("id")));

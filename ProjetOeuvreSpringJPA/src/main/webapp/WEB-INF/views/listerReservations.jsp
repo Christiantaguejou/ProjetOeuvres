@@ -43,12 +43,15 @@
                         <thead>
                         <tr>
                             <th onclick="sortTable(0)" class="cursorClic"><p class="glyphicon glyphicon-sort "
-                                                                             style="display: inline"></p> Titre oeuvre
+                                                                             style="display: inline"></p> Adhérent
                             </th>
                             <th onclick="sortTable(1)" class="cursorClic"><p class="glyphicon glyphicon-sort "
-                                                                             style="display: inline"></p> Date Réservation
+                                                                             style="display: inline"></p> Titre oeuvre
                             </th>
                             <th onclick="sortTable(2)" class="cursorClic"><p class="glyphicon glyphicon-sort "
+                                                                             style="display: inline"></p> Date Réservation
+                            </th>
+                            <th onclick="sortTable(3)" class="cursorClic"><p class="glyphicon glyphicon-sort "
                                                                              style="display: inline"></p> Statut
                             </th>
 
@@ -63,12 +66,14 @@
                                 <td>${item.entity.dateReservation}</td>
                                 <td>${item.entity.statut}</td>
                                 <td align="center">
+                                    <c:if test="${item.entity.statut != 'confirmée'}">
                                     <a class="btn btn-primary clickable-row"
                                        data-href="confirmerReservation.htm?adherent=${item.entity.idAdherent}&oeuvre=${item.entity.idOeuvrevente}"><em
                                             class="fa fa-pencil"></em></a>
                                     <a class="btn btn-danger clickable-row"
                                        data-href="supprimerReservation.htm?adherent=${item.entity.idAdherent}&oeuvre=${item.entity.idOeuvrevente}"><em
                                             class="fa fa-trash"></em></a>
+                                    </c:if>
                                 </td>
                             </tr>
                         </c:forEach>
