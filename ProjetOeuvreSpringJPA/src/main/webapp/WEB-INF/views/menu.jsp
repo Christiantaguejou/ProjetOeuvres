@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
-    <link rel="stylesheet" href="resources/css/leftMenu.css">
+    <link rel="stylesheet" href="/resources/css/leftMenu.css">
 </head>
 <div class="col-md-3 col-xs-3 padding-0">
     <div class="panel panel-default ">
@@ -18,6 +18,7 @@
             <div><a href="index.htm"> Accueil </a></div>
             <div><a href="listerAdherent.htm"> Liste des Adhérents </a></div>
             <div><a href="listerOeuvre.htm"> Liste des Oeuvres </a></div>
+            <div><a href="listerReservations.htm"> Ajouter un Adhérent </a></div>
             <div><a href="ajouterAdherent.htm"> Ajouter un Adhérent </a></div>
             <div><a href="ajouterOeuvre.htm"> Ajouter une Oeuvre </a></div>
             <div><a href="#"> Quitter </a></div>

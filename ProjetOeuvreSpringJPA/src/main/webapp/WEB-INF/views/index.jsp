@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 col-xs-4 fonctionnalite">
-                                <img src="/resources/img/gestion.png" class="img-responsive image"  alt="Image">
+                                <img src="/resources/img/reservation.png" class="img-responsive image"  alt="Image">
                                 <div class="middle">
                                     <a class="text" href="listerReservations.htm">Lister Réservations</a>
                                 </div>
