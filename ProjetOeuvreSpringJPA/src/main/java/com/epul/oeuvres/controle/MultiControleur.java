@@ -97,7 +97,7 @@ public class MultiControleur {
 
     @RequestMapping(value = "deleteAdherent.htm")
     public RedirectView deleteAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String destinationPage = "index";
+        String destinationPage = "listerAdherent.htm";
         Service unService = new Service();
         try {
             AdherentEntity adherentToDelete = unService.consulterAdherent(Integer.parseInt(request.getParameter(ID)));
