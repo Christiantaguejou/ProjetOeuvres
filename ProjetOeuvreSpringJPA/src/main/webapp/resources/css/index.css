@@ -16,6 +16,9 @@
 .fonctionnalite:hover .middle {
     opacity: 1;
 }
+.fonctionnalite {
+    text-align: center;
+}
 
 .text {
     font-size: 12px;

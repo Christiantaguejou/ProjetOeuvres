@@ -29,18 +29,21 @@
                         <div class="col-md-1 col-xs-1"></div>
                         <div class="col-md-10 col-xs-10">
                             <div class="col-md-4 col-xs-4 fonctionnalite">
+                                <a>Ajout Adhérent</a>
                                 <img src="/resources/img/add.PNG" class="img-responsive image" alt="Image">
                                 <div class="middle">
                                     <a class="text" href="ajouterAdherent.htm">Ajout Adhérent</a>
                                 </div>
                             </div>
                             <div class="col-md-4 col-xs-4 fonctionnalite">
+                                <a>Lister Les Adhérents</a>
                                 <img src="/resources/img/list.png" class="img-responsive image"  alt="Image">
                                 <div class="middle">
                                     <a class="text" href="listerAdherent.htm">Lister Les Adhérents</a>
                                 </div>
                             </div>
                             <div class="col-md-4 col-xs-4 fonctionnalite">
+                                <a>Quitter</a>
                                 <img src="/resources/img/quit.png" class="img-responsive image"  alt="Image">
                                 <div class="middle">
                                     <a class="text" ref="javascript:fermer()">Quitter</a>
@@ -54,21 +57,24 @@
                         <div class="col-md-1 col-xs-1"></div>
                         <div class="col-md-10 col-xs-10">
                             <div class="col-md-4 col-xs-4 fonctionnalite">
+                                <a>Ajouter Une Oeuvre</a>
                                 <img src="/resources/img/oeuvre.png" class="img-responsive image"  alt="Image">
                                 <div class="middle">
                                     <a class="text" href="ajouterOeuvre.htm">Ajouter Une Oeuvre</a>
                                 </div>
                             </div>
                             <div class="col-md-4 col-xs-4 fonctionnalite">
+                                <a>Lister les Oeuvres</a>
                                 <img src="/resources/img/gestion.png" class="img-responsive image"  alt="Image">
                                 <div class="middle">
-                                    <a class="text" href="listerOeuvre.htm">Lister Oeuvres</a>
+                                    <a class="text" href="listerOeuvre.htm">Lister les Oeuvres</a>
                                 </div>
                             </div>
                             <div class="col-md-4 col-xs-4 fonctionnalite">
+                                <a>Lister les Réservations</a>
                                 <img src="/resources/img/reservation.png" class="img-responsive image"  alt="Image">
                                 <div class="middle">
-                                    <a class="text" href="listerReservations.htm">Lister Réservations</a>
+                                    <a class="text" href="listerReservations.htm">Lister les Réservations</a>
                                 </div>
                             </div>
                         </div>
