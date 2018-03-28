@@ -5,7 +5,7 @@ import com.epul.oeuvres.meserreurs.MonException;
 import java.util.*;
 
 import com.epul.oeuvres.metier.*;
-import org.hibernate.Query;
+import javax.persistence.Query;
 
 import javax.persistence.EntityTransaction;
 
@@ -147,6 +147,19 @@ public class Service extends EntityService {
         return oeuvresVente;
     }
 
+    public List<OeuvrepretEntity> consulterListeReservations() {
+        List<OeuvrepretEntity> oeuvresPret = null;
+        EntityTransaction transaction = null;
+        try {
+            transaction = startTransaction();
+            transaction.begin();
+            oeuvresPret = (List<OeuvrepretEntity>) entitymanager.createQuery("SELECT a FROM OeuvrepretEntity a ORDER BY a.titreOeuvrepret").getResultList();
+            entitymanager.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return oeuvresPret;
+    }
 //    public OeuvreventeEntity get(int numero) throws MonException {
 //        List<AdherentEntity> adherents = null;
 //        AdherentEntity adherent = new AdherentEntity();

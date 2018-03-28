@@ -5,21 +5,23 @@
   Time: 21:45
   To change this template use File | Settings | File Templates.
 --%>
+<<<<<<< HEAD
 
+=======
+<html>
+<head>
+    <title>
+>>>>>>> 076f5d935853bb1641a75631bf1d39dea839326e
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-        <%@ page language="java" contentType="text/html; charset=UTF-8"
-                 pageEncoding="UTF-8" %>
-        <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-        <html>
+        <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Affichage de tous les adhérents</title>
+            <title>Affichage de tous les prêts</title>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            <link rel="stylesheet"
-                  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="/resources/css/style.css">
             <link rel="stylesheet" href="/resources/css/liste.css">
             <script type="application/javascript" src="/resources/js/listerAdherent.js"></script>
