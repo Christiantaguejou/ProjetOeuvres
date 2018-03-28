@@ -67,7 +67,7 @@
                                     <input type="date" class="form-control"  id="dateReservation"  name="dateReservation" >
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-default">Modifier</button>
+                            <button type="submit" class="btn btn-default">Sauvegarder</button>
                             <a href="#" id="deleteReservation" class="btn btn-default">Supprimer</a>
                         </form>
                     </DIV>
